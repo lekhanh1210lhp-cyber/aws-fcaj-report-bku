@@ -32,6 +32,21 @@ SECTION_TITLES_EN = {
 TOP_BODY_VI = "Báo cáo thực tập"
 TOP_BODY_EN = "Internship Report"
 
+# The printed internship report contains only these three required sections.
+# Other Hugo sections remain available on the website but are not exported to
+# LaTeX.
+REPORT_SECTIONS = (
+    "1-Worklog",
+    "2-Proposal",
+    "5-Workshop",
+    "6-Self-evaluation",
+)
+
+LINK_SECTION_HEADINGS = {
+    "liên kết workshop",
+    "workshop references",
+}
+
 LATEX_SPECIALS = {
     "\\": r"\textbackslash{}",
     "&": r"\&",
@@ -544,6 +559,81 @@ def filter_markdown_sections(content, keep_headings):
     return "\n".join(out)
 
 
+def remove_markdown_section(content, headings):
+    """Remove named Markdown sections, including all nested content."""
+    headings_norm = {heading.strip().lower() for heading in headings}
+    lines = content.splitlines()
+    out = []
+    skipped_level = None
+
+    for line in lines:
+        match = re.match(r"^(#{1,6})\s+(.+?)\s*$", line)
+
+        if match:
+            level = len(match.group(1))
+            title = re.sub(r"\s+#*$", "", match.group(2)).strip().lower()
+
+            if title in headings_norm:
+                skipped_level = level
+                continue
+
+            if skipped_level is not None and level <= skipped_level:
+                skipped_level = None
+
+        if skipped_level is None:
+            out.append(line)
+
+    return "\n".join(out)
+
+
+def remove_report_links(content):
+    """Remove link targets from the print report while retaining useful text."""
+    # A download-only heading has no purpose in a non-clickable report.
+    content = re.sub(
+        r"^#{1,6}\s+.*<a\s+[^>]*href=[^>]*>.*?</a>\s*$",
+        "",
+        content,
+        flags=re.MULTILINE | re.IGNORECASE,
+    )
+
+    # Resolve Hugo relref shortcodes first so Markdown links can be flattened.
+    content = re.sub(r"\{\{%\s*relref\s+[^%]*%\}\}", "", content)
+    # Preserve images; only flatten ordinary Markdown links.
+    content = re.sub(r"(?<!!)\[([^\]]+)\]\([^\n)]*\)", r"\1", content)
+    content = re.sub(r"<https?://[^>]+>", "", content, flags=re.IGNORECASE)
+
+    return content
+
+
+def remove_report_navigation(content):
+    """Remove web-only navigation and link-list blocks from print output."""
+    content = re.sub(
+        r"(?ms)^(?:Public project links|Các liên kết công khai):\s*\n"
+        r"(?:\s*[-*]\s+.*(?:\n|$))+",
+        "",
+        content,
+    )
+    content = re.sub(
+        r"(?m)^(?:(?:Next|Tiếp theo):\s*|(?:Return to|Quay lại)\s+).*"
+        r"(?:\n|$)",
+        "",
+        content,
+    )
+    content = re.sub(
+        r"(?ms)^The source code, demo video, and related documents are "
+        r"collected in the\s+References section\.\s*",
+        "",
+        content,
+    )
+    content = re.sub(
+        r"(?ms)^Mã nguồn, video demo và các tài liệu liên quan được tập hợp "
+        r"trong\s+mục Tài liệu tham khảo\.\s*",
+        "",
+        content,
+    )
+    return content
+
+
 def preprocess_markdown(content, meta=None):
     meta = meta or {}
 
@@ -569,6 +659,10 @@ def preprocess_markdown(content, meta=None):
 
         if keep_columns:
             content = filter_markdown_tables(content, keep_columns)
+
+    content = remove_markdown_section(content, LINK_SECTION_HEADINGS)
+    content = remove_report_navigation(content)
+    content = remove_report_links(content)
 
     content = re.sub(r"!\[([^\]]*)\]\(/static/images/", r"![\1](", content)
     content = re.sub(r"!\[([^\]]*)\]\(/images/",      r"![\1](", content)
@@ -669,6 +763,28 @@ def compact_longtables(latex):
 
 def postprocess_latex(latex):
     # Do NOT replace Pandoc table column specs by regex.
+    # The standalone report does not enable Pandoc's accessibility template,
+    # so remove the unsupported graphicx alt option.
+    latex = re.sub(r",?alt=\{[^{}]*\},?", "", latex)
+    # Workshop content already supplies the intended manual numbering (for
+    # example Figure 19a/19b). Convert Pandoc's duplicate floating figure to a
+    # non-floating centered block, so the image stays with its manual caption.
+    latex = re.sub(
+        r"\\begin\{figure\}\s*\n\\centering\s*\n(.*?)\n\\caption\{.*?\}\s*\n\\end\{figure\}(\s*\n\\emph\{(?:Figure|Hình)(?:\s|~))",
+        r"\\begin{center}\n\1\n\\end{center}\n\\nopagebreak[4]\2",
+        latex,
+        flags=re.DOTALL,
+    )
+    def add_code_breaks(match):
+        body = match.group(1)
+        body = re.sub(r"(/|-|\\_)", r"\1\\allowbreak{}", body)
+        return r"\texttt{" + body + "}"
+
+    latex = re.sub(
+        r"\\texttt\{((?:[^{}]|\\[{}])*)\}",
+        add_code_breaks,
+        latex,
+    )
     latex = re.sub(r"\\label\{[^}]+\}", "", latex)
     latex = neutralize_body_headings(latex)
     latex = compact_longtables(latex)
@@ -693,6 +809,7 @@ def convert_to_latex(md_text, source_path=None):
                     "--top-level-division=section",
                     "--lua-filter", LUA_FILTER,
                     "-o", tmp_out,
+                    "--no-highlight",
                 ],
                 check=True,
                 capture_output=True,
@@ -726,6 +843,9 @@ def discover_pages(lang):
         rel = os.path.relpath(root, CONTENT_DIR)
 
         if rel == ".":
+            continue
+
+        if rel.split(os.sep)[0] not in REPORT_SECTIONS:
             continue
 
         # If any ancestor directory is skipped, skip this directory too.
@@ -798,8 +918,6 @@ def process_language(lang):
 
 def build_include_file(lang, pages, containers):
     titles = SECTION_TITLES_VI if lang == "vi" else SECTION_TITLES_EN
-    top_body = TOP_BODY_VI if lang == "vi" else TOP_BODY_EN
-
     sections = {}
 
     for rel_dir, out_name, title, meta in pages:
@@ -813,14 +931,17 @@ def build_include_file(lang, pages, containers):
     lines.append(r"}")
     lines.append("")
 
-    lines.append(f"\\section{{{sanitize_latex_text(top_body)}}}")
-    lines.append("")
+    ordered_sections = [section for section in REPORT_SECTIONS if section in sections]
 
-    for sec_dir in sorted(sections, key=lambda s: sort_key(s)):
+    for section_index, sec_dir in enumerate(ordered_sections):
         sec_pages = sections[sec_dir]
         sec_title = titles.get(sec_dir, sec_dir.replace("-", " "))
 
-        lines.append(f"\\subsection{{{sanitize_latex_text(sec_title)}}}")
+        if section_index:
+            lines.append(r"\clearpage")
+            lines.append("")
+
+        lines.append(f"\\section{{{sanitize_latex_text(sec_title)}}}")
         lines.append("")
 
         for rel_dir, out_name, title, meta in sec_pages:
@@ -844,12 +965,9 @@ def build_include_file(lang, pages, containers):
                     else sanitize_latex_text(rel_dir.split(os.sep)[-1].replace("-", " "))
                 )
 
-                lines.append(f"\\subsubsection{{{label}}}")
+                lines.append(f"\\subsection{{{label}}}")
                 lines.append(f"\\input{{generated/{lang}/{out_name}}}")
                 lines.append("")
-
-        lines.append(r"\newpage")
-        lines.append("")
 
     out_path = os.path.join(OUTPUT_DIR, f"content_body_{lang}.tex")
 

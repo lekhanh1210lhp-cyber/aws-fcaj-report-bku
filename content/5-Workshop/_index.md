@@ -42,7 +42,7 @@ The final outcome is a reproducible Smart Room prototype for `device_id=room_01`
 
 ![AWS IoT Monitoring and Control Dashboard architecture](/images/2-Proposal/IoT_Dashboard_Architecture.png)
 
-*Figure 5-1. Current architecture with CloudFront/WAF/private S3, ALB/ASG FastAPI backends, RDS PostgreSQL Multi-AZ, YOLO UNO, and CloudWatch.*
+*Figure 1. Current architecture with CloudFront/WAF/private S3, ALB/ASG FastAPI backends, RDS PostgreSQL Multi-AZ, YOLO UNO, and CloudWatch.*
 
 The system operates through four main flows:
 

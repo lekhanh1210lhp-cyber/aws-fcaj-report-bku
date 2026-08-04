@@ -32,7 +32,7 @@ Most sensors and actuators are connected through the Grove ports in the center o
 The physical prototype below shows the YOLO UNO and the connected display, sensors, fan, and curtain-control servo used by the project.
 
 ![YOLO UNO hardware prototype with sensors and actuators](/images/5-Workshop/5.6-hardware/yolo-uno-hardware-setup.png)
-*Figure 10. The physical hardware prototype consisting of YOLO UNO, an LCD display, temperature and humidity sensing, a light sensor, a fan, and a curtain-control servo.*
+*Figure 13. The physical hardware prototype consisting of YOLO UNO, an LCD display, temperature and humidity sensing, a light sensor, a fan, and a curtain-control servo.*
 
 > **Note:** This image was extracted from a video, so some details may appear slightly blurred. See the [full demonstration video on Google Drive](https://drive.google.com/file/d/1T97dUY58hbT2ppxvg7ESR12Jg9BA828W/view?usp=sharing) for a clearer view.
 
@@ -164,7 +164,7 @@ SUCCESS
 The screenshot below shows that the firmware compiled successfully.
 
 ![Successful YOLO UNO firmware build with PlatformIO](/images/5-Workshop/5.6-hardware/platformio-firmware-build.png)
-*Figure 12. The YOLO UNO firmware was successfully compiled with PlatformIO using the `yolo_uno` environment, producing `firmware.bin` with a `SUCCESS` result.*
+*Figure 14. The YOLO UNO firmware was successfully compiled with PlatformIO using the `yolo_uno` environment, producing `firmware.bin` with a `SUCCESS` result.*
 
 Firmware upload and Serial Monitor access require the YOLO UNO board to be connected to the computer:
 

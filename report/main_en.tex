@@ -1,5 +1,5 @@
 \documentclass[a4paper]{article}
-\usepackage[T1]{fontenc}
+\usepackage{vntex}
 \usepackage{textcomp}
 \usepackage{mathptmx}[ptm]
 \usepackage{a4wide,amssymb,epsfig,latexsym,array,hhline,fancyhdr}
@@ -21,7 +21,7 @@
 \usepackage{graphicx}
 \let\oldincludegraphics\includegraphics
 \renewcommand{\includegraphics}[2][]{%
-  \oldincludegraphics[width=\textwidth,keepaspectratio,#1]{#2}%
+  \oldincludegraphics[width=0.9\linewidth,keepaspectratio,#1]{#2}%
 }
 \usepackage{pdfpages}
 \usepackage{float}
@@ -34,16 +34,20 @@
 \usepackage{setspace}
 \usepackage{epsfig}
 \usepackage{tikz}
-\usepackage{url}
 
 \usetikzlibrary{arrows,snakes,backgrounds,calc}
-\usepackage[unicode]{hyperref}
-\hypersetup{urlcolor=blue,linkcolor=black,citecolor=black,colorlinks=true}
 \usepackage{listings}
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{breaklines=true,breakanywhere=true,fontsize=\small}
 
 \IfFileExists{grffile.sty}{\usepackage{grffile}}{}
 
 \graphicspath{{../static/images/}}
+
+% Pandoc uses this neutral counter for uncaptioned longtables.
+\newcounter{none}
+\providecommand{\pandocbounded}[1]{#1}
+\DeclareUnicodeCharacter{2265}{$\geq$}
 
 \def\thesislayout{
 	\geometry{
@@ -110,9 +114,11 @@ captionpos=b,
 \makeatother
 
 \everymath{\color{black}}
-\sloppy
-\captionsetup[figure]{labelfont={small,bf},textfont={small,it},belowskip=-1pt,aboveskip=-9pt}
-\captionsetup[table]{labelfont={small,bf},textfont={small,it},belowskip=-1pt,aboveskip=7pt}
+\setlength{\emergencystretch}{2em}
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{0.2em}
+\captionsetup[figure]{name=Figure,labelfont={small,bf},textfont={small,it},belowskip=-1pt,aboveskip=-9pt}
+\captionsetup[table]{name=Table,labelfont={small,bf},textfont={small,it},belowskip=-1pt,aboveskip=7pt}
 \setlength{\floatsep}{5pt plus 2pt minus 2pt}
 \setlength{\textfloatsep}{5pt plus 2pt minus 2pt}
 \setlength{\intextsep}{10pt plus 2pt minus 2pt}
@@ -152,26 +158,31 @@ captionpos=b,
 \\{\textbf{{\LARGE INTERNSHIP}}}
 \\
 \\
-\textbf{\Large SEMESTER ...... ACADEMIC YEAR .......................} \\
+\textbf{\Large SEMESTER 253 ACADEMIC YEAR 2025-2026} \\
 \end{tabular}
 \end{center}
 \vspace{0.5cm}
 \begin{itemize}
 \renewcommand\labelitemi{--}
-    \item \Large \textbf{MAJOR: ..................................................}
-    \item \Large \textbf{TRAINING PROGRAM: .............................................}
+    \item \Large \textbf{MAJOR: COMPUTER ENGINEERING }
+    \item \Large \textbf{TRAINING PROGRAM: FULL-TIME (ENGLISH PROGRAM) }
 \end{itemize}
 \vspace{0.7cm}
 \begin{itemize}
 \renewcommand\labelitemi{--}
     \item \Large \textbf{COMPANY / INTERNSHIP UNIT:}
-    \\ \Large \textbf{...............................................................................}
+    \\ \Large \textbf{AMAZON WEB SERVICES VIET NAM COMPANY LIMITED}
     \item \Large \textbf{DIRECT SUPERVISOR AT THE COMPANY:}
-    \\ \Large \textbf{...............................................................................}
+    \\ \Large \textbf{Mr. Lữ Hoàn Thiện}
     \item \Large \textbf{FACULTY SUPERVISOR / GRADER:}
-    \\ \Large \textbf{...............................................................................}
+    \\ \Large \textbf{Mr. Nguyễn Thành Công}
     \item \Large \textbf{STUDENT:}
-    \\ \Large \textbf{FULL NAME: ..............................} \textbf{STUDENT ID:..................}
+    \\[0.3cm]
+    {\Large
+    \textbf{FULL NAME: Phạm Lê Minh Khôi}
+    \hspace{1cm}
+    \textbf{STUDENT ID: 2352622}
+    }
 \end{itemize}
 \vspace{0.5cm}
 \begin{center}
@@ -187,12 +198,39 @@ captionpos=b,
 \input{KetQuaXetTuyen_en}
 \input{generated/content_body_en}
 
-\newpage
-\section{Summary}
-\begin{itemize}
-    \item After the internship, what skills/knowledge did you gain?
-    \item Personal reflections: about the company, about the internship program?
-    \item Student's signature and full name (live signature / direct signature in blue ink).
-\end{itemize}
-\input{TongKet_en}
+% Signature confirmation page.
+\clearpage
+\thispagestyle{fancy}
+
+\vspace*{1.2cm}
+\noindent
+\textbf{Student's signature and full name (live signature / direct signature in blue ink).}
+
+\vspace{2.0cm}
+
+\noindent
+\begin{minipage}[t]{0.46\textwidth}
+  \centering
+  \textbf{Student}
+
+  \vspace{4.5cm}
+
+  \rule{0.85\linewidth}{0.4pt}
+
+  \vspace{0.3cm}
+  \textit{Signature and full name}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.46\textwidth}
+  \centering
+  \textbf{Company Representative}
+
+  \vspace{4.5cm}
+
+  \rule{0.85\linewidth}{0.4pt}
+
+  \vspace{0.3cm}
+  \textit{Signature and full name}
+\end{minipage}
+
 \end{document}

@@ -10,13 +10,13 @@ pre: " <b> 5.3. </b> "
 
 ![AWS IoT Monitoring and Control Dashboard architecture](/images/2-Proposal/IoT_Dashboard_Architecture.png)
 
-*Figure 5-2. Current architecture: CloudFront/WAF with a private S3 origin, `/api/*` forwarding to ALB, two FastAPI instances in an ASG, RDS PostgreSQL Multi-AZ, and the direct device-to-ALB path.*
+*Figure 3. Current architecture: CloudFront/WAF with a private S3 origin, `/api/*` forwarding to ALB, two FastAPI instances in an ASG, RDS PostgreSQL Multi-AZ, and the direct device-to-ALB path.*
 
 The dashboard user and YOLO UNO are outside AWS. CloudFront distributes the React + Vite build from a private S3 bucket and forwards browser `/api/*` requests to the internet-facing ALB. YOLO UNO uses the ALB DNS name directly. Inside the VPC, the ALB routes to two FastAPI instances managed by an ASG in `ap-southeast-1a` and `ap-southeast-1c`; RDS PostgreSQL Multi-AZ uses a primary in `ap-southeast-1c` and standby in `ap-southeast-1b`. Each backend instance has an encrypted EBS root volume.
 
 ![Browser, device, command, acknowledgement, and monitoring data flows](/images/5-Workshop/5.3-architecture/verified-application-flows-v2.png)
 
-*Figure 5-3. The browser uses CloudFront, while YOLO UNO uses the ALB directly; both routes converge on the same FastAPI/RDS command and telemetry model.*
+*Figure 4. The browser uses CloudFront, while YOLO UNO uses the ALB directly; both routes converge on the same FastAPI/RDS command and telemetry model.*
 
 ## Components and AWS service selection
 

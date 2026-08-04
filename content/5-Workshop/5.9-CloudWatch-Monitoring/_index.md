@@ -17,7 +17,7 @@ Use native ALB, ASG, EC2, and RDS metrics plus CloudWatch Agent guest metrics an
 | ALB | `UnHealthyHostCount`, `HTTPCode_Target_5XX_Count` | Native Application Load Balancer metrics |
 | ASG | `GroupInServiceInstances` | Native Auto Scaling group metric |
 | EC2 | `CPUUtilization` | Default EC2 metric |
-| EC2 guest OS | `mem_used_percent` | CloudWatch Agent configuration; Figure 19 does not prove a memory datapoint |
+| EC2 guest OS | `mem_used_percent` | CloudWatch Agent configuration; Figure 25a does not prove a memory datapoint |
 | EC2 guest OS | `disk_used_percent` | CloudWatch Agent |
 | EC2 guest OS | `cpu_usage_idle`, `cpu_usage_user`, `cpu_usage_system` | CloudWatch Agent |
 | FastAPI | Backend application log | CloudWatch Agent log collection |
@@ -126,17 +126,17 @@ The captured log stream `/aws/ec2/aws-iot-dashboard/backend` contains recent Fas
 
 ![FastAPI backend access logs in Amazon CloudWatch Logs](/images/5-Workshop/5.9-cloudwatch/backend-cloudwatch-logs.png)
 
-*Figure 18. FastAPI backend access logs from EC2 displayed in Amazon CloudWatch Logs, including timestamps, requested endpoints, and HTTP status codes.*
+*Figure 24. FastAPI backend access logs from EC2 displayed in Amazon CloudWatch Logs, including timestamps, requested endpoints, and HTTP status codes.*
 
 ### Operations metrics for the current architecture
 
 The current operations dashboard contains eight widgets: EC2 CPU, disk, and memory for both backend instances; ASG in-service capacity; RDS CPU and database connections; ALB unhealthy hosts; and ALB target 5XX errors. This evidence matches the deployed ALB/ASG architecture.
 
 ![CloudWatch operations dashboard for ALB, ASG, EC2, and RDS](/images/5-Workshop/5.9-cloudwatch/operations-dashboard.png)
-*Figure 19. The eight-widget operations dashboard shows two EC2 series, ASG in-service capacity of 2, no unhealthy ALB targets during the selected range, RDS metrics, and the ALB target 5XX widget.*
+*Figure 25a. The eight-widget operations dashboard shows two EC2 series, ASG in-service capacity of 2, no unhealthy ALB targets during the selected range, RDS metrics, and the ALB target 5XX widget.*
 
 ![ALB and ASG operational metrics](/images/5-Workshop/5.9-cloudwatch/alb-asg-metrics.png)
-*Figure 19a. CloudWatch graph configuration for ALB unhealthy hosts, ALB target 5XX errors, and ASG in-service instances.*
+*Figure 25b. CloudWatch graph configuration for ALB unhealthy hosts, ALB target 5XX errors, and ASG in-service instances.*
 
 ## Step 5 - Create and validate alarms
 
@@ -157,7 +157,7 @@ Verify the deployed threshold, period, evaluation count, missing-data behavior, 
 
 ![Eight CloudWatch Alarms monitoring ALB, ASG, EC2, and RDS](/images/5-Workshop/5.9-cloudwatch/cloudwatch-alarms.png)
 
-*Figure 20. Eight CloudWatch Alarms monitor ALB, ASG, EC2, and RDS. The OK and Insufficient data states reflect the available metric data at the time of capture.*
+*Figure 26. Eight CloudWatch Alarms monitor ALB, ASG, EC2, and RDS. The OK and Insufficient data states reflect the available metric data at the time of capture.*
 
 ### Alarm state interpretation
 

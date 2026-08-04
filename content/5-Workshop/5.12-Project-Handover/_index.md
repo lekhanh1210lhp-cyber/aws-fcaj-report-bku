@@ -14,13 +14,9 @@ Transfer enough source, configuration, operational knowledge, and evidence for a
 
 The main repository contains the backend and frontend source code, YOLO UNO firmware, architecture diagrams, and bilingual README documentation. The `main` branch is used as the final project handover version.
 
-<p align="center">
-  <img src="/images/5-Workshop/5.12-handover/repository-handover-checklist.png"
-       alt="GitHub repository structure of the AWS IoT Monitoring and Control Dashboard project"
-       width="100%" />
-</p>
+![GitHub repository structure of the AWS IoT Monitoring and Control Dashboard project](/images/5-Workshop/5.12-handover/repository-handover-checklist.png)
 
-*Figure 22. Final project repository structure, including the backend, frontend, YOLO UNO firmware, architecture diagrams, and bilingual README files.*
+*Figure 27. Final project repository structure, including the backend, frontend, YOLO UNO firmware, architecture diagrams, and bilingual README files.*
 
 The screenshot shows that the handover repository contains the source code for the main system components, bilingual README files, and architecture resources. Files containing private configuration values must be excluded through `.gitignore` and verified separately before handover.
 

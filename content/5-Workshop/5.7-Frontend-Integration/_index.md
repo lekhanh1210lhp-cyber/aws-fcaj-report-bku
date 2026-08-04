@@ -69,10 +69,10 @@ aws cloudfront create-invalidation --distribution-id <DISTRIBUTION_ID> --paths "
 The distribution uses the default behavior for the S3 frontend and a higher-priority `/api/*` behavior for the ALB origin with caching disabled.
 
 ![CloudFront-hosted dashboard and successful API requests](/images/5-Workshop/5.7-frontend/cloudfront-dashboard-api-200.png)
-*Figure 12a. The dashboard loads over CloudFront HTTPS and browser requests to `latest`, `history`, and `commands` return HTTP 200 through `/api/*`.*
+*Figure 15a. The dashboard loads over CloudFront HTTPS and browser requests to `latest`, `history`, and `commands` return HTTP 200 through `/api/*`.*
 
 ![Latest and history API responses through CloudFront](/images/5-Workshop/5.7-frontend/latest-history.png)
-*Figure 12b. Browser DevTools shows the latest record and ordered history returned by the production `/api/*` route.*
+*Figure 15b. Browser DevTools shows the latest record and ordered history returned by the production `/api/*` route.*
 
 ## Step 3 - Display Live Telemetry
 
@@ -89,15 +89,11 @@ The control panel supports:
 
 Disable a selected control while its request is in flight, prevent duplicate pending commands, and distinguish command acceptance from physical execution. The backend-provided command ID/state should be used for tracking instead of relying only on local UI state.
 
-<p align="center">
-  <img src="/images/5-Workshop/5.7-frontend/dashboard-overview-control-panel.png"
-       alt="React Vite IoT dashboard with live telemetry and actuator controls"
-       width="100%" />
-</p>
+![React Vite IoT dashboard with live telemetry and actuator controls](/images/5-Workshop/5.7-frontend/dashboard-overview-control-panel.png)
 
-*Figure 13. The React + Vite dashboard displaying near-real-time telemetry and controls for the fan, light, and curtain for the sample room identified by `device_id = room_01`.*
+*Figure 16. The React + Vite dashboard displaying near-real-time telemetry and controls for the fan, light, and curtain for the sample room identified by `device_id = room_01`.*
 
-Figure 13 shows the React + Vite interface, the EC2 FastAPI/RDS PostgreSQL/React Vite stack label, three **LIVE AWS** telemetry cards, and controls for the fan, light, curtain, and mode. The UI can display Manual Override or Auto according to its current state.
+Figure 16 shows the React + Vite interface, the EC2 FastAPI/RDS PostgreSQL/React Vite stack label, three **LIVE AWS** telemetry cards, and controls for the fan, light, curtain, and mode. The UI can display Manual Override or Auto according to its current state.
 
 ## Step 5 - Display Rule-Based Analysis and History
 
@@ -111,13 +107,9 @@ The history charts display temperature, humidity, and light data retrieved from 
 GET /api/devices/room_01/history
 ```
 
-<p align="center">
-  <img src="/images/5-Workshop/5.7-frontend/dashboard-analysis-history.png"
-       alt="Rule-based recommendations and telemetry history charts"
-       width="100%" />
-</p>
+![Rule-based recommendations and telemetry history charts](/images/5-Workshop/5.7-frontend/dashboard-analysis-history.png)
 
-*Figure 14. Rule-based recommendations and historical temperature, humidity, and light charts retrieved from Amazon RDS.*
+*Figure 17. Rule-based recommendations and historical temperature, humidity, and light charts retrieved from Amazon RDS.*
 
 ## Step 6 - Expected Results
 

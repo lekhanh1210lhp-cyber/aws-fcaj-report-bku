@@ -12,6 +12,10 @@ A Smart Room needs to retain environmental data for historical review, support r
 
 This Workshop builds one traceable workflow for a Smart Room identified by `device_id=room_01`. CloudFront and WAF deliver the private-S3 React frontend and forward browser `/api/*` traffic to an ALB. The ALB routes to two ASG-managed FastAPI instances; RDS PostgreSQL Multi-AZ stores telemetry and command states. YOLO UNO sends telemetry and polls commands directly through the ALB, executes them, and sends an ACK.
 
+![AWS IoT Monitoring and Control Dashboard architecture](/images/2-Proposal/IoT_Dashboard_Architecture.png)
+
+*Figure 1. Current architecture with CloudFront/WAF/private S3, ALB/ASG FastAPI backends, RDS PostgreSQL Multi-AZ, YOLO UNO, and CloudWatch.*
+
 ## Target Users and Proposed Solution
 
 | Target user | Need | Workshop value |

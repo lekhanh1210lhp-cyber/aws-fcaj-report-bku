@@ -41,16 +41,16 @@ In the AWS Console, select the confirmed project region. This workshop uses **As
 CloudFront provides HTTPS to browser viewers. In the verified configuration, CloudFront reaches the ALB origin over HTTP and YOLO UNO also calls the ALB directly over HTTP; do not describe these two paths as end-to-end TLS.
 
 ![CloudFront origins for the private S3 frontend and ALB API](/images/5-Workshop/5.4-aws-infrastructure/cloudfront-distribution-origins.png)
-*Figure 3a. The distribution has separate private-S3 and ALB origins.*
+*Figure 5a. The distribution has separate private-S3 and ALB origins.*
 
 ![CloudFront behaviors for static content and API requests](/images/5-Workshop/5.4-aws-infrastructure/cloudfront-behaviors.png)
-*Figure 3b. The default behavior serves S3 content, while `/api/*` has higher priority and uses the ALB origin.*
+*Figure 5b. The default behavior serves S3 content, while `/api/*` has higher priority and uses the ALB origin.*
 
 ![Private S3 bucket protected by Block Public Access and CloudFront OAC](/images/5-Workshop/5.4-aws-infrastructure/s3-private-oac.png)
-*Figure 3c. The frontend bucket remains private and grants object reads to the CloudFront distribution through OAC.*
+*Figure 5c. The frontend bucket remains private and grants object reads to the CloudFront distribution through OAC.*
 
 ![AWS WAF web ACL with three managed rule groups](/images/5-Workshop/5.4-aws-infrastructure/waf-web-acl-three-rules.png)
-*Figure 3d. Three AWS managed rule groups are associated with the distribution in Count mode.*
+*Figure 5d. Three AWS managed rule groups are associated with the distribution in Count mode.*
 
 ## Step 3 - Create Security Groups
 
@@ -68,10 +68,10 @@ In the current environment, port `8000` is not the public application entry poin
 The following two screenshots separate the EC2-side rules from the RDS-side Security Group relationship while redacting the administrator IP and other sensitive identifiers.
 
 ![ALB, backend, and RDS Security Group chain](/images/5-Workshop/5.4-aws-infrastructure/security-group-chain.png)
-*Figure 7a. Security Group chain: public HTTP to the ALB, ALB-to-backend traffic on port 8000, and backend-to-RDS traffic on port 5432.*
+*Figure 6a. Security Group chain: public HTTP to the ALB, ALB-to-backend traffic on port 8000, and backend-to-RDS traffic on port 5432.*
 
 ![RDS Security Group relationship with the backend Security Group](/images/5-Workshop/5.4-aws-infrastructure/rds-security-group.png)
-*Figure 7b. RDS accepts PostgreSQL port 5432 from the backend Security Group rather than a public CIDR.*
+*Figure 6b. RDS accepts PostgreSQL port 5432 from the backend Security Group rather than a public CIDR.*
 
 ## Step 4 - Create the EC2 IAM Role
 
@@ -85,7 +85,7 @@ Do not create long-lived access keys. The deployed role uses the AWS-managed `Cl
 The EC2 Security page and IAM Role details confirm the role attachment and the AWS-managed policy.
 
 ![IAM Role and CloudWatchAgentServerPolicy attached to EC2](/images/5-Workshop/5.4-aws-infrastructure/ec2-iam-role.png)
-*Figure 5. The EC2 instance is attached to the `iot-dashboard-cloudwatch-role`, which uses `CloudWatchAgentServerPolicy` to allow CloudWatch Agent to publish logs and metrics without hard-coded AWS access keys.*
+*Figure 7. The EC2 instance is attached to the `iot-dashboard-cloudwatch-role`, which uses `CloudWatchAgentServerPolicy` to allow CloudWatch Agent to publish logs and metrics without hard-coded AWS access keys.*
 
 ## Step 5 - Prepare the AMI, launch template, ASG, and EBS
 
@@ -103,13 +103,13 @@ Do not use an instance public IP as the application endpoint. Record the ALB DNS
 The EC2 Instances page confirms the deployed compute size, Availability Zone, running state, and health checks.
 
 ![AMI and launch template](/images/5-Workshop/5.4-aws-infrastructure/launch-template-ami.png)
-*Figure 4a. The validated backend AMI is used by the launch template.*
+*Figure 8a. The validated backend AMI is used by the launch template.*
 
 ![ASG capacity and instances](/images/5-Workshop/5.4-aws-infrastructure/asg-capacity-instances.png)
-*Figure 4b. The ASG maintains two healthy in-service instances with scaling limits from 2 to 4.*
+*Figure 8b. The ASG maintains two healthy in-service instances with scaling limits from 2 to 4.*
 
 ![Encrypted EBS volumes](/images/5-Workshop/5.4-aws-infrastructure/ebs-encryption-kms.png)
-*Figure 4c. Backend gp3 EBS volumes are encrypted with the AWS managed `aws/ebs` key.*
+*Figure 8c. Backend gp3 EBS volumes are encrypted with the AWS managed `aws/ebs` key.*
 
 ## Step 5A - Create the target group and Application Load Balancer
 
@@ -119,13 +119,13 @@ The EC2 Instances page confirms the deployed compute size, Availability Zone, ru
 4. Attach the ASG to the target group and wait for both registered targets to become **Healthy**.
 
 ![Application Load Balancer overview](/images/5-Workshop/5.4-aws-infrastructure/alb-overview.png)
-*Figure 5a. The internet-facing ALB is Active across two Availability Zones.*
+*Figure 9a. The internet-facing ALB is Active across two Availability Zones.*
 
 ![ALB listener forwarding](/images/5-Workshop/5.4-aws-infrastructure/alb-listener-forwarding.png)
-*Figure 5b. The HTTP:80 listener forwards to `iot-backend-tg`.*
+*Figure 9b. The HTTP:80 listener forwards to `iot-backend-tg`.*
 
 ![Healthy target group](/images/5-Workshop/5.4-aws-infrastructure/target-group-healthy.png)
-*Figure 5c. Two backend targets are healthy on port 8000.*
+*Figure 9c. Two backend targets are healthy on port 8000.*
 
 ## Step 6 - Create Amazon RDS for PostgreSQL
 
@@ -144,16 +144,16 @@ Multi-AZ is enabled for managed failover through the same RDS endpoint. Do not d
 The RDS summary and Connectivity & security page confirm the PostgreSQL engine, instance class, DB Subnet Group, Availability Zone, and disabled Internet access gateway.
 
 ![Amazon RDS PostgreSQL instance using a DB Subnet Group](/images/5-Workshop/5.4-aws-infrastructure/rds-postgresql-available.png)
-*Figure 6. The `iot-dashboard-db` Amazon RDS for PostgreSQL instance in the Available state, using the `rds-ec2-db-subnet-group-1` DB Subnet Group with the Internet access gateway disabled.*
+*Figure 10a. The `iot-dashboard-db` Amazon RDS for PostgreSQL instance in the Available state, using the `rds-ec2-db-subnet-group-1` DB Subnet Group with the Internet access gateway disabled.*
 
 ![RDS primary and standby Availability Zones](/images/5-Workshop/5.4-aws-infrastructure/rds-primary-standby-az.png)
-*Figure 6a. RDS Multi-AZ reports the primary in `ap-southeast-1c` and standby in `ap-southeast-1b`.*
+*Figure 10b. RDS Multi-AZ reports the primary in `ap-southeast-1c` and standby in `ap-southeast-1b`.*
 
 ![RDS automated backup retention](/images/5-Workshop/5.4-aws-infrastructure/rds-backup-retention.png)
-*Figure 6b. Automated backups are retained for seven days.*
+*Figure 10c. Automated backups are retained for seven days.*
 
 ![Manual RDS snapshot](/images/5-Workshop/5.4-aws-infrastructure/rds-manual-snapshot.png)
-*Figure 6c. A manual snapshot provides a named recovery point.*
+*Figure 10d. A manual snapshot provides a named recovery point.*
 
 ## Step 7 - Verify access and network
 
