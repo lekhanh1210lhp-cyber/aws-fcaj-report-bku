@@ -1,67 +1,40 @@
 ---
-title: "Week 1 Worklog"
-date: 2024-01-01
+title: "Week 1 - Requirements Analysis and Planning"
+date: "2026-06-01"
 weight: 1
 chapter: false
 pre: " <b> 1.1. </b> "
-includeInReport: true
-reportTableColumns:
-  - Day
-  - Task
-  - Completion Date
-reportHeadings:
-  - Week 1 Objectives
-  - Tasks to be carried out this week
-  - Week 1 Achievements
-reportType: worklog
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
+> **Period:** 1–7 June 2026
+> **Role:** Contributed to requirements analysis and represented the AWS and hardware perspective in the team plan.
 
-### Week 1 Objectives:
+## Objectives
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+- Define the problem, target users, and scope of the prototype.
+- Agree on deliverables, measurable success criteria, and team responsibilities.
+- Draft the initial telemetry and command architecture.
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+## Work completed
 
+| Workstream | Work completed | Result/Evidence |
+| :--- | :--- | :--- |
+| Requirements analysis | Worked with the team to define temperature, humidity, and light monitoring plus fan, light, and curtain control for the Smart Room | Functional list covering telemetry, latest/history, commands, and ACK |
+| Scope definition | Used `room_01` as the `device_id` for the sample room | Scope and acceptance criteria recorded in the Proposal |
+| User analysis | Analyzed the needs of AWS learners, room operators, maintainers, and FCAJ reviewers | Target-user list and expected value for each group |
+| Architecture design | Drafted YOLO UNO → FastAPI on EC2 → RDS PostgreSQL → React Dashboard with CloudWatch | Initial architecture and two-way data-flow diagram |
+| Ownership and planning | Assigned AWS/Hardware, Backend, Frontend/Integration, and Documentation/QA responsibilities and divided delivery into eight weeks | Ownership table, 1 June–31 July timeline, and initial risk list |
+## Weekly outcomes
 
-### Week 1 Achievements:
+- Completed the initial scope, ownership model, and system architecture.
+- Defined measurable criteria including an HTTP 200 health check, persisted telemetry, `Pending` → `Executed` command state, and observable CloudWatch data.
+- Agreed to claim only components supported by source code or deployment evidence.
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+## Challenges and lessons learned
 
-* Successfully created and configured an AWS Free Tier account.
+The initial challenge was translating the Smart Room idea into specific requirements and test criteria. The main lesson was that each function needs an observable output so the team can validate it and collect evidence.
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+## Workshop references
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+- [5.1 Workshop Overview](../../5-workshop/5.1-workshop-overview/)
+- [5.11 Results, Challenges, and Future Improvements](../../5-workshop/5.11-results-challenges-future/)

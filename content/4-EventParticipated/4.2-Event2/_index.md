@@ -1,126 +1,79 @@
 ---
 title: "Event 2"
-date: 2024-01-01
-weight: 1
+date: "2026-07-28"
+weight: 2
 chapter: false
 pre: " <b> 4.2. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
+# Report on “First Cloud AI Journey Meetup: Career, DevOps, and MNC Culture”
 
-# Summary Report: “GenAI-powered App-DB Modernization workshop”
+### Purpose of the Event
 
-### Event Objectives
-
-- Share best practices in modern application design
-- Introduce Domain-Driven Design (DDD) and event-driven architecture
-- Provide guidance on selecting the right compute services
-- Present AI tools to support the development lifecycle
+- Understand the learning roadmap from a curious student to an AWS Partner.
+- Discover the reality of a DevOps Engineer's role, breaking down common myths versus actual responsibilities.
+- Explore the practical workflow of a Data Analytics Engineer and the standard recruitment process at Multinational Corporations (MNCs).
+- Learn the career development mindset and the philosophy required to build and operate tech products at a global standard.
 
 ### Speakers
 
-- **Jignesh Shah** – Director, Open Source Databases
-- **Erica Liu** – Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** – Assc. Specialist SA, Serverless Amazon Web Services
+- **Danh Hoàng Hiếu Nghị** – AI Engineer, AWS Community Builder, and AWS Student Builder Group Leader.
+- **Trong H. Truong** – DevOps Engineer at Endava Vietnam.
+- **Dat Pham** – Data Analytics Engineer.
+- **Cường Nguyễn** – Process Engineer.
 
 ### Key Highlights
 
-#### Identifying the drawbacks of legacy application architecture
+## Main Content
 
-- Long product release cycles → Lost revenue/missed opportunities  
-- Inefficient operations → Reduced productivity, higher costs  
-- Non-compliance with security regulations → Security breaches, loss of reputation  
+1. **From First Cloud AI Journey to AWS Partner**
+   - The career journey consists of 8 defined steps: Student Curiosity, First Cloud AI Journey, Workshop & Community, Hands-on Labs, School Projects, Portfolio, AWS Partner, and Share Back.
+   - Participating in communities like the AWS Student Builder Group and AWS Community Builder Program provides a strong environment to learn from others and build practical skills.
 
-#### Transitioning to modern application architecture – Microservices
+2. **The Reality of DevOps Engineering**
+   - There is a significantly high hiring demand for roles such as AI/ML, Data, Cloud, Security, and DevOps Engineers in the Vietnam market.
+   - While people often think DevOps is simply about writing CI/CD pipelines or being the "Docker/Kubernetes person," the real scope heavily depends on company size, project size, team structure, and cloud maturity.
+   - Actual daily DevOps work includes 24/7 on-call rotation, incident handling, postmortem reviews, troubleshooting, access support, and cloud cost investigation.
+   - Before mastering complex tools, engineers must learn fundamentals: Linux, Networking basics, Programming (Python, Golang), Git, CI/CD, and Containers.
 
-Migrating to a modular system — each function is an **independent service** communicating via **events**, built on three core pillars:
+3. **Data Analytics in Multinational Corporations (MNCs)**
+   - A Data Analytics Engineer's work varies by domain; for example, building dashboards to track Gross Merchandise Value (GMV), Fulfillment, and Last Mile Costs at Kamereo, or optimizing production costs at Colgate-Palmolive.
+   - Essential skills for the role go beyond technical ability to include Critical Thinking, Communication, Storytelling with data, and Problem-Solving.
+   - The standard MNC recruitment process includes ATS resume screening, capability tests (logic/algorithm), technical interviews using the STAR model, and a final cultural fit assessment with Leadership.
 
-- **Queue Management**: Handle asynchronous tasks  
-- **Caching Strategy**: Optimize performance  
-- **Message Handling**: Flexible inter-service communication  
+4. **Career Development Mindset & Corporate Culture**
+   - MNC cultures highly value a "No-Blame Post-Mortem" approach, focusing on finding system root causes instead of blaming individuals, alongside fostering a "Caring & Inclusive" environment.
+   - Career progression follows a 5-stage model: Follower (executing tasks), Learner (active learning), Problem Solver (proposing solutions), System Thinker (optimizing the big picture), and Super Star (guiding vision and developing others).
+   - The session highlighted the "Đúng Việc" (Doing the right thing) philosophy encompassing three pillars: Human (Fulfillment), Professional (Purpose & Meaningful), and Citizen (Community & Legacy).
 
-#### Domain-Driven Design (DDD)
+### Key Learnings
 
-- **Four-step method**: Identify domain events → arrange timeline → identify actors → define bounded contexts  
-- **Bookstore case study**: Demonstrates real-world DDD application  
-- **Context mapping**: 7 patterns for integrating bounded contexts  
+- **Design & Operational Mindset**
+  - Focus on fundamentals because tools change, but core principles like Linux and Networking stay constant.
+  - Career growth should be measured by advancing through capability stages (from Follower to System Thinker) rather than just chasing specific job titles.
 
-#### Event-Driven Architecture
+- **Technical Architecture**
+  - DevOps engineers must think in systems, not just tasks, working to automate boring, repeatable work while making environments clear for the team.
+  - Data professionals need to go beyond raw numbers to analyze trends, discover root causes, and tell meaningful stories that drive business operations.
 
-- **3 integration patterns**: Publish/Subscribe, Point-to-point, Streaming  
-- **Benefits**: Loose coupling, scalability, resilience  
-- **Sync vs async comparison**: Understanding the trade-offs  
+- **Data & AI Strategy**
+  - Building a real portfolio through practical, hands-on labs and school projects matters far more than simply collecting certifications.
+  - Embracing a "No-Blame Post-Mortem" culture is essential for building resilient engineering systems and high-performing teams.
 
-#### Compute Evolution
+### Application to Work
 
-- **Shared Responsibility Model**: EC2 → ECS → Fargate → Lambda  
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value  
-- **Functions vs Containers**: Criteria for appropriate choice  
+- **In infrastructure & operations**:
+  - Ensure you understand the "why" before the "how" when deploying infrastructure, and learn to correctly identify the real owner of a problem during incident handling.
+  - Apply system thinking to look at the broader picture, anticipating operational risks and optimizing the system long-term instead of just fixing minor bugs.
 
-#### Amazon Q Developer
+- **In software development & AI**:
+  - Utilize data analytics not just to report metrics, but to find the root causes of business fluctuations and propose actionable solutions.
+  - Leverage AI to enhance technical skills, but do not use it as a substitute for critical thinking and fundamental understanding.
 
-- **SDLC automation**: From planning to maintenance  
-- **Code transformation**: Java upgrade, .NET modernization  
-- **AWS Transform agents**: VMware, Mainframe, .NET migration  
+- **In teamwork**:
+  - Participate actively in tech communities to learn from others and eventually "Share Back" to help build the next generation of engineers.
+  - Adopt the standard of "Làm đúng chuẩn" (Doing it to standard), pushing beyond merely making things work to meeting rigorous global requirements like ISO 27001 or GDPR.
 
-### Key Takeaways
+#### Event Photos
 
-#### Design Mindset
-
-- **Business-first approach**: Always start from the business domain, not the technology  
-- **Ubiquitous language**: Importance of a shared vocabulary between business and tech teams  
-- **Bounded contexts**: Identifying and managing complexity in large systems  
-
-#### Technical Architecture
-
-- **Event storming technique**: Practical method for modeling business processes  
-- Use **event-driven communication** instead of synchronous calls  
-- **Integration patterns**: When to use sync, async, pub/sub, streaming  
-- **Compute spectrum**: Criteria for choosing between VM, containers, and serverless  
-
-#### Modernization Strategy
-
-- **Phased approach**: No rushing — follow a clear roadmap  
-- **7Rs framework**: Multiple modernization paths depending on the application  
-- **ROI measurement**: Cost reduction + business agility  
-
-### Applying to Work
-
-- **Apply DDD** to current projects: Event storming sessions with business teams  
-- **Refactor microservices**: Use bounded contexts to define service boundaries  
-- **Implement event-driven patterns**: Replace some sync calls with async messaging  
-- **Adopt serverless**: Pilot AWS Lambda for suitable use cases  
-- **Try Amazon Q Developer**: Integrate into the dev workflow to boost productivity  
-
-### Event Experience
-
-Attending the **“GenAI-powered App-DB Modernization”** workshop was extremely valuable, giving me a comprehensive view of modernizing applications and databases using advanced methods and tools. Key experiences included:
-
-#### Learning from highly skilled speakers
-- Experts from AWS and major tech organizations shared **best practices** in modern application design.  
-- Through real-world case studies, I gained a deeper understanding of applying **DDD** and **Event-Driven Architecture** to large projects.  
-
-#### Hands-on technical exposure
-- Participating in **event storming** sessions helped me visualize how to **model business processes** into domain events.  
-- Learned how to **split microservices** and define **bounded contexts** to manage large-system complexity.  
-- Understood trade-offs between **synchronous and asynchronous communication** and integration patterns like **pub/sub, point-to-point, streaming**.  
-
-#### Leveraging modern tools
-- Explored **Amazon Q Developer**, an AI tool for SDLC support from planning to maintenance.  
-- Learned to **automate code transformation** and pilot serverless with **AWS Lambda** to improve productivity.  
-
-#### Networking and discussions
-- The workshop offered opportunities to exchange ideas with experts, peers, and business teams, enhancing the **ubiquitous language** between business and tech.  
-- Real-world examples reinforced the importance of the **business-first approach** rather than focusing solely on technology.  
-
-#### Lessons learned
-- Applying DDD and event-driven patterns reduces **coupling** while improving **scalability** and **resilience**.  
-- Modernization requires a **phased approach** with **ROI measurement**; rushing the process can be risky.  
-- AI tools like Amazon Q Developer can significantly **boost productivity** when integrated into the current workflow.  
-
-#### Some event photos
-*Add your event photos here*  
-
-> Overall, the event not only provided technical knowledge but also helped me reshape my thinking about application design, system modernization, and cross-team collaboration.
+<img src="/images/4-EventParticipated/image_2.jpg" alt="Event 2" width="600"/>
