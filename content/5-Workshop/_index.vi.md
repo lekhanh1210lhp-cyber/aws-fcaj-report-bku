@@ -42,7 +42,7 @@ Kết quả cuối cùng là một mô hình Smart Room có thể tái triển k
 
 ![Kiến trúc AWS IoT Monitoring and Control Dashboard](/images/2-Proposal/IoT_Dashboard_Architecture.png)
 
-*Hình 5-1. Kiến trúc hiện tại gồm CloudFront/WAF/S3 private, backend FastAPI qua ALB/ASG, RDS PostgreSQL Multi-AZ, YOLO UNO và CloudWatch.*
+*Figure 1. Kiến trúc hiện tại gồm CloudFront/WAF/S3 private, backend FastAPI qua ALB/ASG, RDS PostgreSQL Multi-AZ, YOLO UNO và CloudWatch.*
 
 Hệ thống hoạt động theo bốn luồng chính:
 

@@ -4,6 +4,29 @@ date: "2026-07-28"
 weight: 4
 chapter: false
 pre: " <b> 5.4. </b> "
+reportHeadings:
+  - "Tổng quan và mục tiêu"
+  - "Bước 1 - Chọn khu vực và lập kế hoạch địa chỉ"
+  - "Bước 2 - Tạo hoặc chọn VPC và subnet"
+  - "Bước 2A - Cấu hình S3 private, CloudFront và WAF"
+  - "Bước 3 - Tạo Security Group"
+  - "Bước 4 - Tạo EC2 IAM Role"
+  - "Bước 5 - Chuẩn bị AMI, Launch Template, ASG và EBS"
+  - "Bước 5A - Tạo Target Group và Application Load Balancer"
+  - "Bước 6 - Tạo Amazon RDS for PostgreSQL"
+  - "Bước 7 - Xác minh truy cập và mạng"
+  - "Kết quả mong đợi và bằng chứng"
+reportImages:
+  - "5-Workshop/5.4-aws-infrastructure/cloudfront-behaviors.png"
+  - "5-Workshop/5.4-aws-infrastructure/s3-private-oac.png"
+  - "5-Workshop/5.4-aws-infrastructure/waf-web-acl-three-rules.png"
+  - "5-Workshop/5.4-aws-infrastructure/security-group-chain.png"
+  - "5-Workshop/5.4-aws-infrastructure/ec2-iam-role.png"
+  - "5-Workshop/5.4-aws-infrastructure/asg-capacity-instances.png"
+  - "5-Workshop/5.4-aws-infrastructure/ebs-encryption-kms.png"
+  - "5-Workshop/5.4-aws-infrastructure/target-group-healthy.png"
+  - "5-Workshop/5.4-aws-infrastructure/rds-primary-standby-az.png"
+  - "5-Workshop/5.4-aws-infrastructure/rds-backup-retention.png"
 ---
 
 ## Tổng quan và mục tiêu
@@ -41,16 +64,16 @@ Trong AWS Console, chọn khu vực đã thống nhất cho dự án. Workshop d
 CloudFront cung cấp HTTPS cho trình duyệt. Trong cấu hình đã kiểm chứng, CloudFront kết nối đến ALB origin qua HTTP và YOLO UNO cũng gọi trực tiếp ALB qua HTTP; không mô tả hai tuyến này là TLS đầu cuối.
 
 ![Hai CloudFront origin cho frontend S3 private và ALB API](/images/5-Workshop/5.4-aws-infrastructure/cloudfront-distribution-origins.png)
-*Hình 3a. Distribution có hai origin riêng cho S3 private và ALB.*
+*Figure 5a. Distribution có hai origin riêng cho S3 private và ALB.*
 
 ![Hai CloudFront behavior cho static content và API](/images/5-Workshop/5.4-aws-infrastructure/cloudfront-behaviors.png)
-*Hình 3b. Default behavior phục vụ nội dung S3; `/api/*` có ưu tiên cao hơn và dùng ALB origin.*
+*Figure 5b. Default behavior phục vụ nội dung S3; `/api/*` có ưu tiên cao hơn và dùng ALB origin.*
 
 ![Bucket S3 private với Block Public Access và CloudFront OAC](/images/5-Workshop/5.4-aws-infrastructure/s3-private-oac.png)
-*Hình 3c. Bucket frontend vẫn private và chỉ cho CloudFront distribution đọc object qua OAC.*
+*Figure 5c. Bucket frontend vẫn private và chỉ cho CloudFront distribution đọc object qua OAC.*
 
 ![AWS WAF web ACL có ba managed rule group](/images/5-Workshop/5.4-aws-infrastructure/waf-web-acl-three-rules.png)
-*Hình 3d. Ba AWS managed rule group được gắn với distribution và đang ở Count mode.*
+*Figure 5d. Ba AWS managed rule group được gắn với distribution và đang ở Count mode.*
 
 ## Bước 3 - Tạo Security Group
 
@@ -68,10 +91,10 @@ Backend không còn công khai trực tiếp cổng 8000. Trình duyệt gọi `
 Hai ảnh dưới đây tách riêng quy tắc phía EC2 và quan hệ Security Group phía RDS, đồng thời đã che IP quản trị cùng các định danh nhạy cảm.
 
 ![Chuỗi Security Group từ ALB tới backend và RDS](/images/5-Workshop/5.4-aws-infrastructure/security-group-chain.png)
-*Hình 7a. Chuỗi Security Group giới hạn luồng `Internet/CloudFront → ALB:80 → backend:8000 → RDS:5432`.*
+*Figure 6a. Chuỗi Security Group giới hạn luồng `Internet/CloudFront → ALB:80 → backend:8000 → RDS:5432`.*
 
 ![RDS chỉ cho phép PostgreSQL từ backend Security Group](/images/5-Workshop/5.4-aws-infrastructure/rds-security-group.png)
-*Hình 7b. RDS Security Group cho phép TCP 5432 từ Security Group của backend, không mở cơ sở dữ liệu ra Internet.*
+*Figure 6b. RDS Security Group cho phép TCP 5432 từ Security Group của backend, không mở cơ sở dữ liệu ra Internet.*
 
 ## Bước 4 - Tạo EC2 IAM Role
 
@@ -85,7 +108,7 @@ Không tạo access key dài hạn. Role đang dùng AWS-managed policy `CloudWa
 Trang Security của EC2 và phần chi tiết IAM Role xác nhận role đã được gắn cùng AWS-managed policy.
 
 ![IAM Role và CloudWatchAgentServerPolicy được gắn với EC2](/images/5-Workshop/5.4-aws-infrastructure/ec2-iam-role.png)
-*Hình 5. EC2 được gắn IAM Role `iot-dashboard-cloudwatch-role`, và role này sử dụng `CloudWatchAgentServerPolicy` để CloudWatch Agent gửi log và metric mà không cần hard-code AWS access key.*
+*Figure 7. EC2 được gắn IAM Role `iot-dashboard-cloudwatch-role`, và role này sử dụng `CloudWatchAgentServerPolicy` để CloudWatch Agent gửi log và metric mà không cần hard-code AWS access key.*
 
 ## Bước 5 - Chuẩn bị AMI, Launch Template, ASG và EBS
 
@@ -99,15 +122,15 @@ Trang Security của EC2 và phần chi tiết IAM Role xác nhận role đã đ
 Launch Template và ASG thay cho việc phụ thuộc vào một EC2 duy nhất. Không ghi lại hoặc đưa địa chỉ IP instance vào frontend hay firmware; điểm vào ổn định của backend là DNS của ALB.
 
 ![AMI và Launch Template của backend](/images/5-Workshop/5.4-aws-infrastructure/launch-template-ami.png)
-*Hình 4a. Launch Template phiên bản 1 dùng AMI riêng của FastAPI backend.*
+*Figure 8a. Launch Template phiên bản 1 dùng AMI riêng của FastAPI backend.*
 
 ![ASG duy trì hai backend ở hai Availability Zone](/images/5-Workshop/5.4-aws-infrastructure/asg-capacity-instances.png)
-*Hình 4b. `iot-backend-asg` duy trì desired capacity bằng 2, giới hạn 2–4 và có hai instance Healthy/InService.*
+*Figure 8b. `iot-backend-asg` duy trì desired capacity bằng 2, giới hạn 2–4 và có hai instance Healthy/InService.*
 
 ![Các volume EBS của backend được mã hóa](/images/5-Workshop/5.4-aws-infrastructure/ebs-encryption-kms.png)
-*Hình 4c. Các volume `gp3` 10 GiB mới của ASG được mã hóa bằng khóa AWS managed `aws/ebs`.*
+*Figure 8c. Các volume `gp3` 10 GiB mới của ASG được mã hóa bằng khóa AWS managed `aws/ebs`.*
 
-### Bước 5A - Tạo Target Group và Application Load Balancer
+## Bước 5A - Tạo Target Group và Application Load Balancer
 
 1. Tạo target group `iot-backend-tg`, target type **Instance**, protocol/port `HTTP:8000`.
 2. Cấu hình health check tại `/api/health`.
@@ -116,13 +139,13 @@ Launch Template và ASG thay cho việc phụ thuộc vào một EC2 duy nhất.
 5. Gắn target group với ASG và xác minh cả hai target đều **Healthy**.
 
 ![Application Load Balancer đang Active](/images/5-Workshop/5.4-aws-infrastructure/alb-overview.png)
-*Hình 5a. `iot-backend-alb` ở trạng thái Active và trải trên hai Availability Zone.*
+*Figure 9a. `iot-backend-alb` ở trạng thái Active và trải trên hai Availability Zone.*
 
 ![ALB listener forward tới target group](/images/5-Workshop/5.4-aws-infrastructure/alb-listener-forwarding.png)
-*Hình 5b. Listener HTTP:80 forward toàn bộ request tới `iot-backend-tg`.*
+*Figure 9b. Listener HTTP:80 forward toàn bộ request tới `iot-backend-tg`.*
 
 ![Hai target backend Healthy](/images/5-Workshop/5.4-aws-infrastructure/target-group-healthy.png)
-*Hình 5c. Target group có hai target Healthy, mỗi target ở một Availability Zone.*
+*Figure 9c. Target group có hai target Healthy, mỗi target ở một Availability Zone.*
 
 ## Bước 6 - Tạo Amazon RDS for PostgreSQL
 
@@ -140,16 +163,16 @@ Standby Multi-AZ phục vụ failover và không phải read replica để ứng
 Trang Summary và Connectivity & security của RDS xác nhận PostgreSQL engine, DB class, DB Subnet Group, Availability Zone và trạng thái tắt Internet access gateway.
 
 ![Amazon RDS PostgreSQL ở trạng thái Available và sử dụng DB Subnet Group](/images/5-Workshop/5.4-aws-infrastructure/rds-postgresql-available.png)
-*Hình 6. Amazon RDS for PostgreSQL `iot-dashboard-db` ở trạng thái Available, sử dụng DB Subnet Group `rds-ec2-db-subnet-group-1` và tắt Internet access gateway.*
+*Figure 10a. Amazon RDS for PostgreSQL `iot-dashboard-db` ở trạng thái Available, sử dụng DB Subnet Group `rds-ec2-db-subnet-group-1` và tắt Internet access gateway.*
 
 ![Primary và standby của RDS Multi-AZ](/images/5-Workshop/5.4-aws-infrastructure/rds-primary-standby-az.png)
-*Hình 6a. AWS CLI xác nhận Multi-AZ được bật, primary ở `ap-southeast-1c` và standby ở `ap-southeast-1b`.*
+*Figure 10b. AWS CLI xác nhận Multi-AZ được bật, primary ở `ap-southeast-1c` và standby ở `ap-southeast-1b`.*
 
 ![RDS automated backup được lưu 7 ngày](/images/5-Workshop/5.4-aws-infrastructure/rds-backup-retention.png)
-*Hình 6b. Automated backup được bật với retention period 7 ngày.*
+*Figure 10c. Automated backup được bật với retention period 7 ngày.*
 
 ![Manual snapshot trước thay đổi hạ tầng](/images/5-Workshop/5.4-aws-infrastructure/rds-manual-snapshot.png)
-*Hình 6c. Manual snapshot hoàn tất và sẵn sàng phục hồi khi cần.*
+*Figure 10d. Manual snapshot hoàn tất và sẵn sàng phục hồi khi cần.*
 
 ## Bước 7 - Xác minh truy cập và mạng
 

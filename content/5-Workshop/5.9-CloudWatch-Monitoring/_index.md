@@ -4,6 +4,17 @@ date: "2026-07-28"
 weight: 9
 chapter: false
 pre: " <b> 5.9. </b> "
+reportHeadings:
+  - "Overview and objectives"
+  - "Monitoring inventory"
+  - "Step 1 - Verify role and install the agent"
+  - "Step 4 - Generate and inspect evidence"
+  - "Step 5 - Create and validate alarms"
+  - "Expected Result"
+reportImages:
+  - "5-Workshop/5.9-cloudwatch/backend-cloudwatch-logs.png"
+  - "5-Workshop/5.9-cloudwatch/operations-dashboard.png"
+  - "5-Workshop/5.9-cloudwatch/cloudwatch-alarms.png"
 ---
 
 ## Overview and objectives

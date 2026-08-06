@@ -4,6 +4,13 @@ date: "2026-07-28"
 weight: 1
 chapter: false
 pre: " <b> 5.1. </b> "
+reportHeadings:
+  - "Context and Problem"
+  - "Technical Objectives"
+  - "Current Scope"
+  - "Measurable Success Criteria"
+reportImages:
+  - "2-Proposal/IoT_Dashboard_Architecture.png"
 ---
 
 ## Context and Problem

@@ -4,6 +4,17 @@ date: "2026-07-28"
 weight: 7
 chapter: false
 pre: " <b> 5.7. </b> "
+reportHeadings:
+  - "Tổng quan và mục tiêu"
+  - "Bước 1 - Cấu hình React frontend"
+  - "Bước 2 - Kết nối frontend với FastAPI backend"
+  - "Bước 3 - Hiển thị telemetry gần thời gian thực"
+  - "Bước 4 - Hiển thị bảng điều khiển từ xa"
+  - "Bước 5 - Hiển thị phân tích dựa trên luật và lịch sử"
+  - "Bước 6 - Kết quả mong đợi"
+reportImages:
+  - "5-Workshop/5.7-frontend/cloudfront-dashboard-api-200.png"
+  - "5-Workshop/5.7-frontend/dashboard-overview-control-panel.png"
 ---
 
 ## Tổng quan và mục tiêu
@@ -69,10 +80,10 @@ aws cloudfront create-invalidation --distribution-id <DISTRIBUTION_ID> --paths "
 Distribution dùng default behavior cho frontend S3 và behavior `/api/*` có ưu tiên cao hơn cho ALB origin, đồng thời tắt cache API.
 
 ![Dashboard qua CloudFront và các API request thành công](/images/5-Workshop/5.7-frontend/cloudfront-dashboard-api-200.png)
-*Hình 12a. Dashboard tải qua CloudFront HTTPS; các request `latest`, `history` và `commands` qua `/api/*` trả HTTP 200.*
+*Figure 15a. Dashboard tải qua CloudFront HTTPS; các request `latest`, `history` và `commands` qua `/api/*` trả HTTP 200.*
 
 ![Phản hồi latest và history qua CloudFront](/images/5-Workshop/5.7-frontend/latest-history.png)
-*Hình 12b. Browser DevTools hiển thị bản ghi mới nhất và lịch sử có thứ tự được trả về qua route production `/api/*`.*
+*Figure 15b. Browser DevTools hiển thị bản ghi mới nhất và lịch sử có thứ tự được trả về qua route production `/api/*`.*
 
 ## Bước 3 - Hiển thị telemetry gần thời gian thực
 
@@ -89,15 +100,11 @@ Bảng điều khiển hỗ trợ:
 
 Vô hiệu hóa nút đang gửi request, tránh tạo command trùng đang chờ và phân biệt việc backend nhận command với việc phần cứng thực thi. ID/trạng thái do backend trả về được dùng để theo dõi thay vì chỉ dựa vào trạng thái cục bộ của UI.
 
-<p align="center">
-  <img src="/images/5-Workshop/5.7-frontend/dashboard-overview-control-panel.png"
-       alt="React Vite IoT dashboard hiển thị telemetry và bảng điều khiển thiết bị"
-       width="100%" />
-</p>
+![React Vite IoT dashboard hiển thị telemetry và bảng điều khiển thiết bị](/images/5-Workshop/5.7-frontend/dashboard-overview-control-panel.png)
 
-*Hình 13. React + Vite dashboard hiển thị telemetry gần thời gian thực và bảng điều khiển quạt, đèn và rèm cho phòng mẫu có `device_id = room_01`.*
+*Figure 16. React + Vite dashboard hiển thị telemetry gần thời gian thực và bảng điều khiển quạt, đèn và rèm cho phòng mẫu có `device_id = room_01`.*
 
-Hình 13 cho thấy giao diện React + Vite, nhãn stack EC2 FastAPI/RDS PostgreSQL/React Vite, ba telemetry card có badge **LIVE AWS**, cùng bảng điều khiển quạt, đèn, rèm và chế độ. UI có thể hiển thị Manual Override hoặc Auto tùy trạng thái hiện tại.
+Figure 16 cho thấy giao diện React + Vite, nhãn stack EC2 FastAPI/RDS PostgreSQL/React Vite, ba telemetry card có badge **LIVE AWS**, cùng bảng điều khiển quạt, đèn, rèm và chế độ. UI có thể hiển thị Manual Override hoặc Auto tùy trạng thái hiện tại.
 
 ## Bước 5 - Hiển thị phân tích dựa trên luật và lịch sử
 
@@ -111,13 +118,9 @@ Các biểu đồ lịch sử hiển thị nhiệt độ, độ ẩm và ánh s�
 GET /api/devices/room_01/history
 ```
 
-<p align="center">
-  <img src="/images/5-Workshop/5.7-frontend/dashboard-analysis-history.png"
-       alt="Đề xuất dựa trên luật và biểu đồ lịch sử telemetry"
-       width="100%" />
-</p>
+![Đề xuất dựa trên luật và biểu đồ lịch sử telemetry](/images/5-Workshop/5.7-frontend/dashboard-analysis-history.png)
 
-*Hình 14. Panel phân tích theo luật và biểu đồ lịch sử nhiệt độ, độ ẩm và ánh sáng được truy xuất từ Amazon RDS.*
+*Figure 17. Panel phân tích theo luật và biểu đồ lịch sử nhiệt độ, độ ẩm và ánh sáng được truy xuất từ Amazon RDS.*
 
 ## Bước 6 - Kết quả mong đợi
 

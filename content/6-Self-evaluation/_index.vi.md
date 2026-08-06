@@ -48,3 +48,11 @@ Trong thời gian thực hiện dự án từ **01/06/2026** đến **31/07/2026
 - Em muốn học thêm Infrastructure as Code, triển khai tự động và kiểm thử tích hợp để hạn chế sai lệch do cấu hình thủ công.
 - Em cần tìm hiểu sâu hơn về HTTPS đến origin, xác thực người dùng, IAM tối thiểu quyền, WAF ở chế độ chặn và quản lý secret.
 - Khi có điều kiện phù hợp, em muốn thực hiện kiểm thử Auto Scaling và RDS failover có kiểm soát để đánh giá hệ thống đầy đủ hơn.
+
+### Cảm nhận về chương trình thực tập
+
+Chương trình thực tập tạo cho em môi trường thực tế để kết nối kiến thức ở trường với một hệ thống gồm hạ tầng AWS, phần mềm và phần cứng vật lý. Quá trình nhận góp ý từ mentor và phối hợp với nhóm giúp em hiểu rõ hơn tầm quan trọng của minh chứng, phân công trách nhiệm và giao tiếp kỹ thuật ngắn gọn. Em cũng học được cách phân biệt một nguyên mẫu hoạt động với một dịch vụ sẵn sàng cho production và trình bày trung thực các giới hạn hiện tại.
+
+### Định hướng tiếp theo
+
+Các ưu tiên tiếp theo của em là Infrastructure as Code, CI/CD, kiểm thử tích hợp tự động, HTTPS tới origin, xác thực và các bài kiểm thử phục hồi có kiểm soát. Em cũng muốn cải thiện độ tin cậy của firmware thông qua cơ chế retry/ACK an toàn hơn, đồng thời tiếp tục rèn luyện kỹ năng viết tài liệu kỹ thuật song ngữ ngắn gọn.

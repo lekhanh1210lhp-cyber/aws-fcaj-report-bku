@@ -1,0 +1,2828 @@
+            ĐẠI HỌC QUỐC GIA THÀNH PHỐ HỒ CHÍ MINH
+                           TRƯỜNG ĐẠI HỌC BÁCH KHOA
+                KHOA KHOA HỌC VÀ KĨ THUẬT MÁY TÍNH
+
+
+
+
+                                               BÁO CÁO
+
+                          THỰC TẬP NGOÀI TRƯỜNG
+                        HỌC KỲ ...... NĂM HỌC .......................
+
+
+– NGÀNH: ..................................................
+
+– CHƯƠNG TRÌNH ĐÀO TẠO: .............................................
+
+
+– ĐƠN VỊ/ DOANH NGHIỆP NHẬN THỰC TẬP:
+  ...............................................................................
+– CÁN BỘ HƯỚNG DẪN CHUYÊN MÔN TRỰC TIẾP CỦA ĐƠN VỊ/
+  DOANH NGHIỆP:
+  ...............................................................................
+– CÁN BỘ HƯỚNG DẪN/ GIÁM SÁT/ CHẤM ĐIỂM BÁO CÁO CỦA
+  KHOA (CBHD/CBGS/CĐBC):
+  ...............................................................................
+– SINH VIÊN THỰC HIỆN (SVTH):
+  HỌ VÀ TÊN: .............................. MSSV:..................
+
+
+                               TP. Hồ Chí Minh, Tháng 08/2026
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+Mục lục
+1   Chương trình thực tập                                                                                            2
+
+2   Kết quả xét tuyển                                                                                              10
+
+3   Nhật ký công việc                                                                                              16
+    3.1 Tuần 1 - Phân tích yêu cầu và lập kế hoạch . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     16
+    3.2 Tuần 2 - Thiết kế kiến trúc AWS và nền tảng mạng . . . . . . . . . . . . . . . . . . . . . . . . .         16
+    3.3 Tuần 3 - Triển khai Amazon EC2 và Amazon RDS . . . . . . . . . . . . . . . . . . . . . . . . .             17
+    3.4 Tuần 4 - Xây dựng nền tảng backend và cơ sở dữ liệu . . . . . . . . . . . . . . . . . . . . . . . .        18
+    3.5 Tuần 5 - Xây dựng API telemetry và command . . . . . . . . . . . . . . . . . . . . . . . . . . .           19
+    3.6 Tuần 6 - Tích hợp phần cứng YOLO UNO . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .           19
+    3.7 Tuần 7 - Phát triển frontend dashboard . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     20
+    3.8 Tuần 8 - Tích hợp, kiểm thử, CloudWatch và bàn giao . . . . . . . . . . . . . . . . . . . . . . . .        21
+
+4   Đề xuất                                                                                                        23
+
+5   Workshop                                                                                                       28
+    5.1 Tổng quan Workshop . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       28
+    5.2 Điều kiện tiên quyết . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   29
+    5.3 Kiến trúc và thiết kế dịch vụ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    31
+    5.4 Thiết lập hạ tầng AWS . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      36
+    5.5 Triển khai backend và tích hợp cơ sở dữ liệu . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     43
+    5.6 Tích hợp phần cứng . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     46
+    5.7 Tích hợp frontend . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    49
+    5.8 Kiểm thử và xác minh đầu cuối . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      52
+    5.9 Giám sát bằng CloudWatch . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       57
+    5.10 Chi phí, bảo mật và dọn dẹp . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     60
+    5.11 Kết quả, thách thức và hướng cải tiến . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   62
+    5.12 Bàn giao dự án . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    65
+
+6   Tự đánh giá                                                                                                    69
+
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                       Trang 1/70
+            Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+            Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+3      Nhật ký công việc
+3.1     Tuần 1 - Phân tích yêu cầu và lập kế hoạch
+        Thời gian: 01/06/2026 – 07/06/2026 Vai trò: Tham gia phân tích yêu cầu; phụ trách góc nhìn AWS
+        và phần cứng trong kế hoạch chung của nhóm.
+
+Mục tiêu
+
+      • Xác định bài toán, đối tượng sử dụng và phạm vi của mô hình thử nghiệm.
+      • Thống nhất sản phẩm bàn giao, tiêu chí thành công và trách nhiệm của từng thành viên.
+      • Phác thảo kiến trúc ban đầu cho luồng telemetry và command.
+
+Công việc đã thực hiện
+
+Hạng mục                                 Công việc đã thực hiện                  Kết quả/Bằng chứng
+Phân tích yêu cầu                        Cùng nhóm xác định nhu cầu giám sát     Danh sách chức năng telemetry,
+                                         nhiệt độ, độ ẩm, ánh sáng và điều khiển latest/history, command và ACK
+                                         quạt, đèn, rèm trong Smart Room
+Xác định phạm vi                         Thống nhất sử dụng room_01 làm          Phạm vi và tiêu chí nghiệm thu được ghi
+                                         device_id để định danh phòng mẫu        trong Proposal
+Xác định người dùng                      Phân tích nhu cầu của người học AWS,    Danh sách đối tượng sử dụng và giá trị
+                                         người vận hành phòng, người bảo trì và nhận được của từng nhóm
+                                         người đánh giá FCAJ
+Thiết kế kiến trúc                       Phác thảo luồng YOLO UNO → FastAPI Sơ đồ kiến trúc ban đầu và luồng dữ liệu
+                                         trên EC2 → RDS PostgreSQL → React hai chiều
+                                         Dashboard, kết hợp CloudWatch
+Phân công và lập kế hoạch                Xác định trách nhiệm AWS/Hardware,      Bảng phân công, timeline 01/06–31/07
+                                         Backend, Frontend/Integration và        và danh sách rủi ro ban đầu
+                                         Documentation/QA; chia dự án thành 8
+                                         tuần
+
+
+
+Kết quả tuần
+
+      • Hoàn thành phạm vi, phân công và kiến trúc ban đầu của dự án.
+      • Xác định các tiêu chí có thể đo như HTTP 200 cho health check, telemetry được lưu, command chuyển
+        Pending → Executed và log/metric xuất hiện trên CloudWatch.
+      • Thống nhất chỉ tuyên bố những thành phần có mã nguồn hoặc bằng chứng triển khai.
+
+Khó khăn và bài học
+          Khó khăn ban đầu là chuyển ý tưởng Smart Room thành các yêu cầu và tiêu chí kiểm thử cụ thể. Bài học
+rút ra là mỗi chức năng cần có đầu ra quan sát được để nhóm có thể kiểm tra và thu thập bằng chứng.
+
+
+3.2     Tuần 2 - Thiết kế kiến trúc AWS và nền tảng mạng
+        Thời gian: 08/06/2026 – 14/06/2026 Vai trò: Phụ trách thiết kế AWS, mạng và IAM; phối hợp với
+        nhóm backend để xác định luồng API và dữ liệu.
+
+Mục tiêu
+
+      • Chọn các dịch vụ AWS phù hợp với mã nguồn và phạm vi Workshop.
+      • Thiết kế VPC, subnet, Security Group và IAM Role theo nguyên tắc đặc quyền tối thiểu.
+      • Xác định luồng telemetry, command, ACK và giám sát.
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                         Trang 16/70
+            Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+            Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+Công việc đã thực hiện
+
+Hạng mục                                 Công việc đã thực hiện                 Kết quả/Bằng chứng
+Lựa chọn hạ tầng                         Xác định các thành phần cần thiết cho    Danh sách dịch vụ và vai trò của từng
+                                         Smart Room và thống nhất sử dụng EC2, thành phần trong kiến trúc
+                                         EBS, RDS, VPC, IAM Role và
+                                         CloudWatch
+Thiết kế mạng                            Thiết kế VPC, public subnet cho EC2 và Sơ đồ mạng đặt EC2 và RDS trong đúng
+                                         DB Subnet Group từ các subnet dành       ranh giới kết nối
+                                         cho database
+Security Group                           Xác định quy tắc cho SSH quản trị, API Bảng rule giới hạn SSH theo IP quản trị
+                                         demo và luồng EC2 → RDS qua              và RDS theo Security Group của EC2
+                                         PostgreSQL 5432
+IAM và giám sát                          Xác định IAM Role cho EC2 và quyền       Mô hình dùng quyền tạm thời, không
+                                         cần thiết để CloudWatch Agent gửi        hard-code AWS access key
+                                         log/metric
+Rà luồng hệ thống                        Đối chiếu API, database, cổng mạng,      Checklist nguồn, đích, cổng và bằng
+                                         danh tính và dữ liệu giám sát trên sơ đồ chứng cần thu thập cho từng kết nối
+
+
+
+Kết quả tuần
+
+      • Hoàn thành sơ đồ kiến trúc và ranh giới dịch vụ AWS.
+      • Có kế hoạch mạng, Security Group và IAM phù hợp với mô hình thử nghiệm.
+      • Phân biệt rõ mô hình vận hành hiện tại với các lựa chọn tương lai như Auto Scaling, SQS hoặc kiến trúc
+        hướng sự kiện.
+
+Khó khăn và bài học
+         Một sơ đồ kiến trúc chỉ có giá trị khi từng mũi tên tương ứng với kết nối hoặc quyền thực tế. Việc chọn ít
+dịch vụ hơn giúp nhóm dễ triển khai, kiểm thử và giải thích các đánh đổi.
+
+
+3.3     Tuần 3 - Triển khai Amazon EC2 và Amazon RDS
+        Thời gian: 15/06/2026 – 21/06/2026 Vai trò: Phụ trách cấp phát và xác minh hạ tầng AWS.
+
+Mục tiêu
+
+      • Tạo nền tảng mạng và các tài nguyên AWS cần thiết cho backend.
+      • Khởi chạy EC2, gắn EBS và IAM Role.
+      • Tạo RDS for PostgreSQL trong mạng riêng và xác minh kết nối từ EC2.
+
+Công việc đã thực hiện
+
+Hạng mục                                 Công việc đã thực hiện                 Kết quả/Bằng chứng
+Chuẩn bị môi trường AWS                  Chọn ap-southeast-1, rà VPC, route,    EC2 và RDS được đặt trong cùng
+                                         subnet và DB Subnet Group trước khi    Region và đúng thiết kế mạng
+                                         cấp phát tài nguyên
+Triển khai EC2 và EBS                    Khởi chạy iot-backend-server loại      EC2 ở trạng thái Running, vượt status
+                                         t3.micro, gắn EBS gp3 10 GiB và        check và có role được gắn
+                                         IAM Role iot-dashboard-
+                                         cloudwatch-role
+Triển khai RDS                           Tạo iot-dashboard-db bằng RDS for      Database ở trạng thái Available, sử
+                                         PostgreSQL loại db.t4g.micro           dụng DB Subnet Group và không mở
+                                                                                truy cập công khai
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                        Trang 17/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+Hạng mục                                 Công việc đã thực hiện                  Kết quả/Bằng chứng
+Cấu hình kết nối                         Tạo iot-backend-sg, ec2-rds-1,          EC2 kết nối được RDS mà không mở
+                                         rds-ec2-1 và giới hạn PostgreSQL        database trực tiếp ra Internet
+                                         5432 theo Security Group
+Xác minh và thu thập bằng chứng          Kiểm tra DNS/cổng 5432 từ EC2, status   Ảnh EC2 Running, RDS Available, IAM
+                                         check, thông tin EBS, RDS và các rule   Role và Security Group phục vụ
+                                         mạng                                    Workshop
+
+
+
+Kết quả tuần
+
+      • EC2, EBS, RDS, IAM Role và các Security Group đã sẵn sàng cho bước triển khai ứng dụng.
+      • RDS được giữ trong mạng riêng và không mở PostgreSQL cho 0.0.0.0/0.
+      • Thu thập ảnh bằng chứng về EC2, RDS, IAM Role và quy tắc Security Group. Ảnh không chứa mật khẩu
+        hoặc access key; một số định danh tài nguyên và endpoint vẫn cần được cân nhắc che trước khi công khai.
+
+Khó khăn và bài học
+        Lỗi kết nối cần được tách thành lỗi mạng và lỗi xác thực. Kiểm tra TCP thành công chỉ chứng minh route
+và Security Group hoạt động, chưa chứng minh thông tin đăng nhập PostgreSQL đúng.
+
+
+3.4     Tuần 4 - Xây dựng nền tảng backend và cơ sở dữ liệu
+        Thời gian: 22/06/2026 – 28/06/2026 Vai trò: Phụ trách môi trường EC2 và vận hành dịch vụ; phối
+        hợp với thành viên backend để kết nối PostgreSQL.
+
+Mục tiêu
+
+      • Chuẩn bị môi trường Python và triển khai cấu trúc FastAPI trên EC2.
+      • Kết nối backend với cơ sở dữ liệu iot_dashboard.
+      • Chạy Uvicorn ổn định bằng systemd.
+
+Công việc đã thực hiện
+
+Hạng mục                                 Công việc đã thực hiện                  Kết quả/Bằng chứng
+Chuẩn bị EC2                             Cài Git, Python, PostgreSQL client và   EC2 có đủ môi trường để chạy và chẩn
+                                         các công cụ cần thiết trên Amazon Linux đoán backend
+Triển khai ứng dụng                      Sao chép repository, tạo venv, cài      FastAPI chạy được bằng Uvicorn trên
+                                         requirements.txt và xác nhận entry EC2
+                                         point main:app
+Quản lý cấu hình                         Tạo .env cục bộ với DATABASE_URL và Backend kết nối RDS mà không
+                                         loại trừ thông tin bí mật khỏi Git      hard-code credential trong mã nguồn
+Khởi tạo database                        Chạy app.database.init_db và kiểm Các bảng devices, telemetry_logs
+                                         tra schema bằng PostgreSQL client       và commands được tạo bằng
+                                                                                 SQLAlchemy create_all
+Vận hành backend                         Tạo service aws-iot-backend, cấu        Service ở trạng thái active (running)
+                                         hình log, khởi động lại dịch vụ và kiểm và health check trả HTTP 200
+                                         tra /api/health
+
+
+
+Kết quả tuần
+
+      • FastAPI chạy ổn định trên EC2 dưới sự quản lý của systemd.
+      • Backend kết nối được với RDS PostgreSQL riêng.
+      • Xác nhận dự án chưa có quy trình migration bằng Alembic; không ghi nhận Alembic như thành phần đã
+        triển khai.
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                       Trang 18/70
+            Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+            Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+Khó khăn và bài học
+         Đường dẫn, tài khoản Linux, file môi trường và module Uvicorn phải khớp chính xác giữa terminal và
+service file. journalctl, file log và health check là ba nguồn quan trọng để chẩn đoán lỗi khởi động.
+
+
+3.5     Tuần 5 - Xây dựng API telemetry và command
+        Thời gian: 29/06/2026 – 05/07/2026 Vai trò: Phối hợp với thành viên backend để đối chiếu API với
+        yêu cầu phần cứng và hạ tầng.
+
+Mục tiêu
+
+      • Hoàn thiện API nhận và truy xuất telemetry.
+      • Xây dựng API tạo, thăm dò và xác nhận command.
+      • Kiểm tra dữ liệu được lưu đúng trong PostgreSQL.
+
+Công việc đã thực hiện
+
+Hạng mục                                 Công việc đã thực hiện                   Kết quả/Bằng chứng
+Chuẩn hóa dữ liệu                        Đối chiếu Pydantic schema với payload    Contract dữ liệu thống nhất giữa
+                                         camelCase của firmware và ánh xạ         firmware, FastAPI và PostgreSQL
+                                         deviceId, lightIntensity vào data
+                                         model
+Telemetry ingestion                      Hoàn thiện và kiểm tra POST /api/        Telemetry hợp lệ tạo bản ghi mới trong
+                                         telemetry với payload có device_id       telemetry_logs
+                                         là room_01
+Latest và history                        Hoàn thiện API lấy dữ liệu mới nhất và   Dashboard nhận được dữ liệu cho
+                                         lịch sử theo device_id                   telemetry card và biểu đồ
+Vòng đời command                         Hoàn thiện API tạo command, lấy          Command được lưu ở Pending và cùng
+                                         command chờ và ACK                       ID chuyển sang Executed sau ACK
+Kiểm thử API/database                    Rà OpenAPI, gửi request có kiểm soát     Route, JSON response và trạng thái
+                                         bằng curl và đối chiếu bản ghi SQL       database khớp nhau
+
+
+
+Kết quả tuần
+
+      • Hoàn thiện luồng telemetry, latest, history, command polling và ACK.
+      • Xác minh vòng đời lệnh bằng cùng một command ID trong API và PostgreSQL.
+      • Ghi nhận hạn chế: backend chưa kiểm tra chặt enum command và endpoint ACK chưa xác minh command
+        thuộc đúng thiết bị trong route.
+
+Khó khăn và bài học
+       Trạng thái Pending có thể tồn tại rất ngắn khi thiết bị thăm dò thường xuyên. Cần lưu phản hồi tạo
+command trước, sau đó truy vấn cùng ID sau ACK để có bằng chứng đầy đủ.
+
+
+3.6     Tuần 6 - Tích hợp phần cứng YOLO UNO
+        Thời gian: 06/07/2026 – 12/07/2026 Vai trò: Phụ trách phần cứng và firmware YOLO UNO; phối
+        hợp với backend để kiểm tra telemetry, command và ACK.
+
+Mục tiêu
+
+      • Kết nối cảm biến và thiết bị chấp hành theo đúng firmware.
+      • Biên dịch, nạp và chạy firmware bằng PlatformIO.
+      • Xác minh luồng Wi-Fi, telemetry, command polling và ACK với backend.
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                          Trang 19/70
+            Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+            Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+Công việc đã thực hiện
+
+Hạng mục                                 Công việc đã thực hiện                      Kết quả/Bằng chứng
+Đấu nối và an toàn nguồn                 Đối chiếu GPIO trong hardware/src/          Bảng đấu nối bám theo firmware; quạt
+                                         main.cpp, nối DHT20, cảm biến ánh           và servo không lấy dòng trực tiếp từ
+                                         sáng, quạt, đèn/relay, servo, LCD1602       GPIO
+                                         và kiểm tra mass/nguồn
+Môi trường firmware                      Cấu hình PlatformIO, board ESP32-S3         Wi-Fi credential và backend URL không
+                                         và secrets.h cục bộ                         được đưa vào Git
+Cảm biến và hiển thị                     Đọc DHT20, giá trị ánh sáng analog và       Serial Monitor/LCD hiển thị được dữ
+                                         cập nhật LCD1602                            liệu cảm biến và trạng thái
+Điều khiển actuator                      Kiểm tra quạt, đèn/relay và servo tại góc   Các thiết bị chấp hành phản hồi đúng
+                                         đóng 0°/mở 90°                              logic firmware
+Tích hợp REST API                        Gửi telemetry theo chu kỳ, thăm dò          YOLO UNO giao tiếp hai chiều với
+                                         command, thực thi và gửi ACK                FastAPI qua HTTP
+Build và bằng chứng                      Biên dịch firmware, theo dõi Serial         PlatformIO tạo firmware.bin; video
+                                         Monitor và ghi video demo                   ghi nhận mô hình phần cứng hoạt động
+
+
+
+Kết quả tuần
+
+      • YOLO UNO gửi được telemetry của room_01 và nhận command từ backend.
+      • Quạt, đèn và servo rèm phản ứng theo lệnh trực tiếp; chế độ Auto dùng các ngưỡng đã định nghĩa trong
+        firmware.
+      • Cơ chế lưu lastAck và pendingAck giúp thử gửi lại ACK mà không lặp thao tác vật lý.
+
+Khó khăn và bài học
+          Nguồn cho thiết bị chấp hành và việc chống thực thi lặp quan trọng không kém kết nối mạng. Khi ACK
+thất bại, firmware chỉ được gửi lại ACK, không được chạy lại actuator.
+
+
+3.7     Tuần 7 - Phát triển frontend dashboard
+        Thời gian: 13/07/2026 – 19/07/2026 Vai trò: Hỗ trợ kết nối frontend với endpoint EC2; phối hợp
+        kiểm tra dashboard và luồng điều khiển.
+
+Mục tiêu
+
+      • Hiển thị telemetry mới nhất, lịch sử và trạng thái backend.
+      • Tạo bảng điều khiển quạt, đèn và rèm.
+      • Gửi command từ dashboard, kiểm tra phản hồi backend và xác định phần còn thiếu trong việc theo dõi ACK.
+
+Công việc đã thực hiện
+
+Hạng mục                                 Công việc đã thực hiện                      Kết quả/Bằng chứng
+Chuẩn bị frontend                        Thiết lập React, Vite, TypeScript,          Dashboard chạy ổn định trên môi trường
+                                         Tailwind CSS và các dependencies cần        cục bộ
+                                         thiết
+Cấu hình kết nối API                     Dùng đường dẫn tương đối /api; Vite         Các component không hard-code
+                                         proxy trỏ đến ALB trong môi trường          backend URL; đường đi development và
+                                         phát triển, còn CloudFront behavior /       production được phân biệt rõ
+                                         api/* xử lý route production
+Hiển thị telemetry                       Kết nối health, latest và history; xây      Dashboard hiển thị dữ liệu mới nhất, lịch
+                                         dựng telemetry card và biểu đồ              sử và trạng thái kết nối
+
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                              Trang 20/70
+            Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+            Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+Hạng mục                                 Công việc đã thực hiện                     Kết quả/Bằng chứng
+Điều khiển thiết bị                      Xây dựng nút quạt, đèn, rèm và chế độ    UI gửi command đến backend, nhưng
+                                         Auto/Manual; kiểm tra request tạo        chưa lưu command ID hoặc theo dõi
+                                         command                                  trạng thái Pending/Executed
+Rà dữ liệu và nhãn                       Kiểm tra fallback mô phỏng và cách mô    Xác định fallback chưa có nhãn rõ ràng
+                                         tả giá trị ánh sáng                      và dữ liệu ánh sáng thô vẫn được hiển thị
+                                                                                  với đơn vị Lux; ghi nhận để khắc phục
+Tích hợp và sửa lỗi                      Dùng DevTools Network kiểm tra route, Xác minh route production hoạt động;
+                                         payload, response, request trùng và hành phát hiện cơ chế fallback có thể trả kết
+                                         vi khi API lỗi                           quả thành công giả khi backend không
+                                                                                  phản hồi
+
+
+
+Kết quả tuần
+
+      • Dashboard hiển thị dữ liệu mới nhất và lịch sử của room_01.
+      • Bảng điều khiển tạo command khi API khả dụng; command ID và trạng thái ACK phải được đối chiếu bằng
+        DevTools/API/PostgreSQL thay vì trực tiếp trên UI.
+      • Ghi nhận các hạn chế cần tiếp tục xử lý: chế độ trên UI còn mang tính cục bộ, fallback mô phỏng chưa gắn
+        nhãn và thao tác lỗi vẫn có thể hiển thị thành công.
+
+Khó khăn và bài học
+         Phản hồi HTTP thành công chỉ chứng minh backend đã nhận command, chưa chứng minh thiết bị vật lý
+đã thực thi. Giao diện phải chờ ACK/Executed hoặc chỉ rõ trạng thái đang chờ.
+
+
+3.8     Tuần 8 - Tích hợp, kiểm thử, CloudWatch và bàn giao
+        Thời gian: 20/07/2026 – 31/07/2026
+        Vai trò: Phối hợp tích hợp toàn hệ thống; phụ trách truy vết lỗi AWS/phần cứng, CloudWatch và kiểm
+        tra bằng chứng kỹ thuật.
+
+Mục tiêu
+
+      • Kiểm tra toàn bộ luồng telemetry và command với phần cứng thực tế.
+      • Dùng thao tác dashboard làm điểm bắt đầu, sau đó đối chiếu cùng dữ liệu hoặc command ID qua Dev-
+        Tools/API, RDS và firmware.
+      • Thiết lập log, metric và alarm cho ALB/ASG/EC2/RDS.
+      • Hoàn thiện rà soát bảo mật, tài liệu song ngữ, video demo và nội dung bàn giao.
+
+Công việc đã thực hiện
+
+Hạng mục                                 Công việc đã thực hiện                     Kết quả/Bằng chứng
+Chuẩn bị kiểm thử                        Ghi phiên bản mã nguồn, firmware,          Có baseline cấu hình để tái tạo và đối
+                                         Region AWS và điều kiện kiểm thử; xác      chiếu kết quả
+                                         nhận health check
+Kiểm thử telemetry                       Gửi telemetry từ YOLO UNO, kiểm tra        Dữ liệu room_01 nhất quán; ảnh
+                                         latest/history, PostgreSQL và dashboard;   API/database chứng minh riêng luồng
+                                         thực hiện thêm một request curl có         FastAPI → RDS
+                                         kiểm soát
+Kiểm thử command và actuator             Tạo command từ dashboard, lấy ID qua       Ma trận kiểm thử command/ACK đạt;
+                                         phản hồi API/DevTools, theo dõi từ         video ghi lại phản ứng vật lý của actuator
+                                         Pending đến Executed trong
+                                         backend/RDS và kiểm tra quạt, đèn, rèm
+
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                              Trang 21/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+Hạng mục                                 Công việc đã thực hiện                   Kết quả/Bằng chứng
+AWS edge và tính sẵn sàng                Bổ sung bằng chứng                       Hai backend Healthy, route browser/thiết
+                                         CloudFront/WAF/S3 private, ALB/target    bị ổn định và bằng chứng
+                                         group/ASG, EBS mã hóa và RDS             primary/standby
+                                         Multi-AZ/backup
+CloudWatch                               Cấu hình CloudWatch Agent, backend       Có log tập trung, metric vận hành và kết
+                                         log, dashboard ec2-rds-metrics và        quả đánh giá alarm; trạng thái thiếu dữ
+                                         tám alarm ALB/ASG/EC2/RDS                liệu được ghi chú
+Rà soát vận hành                         Kiểm tra IAM Role, Security Group,       Checklist bảo mật/chi phí và danh sách
+                                         RDS public access, secrets, chi phí và   điểm cần tiếp tục hoàn thiện
+                                         các giới hạn hiện tại
+Tài liệu và bàn giao                     Rà Workshop Anh–Việt, README,            Gói tài liệu cuối khớp với hệ thống đã
+                                         caption, test matrix, ảnh, video và      triển khai và bằng chứng đã thu thập
+                                         checklist
+
+
+
+Kết quả trong tuần
+
+     • Các ca kiểm thử telemetry, history, command, polling, actuator và ACK trong ma trận đều đạt.
+     • Phân biệt rõ bằng chứng API/database với bằng chứng phần cứng.
+     • CloudWatch nhận backend log, hiển thị metric ALB/ASG/EC2/RDS và đánh giá tám alarm.
+     • Hoàn thiện báo cáo song ngữ, Workshop, README, hướng dẫn vận hành và nội dung bàn giao.
+     • Video demo chứng minh thao tác dashboard và phản ứng vật lý của thiết bị: Xem video demo.
+
+Khó khăn, cách xử lý và bài học
+         Trạng thái Pending tồn tại ngắn khi thiết bị polling nhanh, nên nhóm theo dõi cùng command ID trước
+và sau ACK. Với CloudWatch, các alarm Insufficient data được ghi nhận là thiếu bằng chứng metric thay vì
+xem như trạng thái đạt; agent, namespace, dimension và IAM là các điểm cần kiểm tra khi xử lý. Em rút ra rằng
+một kết quả Pass phải gắn với tiêu chí, kết quả thực tế và bằng chứng; tài liệu cũng phải phân biệt rõ phần đã triển
+khai với hướng phát triển.
+Giới hạn hiện tại
+          CloudFront cung cấp viewer HTTPS, nhưng luồng ALB/thiết bị dùng HTTP; API authentication, WAF
+Block, notification action và diễn tập failover có kiểm soát chưa hoàn tất. Các giới hạn này được ghi nhận để tiếp
+tục cải tiến.
+
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                           Trang 22/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+4     Đề xuất
+
+1. Tóm tắt dự án
+         AWS IoT Monitoring and Control Dashboard giải quyết nhu cầu theo dõi điều kiện môi trường và điều
+khiển thiết bị trong phòng từ một giao diện tập trung. Hệ thống kết nối phần cứng YOLO UNO với backend triển
+khai trên AWS, cho phép người dùng xem nhiệt độ, độ ẩm và ánh sáng, gửi lệnh điều khiển từ xa, đồng thời xác
+minh thiết bị vật lý đã thực thi thông qua cơ chế xác nhận lệnh.
+         Trong mô hình Workshop hiện tại:
+
+     • YOLO UNO thu thập telemetry môi trường và điều khiển quạt, đèn, servo rèm;
+     • CloudFront và AWS WAF phân phối bản build React + Vite từ Amazon S3 private;
+     • request browser /api/* đi qua CloudFront tới Application Load Balancer;
+     • Auto Scaling Group duy trì hai EC2 FastAPI chạy aws-iot-backend.service;
+     • Amazon RDS for PostgreSQL Multi-AZ lưu telemetry và trạng thái lệnh;
+     • YOLO UNO dùng trực tiếp DNS ALB cho telemetry, polling và ACK;
+     • thiết bị thăm dò lệnh và gửi ACK sau khi thực thi; và
+     • Amazon CloudWatch thu thập log backend, metric vận hành và trạng thái alarm.
+
+         Kết quả là một mô hình Smart Room có thể tái tạo, thể hiện trọn vẹn luồng từ cảm biến vật lý đến lưu trữ
+trên cloud, hiển thị dashboard, điều khiển từ xa và xác nhận từ thiết bị.
+
+
+
+
+2.1 Bài toán
+          Trong phòng học, phòng lab hoặc phòng thiết bị nhỏ, cảm biến và thiết bị chấp hành thường hoạt động rời
+rạc. Giá trị cảm biến có thể chỉ được xem tại thiết bị, dữ liệu lịch sử không được lưu tập trung, còn người vận hành
+khó theo dõi điều kiện trong phòng hoặc điều khiển thiết bị từ xa. Một thao tác trên dashboard cũng chưa đủ để
+chứng minh quạt, đèn hoặc rèm đã thực sự hoàn thành lệnh.
+          Việc xử lý sự cố thiếu tính liên kết khi log ứng dụng, metric hạ tầng, bản ghi cơ sở dữ liệu và trạng thái
+thiết bị nằm ở nhiều nơi. Dự án tạo một quy trình có thể truy vết cho telemetry, lệnh điều khiển, ACK và giám sát.
+3.1 Mục tiêu phần cứng
+
+     • Đọc nhiệt độ, độ ẩm từ DHT20 và giá trị cảm biến ánh sáng analog.
+     • Điều khiển quạt, đèn/relay, servo rèm; hiển thị trạng thái trên LCD1602 I2C.
+     • Kết nối Wi-Fi và giao tiếp qua HTTP REST.
+     • Hỗ trợ 8 lệnh: MODE_AUTO, MODE_MANUAL, FAN_ON, FAN_OFF, LIGHT_ON, LIGHT_OFF, CURTAIN_OPEN và
+       CURTAIN_CLOSE.
+
+3.2 Mục tiêu backend và cloud
+
+     • Triển khai FastAPI, Uvicorn, SQLAlchemy và Pydantic trên hai EC2 do ASG quản lý phía sau ALB.
+     • Quản lý backend bằng aws-iot-backend.service.
+     • Lưu telemetry và lệnh trong database iot_dashboard trên RDS PostgreSQL.
+     • Cấu hình VPC, định tuyến và Security Group phù hợp.
+     • Giữ RDS không public, chỉ nhận PostgreSQL từ Security Group của EC2.
+     • Dùng IAM Role/Instance Profile cho quyền của CloudWatch Agent.
+     • Phân phối frontend S3 private qua CloudFront OAC và giám sát bằng AWS WAF managed rules.
+     • Dùng RDS PostgreSQL Multi-AZ với automated backup và manual snapshot.
+
+3.3 Mục tiêu frontend
+
+     • Hiển thị nhiệt độ, độ ẩm, ánh sáng và biểu đồ lịch sử bằng REST polling.
+     • Tạo lệnh cho quạt, đèn, rèm, chế độ Manual và Auto.
+     • Trình bày phân tích dựa trên luật/ngưỡng, không mô tả là machine learning.
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                     Trang 23/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+
+                                   Figure 1: Kiến trúc AWS IoT Monitoring and Control Dashboard
+3.4 Mục tiêu giám sát và tài liệu
+
+     • Gửi log backend lên CloudWatch Logs.
+     • Theo dõi CPU, bộ nhớ, đĩa EC2; CPU và số kết nối RDS.
+     • Cấu hình alarm cho các ngưỡng vận hành quan trọng.
+     • Bàn giao Workshop song ngữ, source code, kiến trúc, video demo và hướng dẫn clean-up.
+
+3.5 Phạm vi hiện tại
+          Mô hình dùng room_01 làm mã định danh logic cho phòng mẫu. Phạm vi gồm ba loại dữ liệu môi trường,
+ba thiết bị chấp hành, HTTP REST, polling lệnh, ACK, frontend CloudFront/WAF/S3 private, ALB với ASG gồm
+hai FastAPI instance, RDS PostgreSQL Multi-AZ và CloudWatch.
+4.0 Tổng quan kiến trúc
+        Kiến trúc hiện tại gồm CloudFront/WAF/S3 private, backend FastAPI qua ALB/ASG, RDS PostgreSQL
+Multi-AZ, YOLO UNO và CloudWatch.
+4.2 Luồng telemetry
+
+    1. YOLO UNO đọc DHT20 và cảm biến ánh sáng analog.
+    2. Firmware gửi POST /api/telemetry trực tiếp tới DNS ALB.
+    3. FastAPI kiểm tra rồi lưu bản ghi vào RDS PostgreSQL.
+    4. Frontend trên CloudFront gọi endpoint tương đối /api/* latest/history; CloudFront forward tới ALB.
+    5. Dashboard hiển thị dữ liệu hiện tại và lịch sử.
+
+4.3 Luồng lệnh và xác nhận
+
+    1. Người vận hành tạo lệnh từ frontend trên CloudFront qua /api/*.
+    2. FastAPI lưu lệnh ở trạng thái Pending.
+    3. YOLO UNO thăm dò lệnh mới nhất của room_01.
+    4. Firmware thực thi lệnh cho thiết bị chấp hành hoặc chế độ vận hành.
+    5. YOLO UNO gửi ACK kèm command ID dạng số.
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                Trang 24/70
+            Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+            Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+    6. FastAPI cập nhật đúng bản ghi sang Executed.
+
+5. Kế hoạch triển khai kỹ thuật
+Giai đoạn 1 — Yêu cầu và nền tảng AWS
+         Thống nhất yêu cầu chức năng và tiêu chí nghiệm thu, phân công trách nhiệm và quy ước room_01 là mã
+định danh logic. Sau đó, thiết kế luồng VPC/Security Group, triển khai backend/database ban đầu và kiểm tra kết
+nối riêng tư.
+Giai đoạn 2 — Backend và cơ sở dữ liệu
+         Thiết kế schema PostgreSQL; xây dựng health, telemetry, latest, history, tạo lệnh, polling và ACK; cấu
+hình biến môi trường và systemd.
+Giai đoạn 3 — Phần cứng và firmware
+        Kết nối DHT20, cảm biến ánh sáng, quạt, đèn/relay, servo và LCD; phát triển firmware PlatformIO cho
+cảm biến, Wi-Fi, telemetry, polling, điều khiển, chế độ và ACK; xác minh đủ 8 lệnh.
+Giai đoạn 4 — Frontend và tích hợp
+         Xây dựng dashboard React + Vite + TypeScript, biểu đồ, điều khiển và đề xuất dựa trên luật; deploy lên
+S3 private qua CloudFront/WAF; thêm route /api/* tới ALB; xử lý lỗi API, CORS, trạng thái lệnh và phần cứng.
+Giai đoạn 5 — Giám sát, kiểm thử và bàn giao
+        Tạo AMI/Launch Template backend, ALB/target group/ASG, RDS Multi-AZ và backup; cấu hình Cloud-
+Watch Agent, log, metric và 8 alarm; sau đó kiểm thử đầu cuối, rà bảo mật, hoàn thiện Workshop song ngữ, bằng
+chứng, demo, clean-up và bàn giao.
+
+
+
+
+6. Timeline và các mốc triển khai
+        Proposal sử dụng đúng timeline 8 tuần của Worklog, từ 01/06/2026 đến 31/07/2026.
+
+Tuần                                 Thời gian          Công việc chính                Mốc hoàn thành
+Tuần 1                               01/06–07/06        Yêu cầu, phạm vi, kiến trúc     Thống nhất chức năng,
+                                                        ban đầu, phân công và kế        nghiệm thu, kiến trúc và vai
+                                                        hoạch                           trò
+Tuần 2                               08/06–14/06        Kiến trúc AWS, VPC, IAM và Hoàn tất thiết kế cloud và bảo
+                                                        Security Group                  mật
+Tuần 3                               15/06–21/06        EC2, EBS, RDS, mạng và kết EC2 hoạt động, PostgreSQL
+                                                        nối database                    riêng tư sẵn sàng
+Tuần 4                               22/06–28/06        FastAPI, schema, biến môi       Backend chạy và kết nối RDS
+                                                        trường và systemd
+Tuần 5                               29/06–05/07        Telemetry, latest, history,     Hoàn tất REST và lưu trạng
+                                                        polling lệnh và ACK             thái lệnh
+Tuần 6                               06/07–12/07        Firmware YOLO UNO, cảm Phần cứng gửi telemetry, xử
+                                                        biến, thiết bị chấp hành,       lý 8 lệnh
+                                                        Wi-Fi và REST
+Tuần 7                               13/07–19/07        Dashboard React, biểu đồ,       Frontend đọc dữ liệu AWS,
+                                                        điều khiển, tích hợp và sửa lỗi tạo lệnh thành công
+Tuần 8                               20/07–31/07        CloudFront/WAF/S3,              Xác minh kiến trúc hiện tại và
+                                                        ALB/ASG, RDS Multi-AZ,          hoàn tất tài liệu song ngữ để
+                                                        kiểm thử đầu cuối,              nộp
+                                                        CloudWatch, bảo mật, tài liệu,
+                                                        demo và bàn giao
+
+
+
+
+8. Đánh giá rủi ro
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                      Trang 25/70
+            Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+            Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+Rủi ro                               Khả năng           Ảnh hưởng                       Biện pháp giảm thiểu
+ALB origin/route thiết bị            Cao                Cao                             Không truyền dữ liệu nhạy
+dùng HTTP                                                                               cảm; bổ sung ACM/custom
+                                                                                        domain và TLS trước khi mở
+                                                                                        rộng
+WAF Count mode không chặn Trung bình                    Cao                             Rà sampled request/false
+                                                                                        positive rồi bật Block theo
+                                                                                        giai đoạn đã kiểm thử
+Security Group quá rộng              Trung bình         Cao                             Giới hạn SSH; backend 8000
+                                                                                        chỉ nhận từ ALB SG và RDS
+                                                                                        5432 chỉ nhận từ backend SG
+Credential bị commit                 Thấp               Cao                             Dùng secret cục bộ, file mẫu
+                                                                                        placeholder và kiểm tra Git
+                                                                                        status
+EC2 không kết nối được RDS Trung bình                   Cao                             Kiểm tra subnet, DB Subnet
+                                                                                        Group, DNS, SG và TLS
+                                                                                        bằng psql
+Thiết bị mất Wi-Fi/backend           Trung bình         Trung bình                      Bổ sung retry/reconnect và
+                                                                                        hiển thị trạng thái kết nối
+Polling tạo nhiều request            Trung bình         Trung bình                      Dùng chu kỳ đã thống nhất,
+                                                                                        xem browser/backend log
+Lệnh kẹt ở Pending                   Trung bình         Cao                             Kiểm tra polling, tên/ID lệnh,
+                                                                                        actuator, ACK và database
+GPIO hoặc nguồn không ổn             Trung bình         Cao                             Dùng pin map đúng, chung
+định                                                                                    GND, nguồn an toàn, test
+                                                                                        từng phần
+Deployment ASG không đồng Trung bình                    Cao                             Phát hành bằng AMI/Launch
+nhất                                                                                    Template có version và kiểm
+                                                                                        tra instance refresh/target
+                                                                                        health
+Failover Multi-AZ chưa kiểm          Trung bình         Cao                             Lập diễn tập failover có kiểm
+thử                                                                                     soát, kiểm tra reconnect
+                                                                                        endpoint và toàn vẹn dữ liệu
+Bằng chứng giám sát thiếu            Trung bình         Trung bình                      Kiểm tra Agent, log stream,
+                                                                                        metric, retention và 8 alarm
+Tài nguyên tiếp tục phát sinh        Trung bình         Cao                             Phân công clean-up và làm
+phí                                                                                     đúng thứ tự phụ thuộc
+
+
+
+
+9.1 Kết quả kỳ vọng
+         Mô hình cần tạo một luồng có thể truy vết từ cảm biến đến lưu trữ AWS và dashboard, đồng thời có luồng
+ngược từ lệnh đến thiết bị chấp hành và ACK. Bằng chứng phải cho phép người đánh giá kiểm tra tầng ứng dụng,
+database, phần cứng và giám sát.
+11. Phân công thành viên
+
+Thành viên                                              Vai trò và trách nhiệm
+Phạm Lê Minh Khôi                                       Hạ tầng AWS, EC2, EBS, RDS, VPC, Security Group, IAM,
+                                                        CloudWatch, DevOps, phát triển firmware PlatformIO và tích
+                                                        hợp phần cứng YOLO UNO
+Thượng Đình Hưng                                        Frontend React + Vite, dashboard, tích hợp tổng thể, sửa lỗi và
+                                                        hỗ trợ ghi hình demo
+Ngô Minh Thuận                                          FastAPI backend, REST endpoint, tích hợp PostgreSQL, xử lý
+                                                        telemetry, lệnh và ACK
+
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                       Trang 26/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+Thành viên                                                    Vai trò và trách nhiệm
+Lê Bảo Khánh                                                  Tài liệu và QA, Proposal, Blog, Worklog, Event Report và nội
+                                                              dung Workshop song ngữ
+
+
+
+
+12. Sản phẩm bàn giao và minh chứng
+
+Sản phẩm                                 Nội dung                                    Minh chứng
+GitHub repository                        Backend, frontend, hardware, sơ đồ,         Source Code, nhánh main công khai
+                                         README song ngữ
+FastAPI backend                          Health, telemetry, history, tạo lệnh,       Workshop Backend, systemd và health
+                                         polling, ACK
+PostgreSQL database                      Bảng ứng dụng, telemetry, trạng thái        psql, \dt, query telemetry và lệnh
+                                         lệnh
+Frontend React + Vite                    Telemetry, điều khiển, đề xuất dựa trên     Workshop Frontend, ảnh dashboard
+                                         luật, biểu đồ
+Firmware YOLO UNO                        Cảm biến, actuator, chế độ, polling,        Workshop Phần cứng, source, build,
+                                         ACK                                         demo
+Kiểm thử đầu cuối                        Lưu telemetry, vòng đời lệnh, thực thi      Workshop Kiểm thử, Video Demo
+                                         vật lý
+AWS edge và tính sẵn sàng                CloudFront/WAF/S3 private, ALB/target       Workshop AWS, ảnh chụp
+                                         group/ASG, RDS Multi-AZ và backup
+Giám sát CloudWatch                      Log, metric ALB/ASG/EC2/RDS,                Workshop CloudWatch, ảnh chụp
+                                         dashboard, 8 alarm
+Workshop song ngữ                        Triển khai, tích hợp, kiểm thử, giám sát,   Workshop
+                                         bàn giao
+Hướng dẫn clean-up                       Tài nguyên, chi phí, bảo mật, thứ tự xóa    Chi phí, Bảo mật và Clean-up
+Bộ tài liệu tham khảo                    Source code, demo, tài liệu và liên kết     Tài liệu tham khảo
+                                         kỹ thuật
+
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                              Trang 27/70
+            Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+            Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+5     Workshop
+5.1     Tổng quan Workshop
+
+Bối cảnh và vấn đề
+         Một Smart Room cần lưu dữ liệu môi trường để theo dõi theo thời gian, hỗ trợ điều khiển thiết bị từ xa và
+xác nhận từng lệnh đã được thực thi. Nếu cảm biến, dashboard và thiết bị chấp hành hoạt động rời rạc, người vận
+hành sẽ khó truy vết toàn bộ luồng dữ liệu hoặc phân biệt giữa “API đã nhận lệnh” và “thiết bị vật lý đã thực hiện
+lệnh”.
+         Workshop này xây dựng một quy trình thống nhất cho Smart Room có device_id=room_01. CloudFront
+và WAF phân phối frontend React từ S3 private và chuyển traffic trình duyệt /api/* tới ALB. ALB định tuyến tới
+hai FastAPI instance do ASG quản lý; RDS PostgreSQL Multi-AZ lưu telemetry và trạng thái lệnh. YOLO UNO
+gửi telemetry và thăm dò lệnh trực tiếp qua ALB, thực thi rồi gửi ACK.
+
+
+
+
+       Figure 1. Kiến trúc hiện tại gồm CloudFront/WAF/S3 private, backend FastAPI qua ALB/ASG, RDS Post-
+greSQL Multi-AZ, YOLO UNO và CloudWatch.
+Mục tiêu kỹ thuật
+
+    1. Nhận telemetry từ YOLO UNO cho Smart Room được định danh bằng device_id=room_01.
+    2. Truy xuất bản ghi mới nhất và lịch sử telemetry theo thứ tự thời gian.
+    3. Hỗ trợ đủ 8 lệnh firmware để điều khiển chế độ, quạt, đèn và rèm.
+    4. Theo dõi quá trình hoàn tất lệnh qua trạng thái Pending → Executed và ACK.
+    5. Chạy FastAPI dưới dạng systemd trên các instance ASG, đồng thời giám sát ALB, ASG, EC2 và RDS bằng
+       CloudWatch.
+    6. Bàn giao Workshop song ngữ, bằng chứng kiểm thử và tài liệu dự án có thể sử dụng lại.
+
+Phạm vi hiện tại
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                   Trang 28/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+Thành phần                                                         Phạm vi đã triển khai
+Định danh Smart Room                                               Một phòng được định danh bằng device_id=room_01
+Cảm biến                                                           DHT20 đo nhiệt độ/độ ẩm và cảm biến ánh sáng analog thô
+Thiết bị chấp hành và hiển thị                                     Quạt, đèn/relay, servo rèm và màn hình trạng thái LCD1602
+Phần mềm thiết bị                                                  Firmware PlatformIO cho YOLO UNO, hỗ trợ chế độ
+                                                                   Auto/Manual và 8 lệnh
+Backend và dữ liệu                                                 ALB → ASG với hai FastAPI instance; telemetry và lệnh lưu
+                                                                   trong RDS PostgreSQL Multi-AZ
+Frontend                                                           Bản build React + Vite trong S3 private, phân phối qua
+                                                                   CloudFront OAC với WAF monitoring
+Giao tiếp                                                          Trình duyệt HTTPS tới CloudFront; /api/* tới ALB; thiết bị
+                                                                   HTTP trực tiếp tới ALB; polling, thực thi và ACK
+Giám sát                                                           Log backend, widget ALB/ASG/EC2/RDS và tám
+                                                                   CloudWatch alarm
+
+
+
+Tiêu chí thành công đo được
+
+ID                                   Tiêu chí                      Cách đo                           Trạng thái
+S01                                  Backend sẵn sàng              GET /api/health trả HTTP          Đạt
+                                                                   200 từ dịch vụ đã triển khai
+S02                                  Lưu telemetry                 Một request POST hợp lệ cho       Đạt
+                                                                   device_id=room_01 tạo
+                                                                   một dòng có thể xác định
+                                                                   trong telemetry_logs
+S03                                  Truy xuất dữ liệu             Request mới nhất và lịch sử       Đạt
+                                                                   trả đúng dữ liệu room_01 đã
+                                                                   lưu theo thứ tự mong đợi
+S04                                  Điều khiển vật lý             Sáu lệnh điều khiển trực tiếp     Đạt
+                                                                   được xác minh bằng dữ liệu
+                                                                   lệnh và bằng chứng vật lý
+S05                                  Điều khiển chế độ             MODE_AUTO và MODE_MANUAL          Đạt
+                                                                   được xác minh qua hành vi
+                                                                   firmware
+S06                                  Hoàn tất lệnh                 Cùng một ID lệnh được ghi         Đạt
+                                                                   nhận ở Pending, sau đó
+                                                                   chuyển sang Executed sau
+                                                                   ACK
+S07                                  Giám sát                      Log backend, widget               Đạt
+                                                                   ALB/ASG/EC2/RDS và tám
+                                                                   cấu hình alarm đều hiển thị
+S08                                  Khả năng tái tạo và an toàn   T01–T14 đều được ghi nhận         Đạt
+                                                                   là Đạt, tài liệu bàn giao đã có
+                                                                   và credential không xuất hiện
+                                                                   trong repository
+
+
+            Bằng chứng cho các tiêu chí trên được trình bày tại mục 5.5–5.9 và 5.12.
+
+
+5.2     Điều kiện tiên quyết
+
+Mục tiêu
+         Chuẩn bị tài khoản AWS, công cụ cục bộ, phần cứng, thông tin truy cập và kiến thức nền trước khi
+tạo tài nguyên có tính phí. Workshop dùng Asia Pacific (Singapore), ap-southeast-1 làm khu vực mặc định;
+CloudFront/WAF là dịch vụ global, còn S3, ALB, ASG, EC2, RDS, VPC và CloudWatch phải bám đúng thiết kế
+khu vực đã ghi.
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                              Trang 29/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+Bước 1 - Xác minh quyền truy cập AWS
+
+     • Tài khoản AWS có quyền xem thông tin thanh toán và đã bật MFA.
+     • Quyền đặc quyền tối thiểu cho S3, CloudFront, WAF, Elastic Load Balancing, Auto Scaling, EC2/EBS, RDS,
+       VPC/Security Group, thao tác gắn IAM Role, CloudWatch và alarm.
+     • Có quyền gán IAM Role đã được phê duyệt cho EC2 (iam:PassRole). Workshop không yêu cầu
+       AdministratorAccess.
+     • Cặp khóa EC2 được lưu trên máy cục bộ; tuyệt đối không commit file .pem hoặc .key.
+     • Biết địa chỉ IP công khai của quản trị viên để tạo rule SSH: <ADMIN_IP>/32.
+
+         Trước khi cấp phát, ghi lại khu vực, CIDR của VPC, hai application subnet, các DB subnet theo Avail-
+ability Zone cần thiết, tiền tố đặt tên tài nguyên và người chịu trách nhiệm dọn dẹp.
+Bước 2 - Xác minh công cụ cục bộ và phiên bản
+        Chạy từng lệnh trong đúng môi trường được chỉ định. Có thể dùng phiên bản mới hơn nếu mã nguồn của
+dự án hỗ trợ.
+
+Công cụ                                  Môi trường và lệnh kiểm tra          Kết quả mong đợi
+Git                                      PowerShell: git --version            Hiển thị phiên bản Git
+Python                                   PowerShell: python --version         Phiên bản tương thích với FastAPI
+                                                                              0.128.8 và SQLAlchemy 2.0.46
+Node.js                                  PowerShell: node --version           Phiên bản tương thích với Vite 8.1.1 và
+                                                                              TypeScript 6.0.2
+npm                                      PowerShell: npm --version            Hiển thị phiên bản npm
+PlatformIO                               Terminal PlatformIO: pio --version   Hiển thị phiên bản PlatformIO Core
+PostgreSQL client                        PowerShell: psql --version           Hiển thị phiên bản PostgreSQL client
+Trình duyệt                              Mở DevTools → Network                Có thể quan sát và kiểm tra yêu cầu
+                                                                              mạng
+VS Code                                  Help → About                         Hiển thị phiên bản đã cài đặt
+
+
+        Nếu PowerShell không tìm thấy công cụ, mở lại terminal sau khi cài và chạy Get-Command <tool>.
+Không trộn %USERPROFILE% của Command Prompt với $env:USERPROFILE của PowerShell.
+Bước 3 - Chuẩn bị phần cứng và an toàn điện
+        Chuẩn bị:
+
+     • YOLO UNO / ESP32-S3 và cáp USB có khả năng truyền dữ liệu;
+     • cảm biến nhiệt độ, độ ẩm DHT20;
+     • cảm biến ánh sáng analog;
+     • module quạt và driver phù hợp khi cần;
+     • đèn hoặc module relay;
+     • động cơ servo điều khiển rèm;
+     • màn hình LCD1602 I2C có trong firmware cuối;
+     • dây nối, breadboard và bộ nguồn có thông số phù hợp.
+
+         Không cấp nguồn trực tiếp cho động cơ hoặc tải relay từ GPIO. Hãy kiểm tra mức điện áp, mạch điều
+khiển/diode bảo vệ và nối chung mass trước khi kết nối thiết bị chấp hành.
+Bước 4 - Xác minh mã nguồn và thông tin bí mật
+         Mã nguồn ứng dụng nằm trong kho riêng aws-iot-dashboard. Kho mã nguồn có requirements.txt
+của backend, package.json của frontend, platformio.ini, boards/yolo_uno.json và include/secrets.example.h.
+File .gitignore đã loại trừ .env, .pem, môi trường ảo, đầu ra biên dịch và node_modules; trước khi chia sẻ,
+cần xác nhận hardware/include/secrets.h vẫn chưa được Git theo dõi.
+         Qua rà soát mã nguồn, đã xác nhận điểm vào Uvicorn là main:app, tài khoản Amazon Linux là ec2-
+user, môi trường ảo là venv, ba bảng dữ liệu gồm devices, telemetry_logs, commands; sơ đồ GPIO được
+trình bày tại mục 5.6.
+Bước 7 - Kiểm tra mức độ sẵn sàng
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                      Trang 30/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+   □ Đã thống nhất khu vực AWS và quy tắc đặt tên.
+   □ Quyền AWS theo nguyên tắc đặc quyền tối thiểu hoạt động.
+   □ Biết <ADMIN_IP> và vị trí EC2 key.
+   □ Hoàn tất mọi lệnh kiểm tra version.
+   □ Đã rà soát yêu cầu nguồn của phần cứng.
+   □ Có kho mã nguồn và file mẫu chứa thông tin bí mật đã được loại khỏi Git.
+   □ Đã phân công người dọn dẹp và nơi lưu bằng chứng.
+
+
+
+
+Figure 2. Bằng chứng terminal cho phiên bản Git, Python, Node.js, npm và PlatformIO được dùng trong dự án.
+Kết quả mong đợi
+        Chỉ tiếp tục khi mọi điều kiện bắt buộc ở trên đã hoàn tất. Nếu thiếu kho mã nguồn hoặc sơ đồ chân
+firmware chính xác, hãy ghi nhận đây là vướng mắc trong bàn giao; không tự điền giá trị theo suy đoán và không
+cấp nguồn cho mạch.
+
+
+5.3     Kiến trúc và thiết kế dịch vụ
+
+Kiến trúc
+
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                               Trang 31/70
+            Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+            Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+
+        Figure 3. Kiến trúc hiện tại gồm CloudFront/WAF với S3 private origin, /api/* chuyển đến ALB, hai
+FastAPI instance trong ASG, RDS PostgreSQL Multi-AZ và tuyến thiết bị đi trực tiếp đến ALB.
+        Người dùng dashboard và YOLO UNO nằm ngoài AWS. CloudFront phân phối bản build React + Vite
+từ S3 private và chuyển request browser /api/* đến ALB Internet-facing. YOLO UNO dùng trực tiếp DNS
+ALB. Trong VPC, ALB định tuyến đến hai FastAPI instance do ASG quản lý tại ap-southeast-1a và ap-
+southeast-1c; RDS PostgreSQL Multi-AZ có primary tại ap-southeast-1c và standby tại ap-southeast-
+1b. Mỗi backend instance có EBS root volume được mã hóa.
+
+
+
+
+         Figure 4. Trình duyệt dùng CloudFront, còn YOLO UNO gọi trực tiếp ALB; hai tuyến cùng hội tụ tại mô
+hình telemetry và command của FastAPI/RDS.
+Thành phần và lý do chọn dịch vụ AWS
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                             Trang 32/70
+            Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+            Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+Thành phần/dịch vụ                                                 Trách nhiệm và lý do
+React + Vite + TypeScript + Tailwind CSS                           Giao diện người vận hành được build lên S3 private và phân
+                                                                   phối qua CloudFront
+Amazon S3 + CloudFront + AWS WAF                                   Static origin private, phân phối HTTPS, định tuyến /api/* và
+                                                                   theo dõi managed rule
+Application Load Balancer + Target Group                           Endpoint API ổn định và health check /api/health cho
+                                                                   backend target
+EC2 Auto Scaling Group                                             Duy trì hai FastAPI/Uvicorn instance và có thể scale từ 2 đến
+                                                                   4
+Amazon EC2                                                         Toàn quyền cấu hình FastAPI, Python, Uvicorn và systemd
+                                                                   trên từng backend instance
+Amazon EBS                                                         Ổ đĩa gốc mã hóa, gắn với từng EC2 instance
+Amazon RDS for PostgreSQL Multi-AZ                                 Lưu dữ liệu quan hệ có primary/standby phục vụ failover
+Amazon VPC và subnet                                               Ranh giới mạng cho ALB, ASG instance và DB Subnet Group
+Security Group                                                     Tường lửa có trạng thái cho ALB-to-backend và
+                                                                   backend-to-RDS
+AWS IAM Role                                                       Cấp quyền tạm thời để EC2 gửi dữ liệu giám sát
+CloudWatch Agent                                                   Phần mềm trên EC2 thu thập metric của hệ điều hành khách
+                                                                   và file log
+Amazon CloudWatch/Alarms                                           Lưu metric/log và đánh giá các ngưỡng
+YOLO UNO / ESP32-S3                                                Đọc cảm biến, điều khiển thiết bị chấp hành, thăm dò lệnh và
+                                                                   gửi ACK
+
+
+         IAM Role có nhiệm vụ cấp quyền; nó không phải CloudWatch Agent. Agent là một tiến trình được cài đặt
+và quản lý trên EC2.
+Các dịch vụ được lựa chọn
+
+Dịch vụ AWS                          Vai trò trong hệ thống        Lý do lựa chọn                 Đánh đổi
+Amazon EC2                           Chạy backend FastAPI,       Cho phép chủ động cấu hình Nhóm phải tự quản lý hệ điều
+                                     Uvicorn và CloudWatch       môi trường Python, thư viện     hành, cập nhật gói phần mềm,
+                                     Agent                       phụ thuộc, cổng mạng, dịch      dịch vụ và một phần cấu hình
+                                                                 vụ systemd và file log          bảo mật
+Amazon EBS                           Ổ đĩa gốc của EC2           Cung cấp nơi lưu trữ bền vững Ổ đĩa không còn gắn vẫn có
+                                                                 cho hệ điều hành, mã nguồn, thể phát sinh chi phí nếu
+                                                                 môi trường ảo và log cục bộ     không được xóa
+Amazon RDS for                       Lưu telemetry và trạng thái PostgreSQL phù hợp với dữ       Một cơ sở dữ liệu chạy liên
+PostgreSQL                           lệnh                        liệu có cấu trúc và quan hệ     tục có thể tốn hơn một số giải
+                                                                 giữa thiết bị, telemetry, lệnh; pháp serverless khi lưu lượng
+                                                                 RDS giảm công việc quản trị rất thấp
+                                                                 so với tự cài PostgreSQL trên
+                                                                 EC2
+Amazon VPC                           Cung cấp môi trường mạng    Cho phép kiểm soát subnet,      Đòi hỏi cấu hình mạng và
+                                     cho EC2 và RDS              định tuyến và kết nối giữa      Security Group chính xác
+                                                                 backend với cơ sở dữ liệu
+Security Groups                      Kiểm soát lưu lượng vào EC2 Giới hạn SSH theo IP quản trị Cấu hình sai có thể chặn kết
+                                     và RDS                      và chỉ cho phép RDS nhận        nối cơ sở dữ liệu hoặc vô tình
+                                                                 cổng 5432 từ EC2 Security       mở dịch vụ quá rộng
+                                                                 Group
+AWS IAM Role                         Cấp quyền để EC2 gửi log và Tránh lưu AWS access key        Policy phải tuân theo nguyên
+                                     metric                      trực tiếp trên EC2 hoặc trong tắc đặc quyền tối thiểu
+                                                                 mã nguồn
+Amazon CloudWatch                    Thu thập log và metric từ   Tập trung dữ liệu vận hành để Việc thu nhận log, thời gian
+                                     EC2, backend, RDS           quan sát và xử lý sự cố         lưu giữ và metric tùy chỉnh có
+                                                                                                 thể phát sinh chi phí
+
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                                Trang 33/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+Dịch vụ AWS                          Vai trò trong hệ thống        Lý do lựa chọn                Đánh đổi
+CloudWatch Alarms                    Theo dõi CPU, bộ nhớ, ổ đĩa   Cảnh báo khi metric vượt      Alarm chỉ hữu ích khi ngưỡng
+                                     và số kết nối cơ sở dữ liệu   ngưỡng vận hành đã cấu hình   và khoảng thời gian đánh giá
+                                                                                                 được đặt phù hợp
+Amazon S3 và CloudFront              Lưu/phân phối frontend và     Giữ S3 origin private qua     Thay đổi cache/behavior cần
+                                     định tuyến /api/* đến ALB     OAC và cung cấp endpoint      quy trình deploy và
+                                                                   HTTPS cho browser             invalidation có kiểm soát
+AWS WAF                              Áp dụng ba managed rule       Quan sát các web threat phổ   Rule hiện chạy
+                                     group ở CloudFront edge       biến trước khi bật            Count/Monitor, chưa Block
+                                                                   enforcement
+Application Load Balancer            Phân phối API đến hai         Loại bỏ single backend        Phát sinh chi phí ALB/EC2 và
+và Auto Scaling                      FastAPI target healthy        endpoint và duy trì desired   cần quản lý vòng đời launch
+                                                                   capacity qua hai AZ           template
+
+
+
+Vì sao chọn HTTP REST thay vì MQTT?
+        HTTP REST được chọn cho prototype room_01 vì dự án đã sử dụng các endpoint FastAPI cho telemetry,
+thăm dò lệnh và ACK. Cùng một hợp đồng JSON có thể được kiểm tra trực tiếp bằng curl, PowerShell, browser
+DevTools, log Uvicorn và truy vấn PostgreSQL. Nhờ đó, từng bước của luồng đầu cuối dễ trình diễn và xử lý sự cố
+mà chưa cần bổ sung MQTT broker, topic, subscription, chứng chỉ thiết bị và các thành phần xử lý message riêng.
+        Đây là quyết định đánh đổi giữa phạm vi và độ đơn giản, không phải khẳng định HTTP tốt hơn MQTT
+cho mọi hệ thống IoT:
+
+Tiêu chí                                       HTTP REST trong prototype hiện tại      MQTT / AWS IoT Core khi mở rộng
+Tích hợp                                       Tái sử dụng API request/response hiện   Cần broker topic, policy, certificate và
+                                               có của FastAPI                          subscriber
+Kiểm chứng                                     Dễ đối chiếu HTTP status, JSON          Cần kiểm tra publish/subscribe và bằng
+                                               response, API log và bản ghi database   chứng phía broker
+Phân phối lệnh                                 Thiết bị định kỳ thăm dò command        Broker có thể đẩy lệnh qua topic mà thiết
+                                               Pending trong PostgreSQL rồi gửi ACK    bị đã subscribe
+Kết nối và băng thông                          Polling lặp lại tạo nhiều request và    Kết nối duy trì, nhẹ thường hiệu quả hơn
+                                               protocol overhead hơn                   khi có nhiều thiết bị
+Đảm bảo chuyển phát                            Ứng dụng tự cài đặt retry, trạng thái   MQTT có các mức QoS và session
+                                               command và ACK                          feature dành cho messaging
+Mức độ phù hợp hiện tại                        Đủ cho một phòng mô hình với tải        Phù hợp hơn cho nhiều thiết bị, kết nối
+                                               telemetry/command nhỏ                   gián đoạn, băng thông thấp hoặc
+                                                                                       event-driven delivery
+
+
+          Khi mở rộng, cần đánh giá AWS IoT Core với MQTT cùng định danh riêng cho từng thiết bị, xoay vòng
+certificate, phân quyền topic, QoS, hành vi offline, chi phí và kế hoạch chuyển đổi vòng đời command REST hiện
+tại. MQTT vẫn là hướng phát triển tương lai và không được mô tả là đã triển khai trong Workshop này.
+Luồng dữ liệu
+
+    1. Telemetry: YOLO UNO gửi các trường camelCase đến DNS ALB → target group chọn FastAPI instance
+       healthy → Pydantic ánh xạ sang snake_case → SQLAlchemy ghi telemetry_logs trên RDS → lat-
+       est/history qua CloudFront /api/* → dashboard.
+    2. Lệnh: dashboard qua CloudFront /api/* → ALB → backend ghi commands.state = "Pending" →
+       YOLO UNO poll qua ALB → route commands/latest trả lệnh chờ cũ nhất trước theo FIFO → phần cứng
+       thực thi.
+    3. ACK: thiết bị gửi ID lệnh → backend chuyển lệnh đó sang Executed → telemetry tiếp theo phản ánh trạng
+       thái thiết bị chấp hành. Dịch vụ ACK hiện chỉ tìm theo ID lệnh; kiểm tra lệnh có thuộc đúng thiết bị hay
+       không vẫn là điểm cần gia cố.
+    4. Giám sát: metric mặc định của EC2 cùng metric/log do agent thu thập được gửi tới CloudWatch; RDS cung
+       cấp metric dịch vụ; alarm đánh giá các ngưỡng đã cấu hình.
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                                Trang 34/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+         Do thiết bị thăm dò lệnh thường xuyên, trạng thái Pending có thể chỉ xuất hiện trong thời gian rất ngắn.
+Bằng chứng nên gồm phản hồi khi tạo lệnh và trạng thái Executed sau đó trong cơ sở dữ liệu hoặc API.
+         Các mô hình cơ sở dữ liệu định nghĩa ba bảng devices, telemetry_logs và commands. Các trường
+telemetry gồm temperature, humidity, light_intensity, fan_status, light_status, curtain_status
+và timestamp.
+Bảo mật và IAM
+Bảng bảo mật mạng
+
+Nguồn                             Đích                                           Port                 Rule
+Internet / traffic origin         ALB Security Group                             80                   Điểm vào API public của
+CloudFront                                                                                            deployment đã xác minh
+ALB Security Group                Backend Security Group                        8000                  Chỉ traffic đến FastAPI
+                                                                                                      target
+<ADMIN_IP>/32                     Backend Security Group                         22                   Quản trị có giới hạn khi cần
+                                                                                                      SSH
+Backend Security Group            RDS Security Group                            5432                  Chỉ PostgreSQL
+EC2/RDS                           CloudWatch                                   HTTPS                  Luồng outbound giám sát
+
+
+         RDS nằm trong mạng riêng, không public ra Internet. Secret chỉ nằm trong file cục bộ đã loại khỏi
+Git; EC2 dùng IAM Role thay vì hard-code AWS key. CloudFront cung cấp viewer HTTPS, ALB/ASG cung
+cấp backend availability và RDS chạy Multi-AZ. Minh chứng hiện tại chưa xác nhận ALB HTTPS, application
+authentication, rate limiting hoặc WAF Block mode.
+Bảng bảo mật và IAM
+
+                                                                                                    Hạn chế / bước gia cố tiếp
+Kiểm soát                            Cách triển khai hiện tại       Bằng chứng cần giữ              theo
+Truy cập quản trị                    SSH cổng 22 giới hạn theo      Quy tắc EC2 Security Group      Rà soát người giữ khóa, thay
+                                     <ADMIN_IP>/32                                                  khóa khi cần; cân nhắc hình
+                                                                                                    thức truy cập được quản lý
+Cô lập cơ sở dữ liệu                 RDS private; cổng 5432 chỉ   Cấu hình RDS, subnet group Rà soát NACL/route và xác
+                                     nhận EC2 Security Group      và tham chiếu SG                  minh TLS
+Thông tin xác thực AWS               EC2 IAM Role có              Instance profile và policy đã Khi phù hợp, thay policy quản
+                                     CloudWatchAgentServerPolicy  gắn                               lý rộng bằng policy giới hạn
+                                     phục vụ giám sát                                               tài nguyên đã được rà soát
+Bí mật ứng dụng                      .env và hardware/            Vị trí file đã che và kết quả     Chuyển bí mật dùng trong
+                                     include/secrets.h chỉ lưu git status                           thực tế sang dịch vụ quản lý bí
+                                     cục bộ, đã loại khỏi Git                                       mật đã được phê duyệt
+API công khai                        CloudFront /api/* chuyển     CloudFront behavior, ALB          Bổ sung ALB TLS/custom
+                                     đến ALB HTTP 80; ALB         listener, target health và health domain, xác thực, phân quyền
+                                     chuyển tiếp đến backend port request                           và rate limiting trước
+                                     8000                                                           production
+Danh tính cơ sở dữ liệu              Người dùng PostgreSQL        Cấu hình kết nối đã che           Giới hạn quyền, thay mật
+                                     riêng trong DATABASE_URL                                       khẩu định kỳ và kiểm toán
+                                                                                                    truy cập
+
+
+
+Nguyên tắc đặc quyền tối thiểu (Principle of Least Privilege)
+         Chỉ cấp các hành động cần thiết cho từng danh tính, giới hạn nguồn/đích mạng và tránh dùng thông tin
+xác thực dài hạn. Workshop không yêu cầu AdministratorAccess: người vận hành chỉ cần quyền cấp phát và
+kiểm tra đã được duyệt; EC2 chỉ cần quyền gửi dữ liệu giám sát; RDS chỉ nhận kết nối PostgreSQL từ EC2 Security
+Group; người dùng cơ sở dữ liệu chỉ có các quyền ứng dụng thực sự cần. Mọi quyền rộng được cấp tạm để xử lý sự
+cố phải được ghi lại, giới hạn thời gian, rà soát và gỡ bỏ.
+Lựa chọn mở rộng tương lai và hạn chế hiện tại
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                                   Trang 35/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+         Cấu trúc API route theo device_id và lược đồ quan hệ có thể hỗ trợ thêm phòng, nhưng phạm vi nghiệm
+thu hiện tại chỉ là room_01. ALB/ASG đã loại bỏ single compute endpoint; cơ chế device polling vẫn tạo độ trễ và
+tuyến thiết bị trực tiếp chưa có TLS/xác thực được xác minh.
+         Trong tương lai, nhóm có thể cân nhắc ALB HTTPS với custom domain, xác thực/phân quyền theo thiết
+bị, MQTT qua AWS IoT Core, hàng đợi như SQS, cache, read replica, container và Infrastructure as Code. Mỗi lựa
+chọn đều cần thiết kế, đánh giá chi phí/bảo mật, triển khai và kiểm thử riêng.
+         Amazon SQS và kiến trúc hướng sự kiện chưa được triển khai trong dự án hiện tại. Auto Scaling đã
+được triển khai cho backend.
+
+
+5.4     Thiết lập hạ tầng AWS
+
+Tổng quan và mục tiêu
+        Xây dựng nền tảng mạng, bảo mật biên, cân bằng tải, Auto Scaling, lưu trữ và cơ sở dữ liệu cho hệ thống
+đang vận hành. Trong ghi chú và ảnh chụp, hãy dùng giá trị giữ chỗ; không công khai ID tài khoản, mật khẩu,
+endpoint riêng tư hoặc khóa.
+Bước 1 - Chọn khu vực và lập kế hoạch địa chỉ
+          Trong AWS Console, chọn khu vực đã thống nhất cho dự án. Workshop dùng Asia Pacific (Singapore),
+ap-southeast-1 làm khu vực mặc định. Ghi lại các dải CIDR không chồng lấn cho VPC, một public subnet và
+ít nhất hai DB subnet thuộc hai Availability Zone.
+          Kết quả mong đợi: mọi tài nguyên bên dưới nằm trong cùng khu vực và dùng tiền tố tên đã thống nhất.
+Bước 2 - Tạo hoặc chọn VPC và subnet
+
+    1. Mở VPC → Your VPCs, tạo hoặc chọn VPC của dự án.
+    2. Bật DNS resolution và DNS hostnames.
+    3. Tạo/chọn hai public application subnet ở ap-southeast-1a và ap-southeast-1c cho ALB và Auto Scal-
+       ing Group.
+    4. Gắn Internet Gateway vào VPC.
+    5. Thêm 0.0.0.0/0 $\rightarrow$ Internet Gateway vào route table của các application subnet.
+    6. Tạo hoặc chọn các subnet cơ sở dữ liệu private ở ít nhất hai Availability Zone; cấu hình đã kiểm chứng dùng
+       primary tại ap-southeast-1c và standby tại ap-southeast-1b. Không thêm route tới Internet Gateway
+       cho các DB subnet.
+    7. Trong RDS → Subnet groups, tạo DB Subnet Group chứa cả hai DB subnet.
+
+         Kết quả mong đợi: ALB trải trên hai application subnet, ASG duy trì hai backend ở hai Availability Zone
+và các subnet cơ sở dữ liệu vẫn nằm trong mạng riêng.
+Bước 2A - Cấu hình S3 private, CloudFront và WAF
+
+    1. Build frontend React + Vite và tải các artifact trong dist lên bucket S3 của dự án.
+    2. Bật Block all public access cho bucket.
+    3. Tạo CloudFront Origin Access Control (OAC) và chỉ cho distribution đọc các object S3 cần thiết.
+    4. Cấu hình hai CloudFront origin: bucket S3 private cho static file và iot-backend-alb cho API.
+    5. Giữ default behavior * trỏ tới S3 origin với managed optimized caching.
+    6. Tạo behavior /api/* có độ ưu tiên cao hơn cho ALB origin, tắt cache, chuyển tiếp các viewer value cần
+       thiết ngoại trừ header Host và cho phép các HTTP method mà API sử dụng.
+    7. Gắn web ACL do CloudFront tạo. Ba managed rule group hiện chạy ở Count/Monitor mode, nên chỉ quan
+       sát request và chưa chặn request.
+
+       CloudFront cung cấp HTTPS cho trình duyệt. Trong cấu hình đã kiểm chứng, CloudFront kết nối đến
+ALB origin qua HTTP và YOLO UNO cũng gọi trực tiếp ALB qua HTTP; không mô tả hai tuyến này là TLS đầu
+cuối.
+
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                   Trang 36/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+
+Figure 5a. Distribution có hai origin riêng cho S3 private và ALB.
+
+
+
+
+Figure 5b. Default behavior phục vụ nội dung S3; /api/* có ưu tiên cao hơn và dùng ALB origin.
+
+
+
+
+Figure 5c. Bucket frontend vẫn private và chỉ cho CloudFront distribution đọc object qua OAC.
+
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                           Trang 37/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+
+Figure 5d. Ba AWS managed rule group được gắn với distribution và đang ở Count mode.
+Bước 3 - Tạo Security Group
+         Tạo các Security Group của ALB, backend và RDS trong cùng VPC. Môi trường đã triển khai dùng ALB
+Security Group cho lưu lượng HTTP công khai, iot-backend-sg cho backend, ec2-rds-1 cho kết nối từ EC2
+tới RDS và rds-ec2-1 cho quy tắc phía RDS.
+
+Security Group                                Loại         Nguồn                     Mục đích
+ALB Security Group                          HTTP 80        0.0.0.0/0                 Nhận request từ CloudFront
+                                                                                     và thiết bị YOLO UNO
+iot-backend-sg                           Custom TCP 8000   ALB Security Group        Chỉ nhận FastAPI traffic từ
+                                                                                     ALB
+iot-backend-sg                                SSH 22       <ADMIN_IP>/32             Quản trị có giới hạn
+ec2-rds-1 → rds-ec2-1                    PostgreSQL 5432   Tham chiếu EC2 Security   Chỉ EC2 tới RDS
+                                                           Group
+
+
+         Backend không còn công khai trực tiếp cổng 8000. Trình duyệt gọi /api/* qua CloudFront, còn YOLO
+UNO dùng DNS của ALB theo đúng route đã kiểm chứng. ALB forward tới target group trên cổng 8000. RDS
+không mở PostgreSQL 5432 cho 0.0.0.0/0; cơ sở dữ liệu chỉ nhận kết nối từ EC2 Security Group.
+         Hai ảnh dưới đây tách riêng quy tắc phía EC2 và quan hệ Security Group phía RDS, đồng thời đã che IP
+quản trị cùng các định danh nhạy cảm.
+
+
+
+
+Figure 6a. Chuỗi Security Group giới hạn luồng Internet/CloudFront $\rightarrow$ ALB:80 $\rightarrow$
+backend:8000 $\rightarrow$ RDS:5432.
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                 Trang 38/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+
+Figure 6b. RDS Security Group cho phép TCP 5432 từ Security Group của backend, không mở cơ sở dữ liệu ra
+Internet.
+Bước 4 - Tạo EC2 IAM Role
+
+    1. Mở IAM → Roles → Create role.
+    2. Chọn trusted entity AWS service → EC2.
+    3. Chỉ gắn CloudWatchAgentServerPolicy khi CloudWatch Agent cần gửi metric hoặc log.
+    4. Đặt tên role là iot-dashboard-cloudwatch-role, đúng với môi trường đã triển khai, rồi tạo instance
+       profile.
+
+         Không tạo access key dài hạn. Role đang dùng AWS-managed policy CloudWatchAgentServerPolicy,
+cho phép CloudWatch Agent gửi log và metric mà không cần ghi cố định AWS access key. Role chỉ cấp quyền;
+CloudWatch Agent được cài đặt riêng ở mục 5.9. Trước khi dùng trong production, cần rà soát và thu hẹp quyền
+thay vì mặc định policy được quản lý đã đáp ứng hoàn toàn nguyên tắc đặc quyền tối thiểu.
+         Trang Security của EC2 và phần chi tiết IAM Role xác nhận role đã được gắn cùng AWS-managed policy.
+
+
+
+
+Figure 7. EC2 được gắn IAM Role iot-dashboard-cloudwatch-role, và role này sử dụng CloudWatchAgentServerPolicy
+để CloudWatch Agent gửi log và metric mà không cần hard-code AWS access key.
+Bước 5 - Chuẩn bị AMI, Launch Template, ASG và EBS
+
+    1. Xác minh instance nguồn chạy FastAPI ổn định trước khi tạo AMI.
+    2. Tạo AMI iot-backend-ami-v1 và dùng AMI này trong Launch Template iot-backend-template.
+    3. Chọn loại instance t3.micro, gắn IAM instance profile, key pair và backend Security Group trong Launch
+       Template.
+    4. Cấu hình ổ đĩa gốc EBS gp3, 10 GiB, bật mã hóa bằng khóa AWS managed aws/ebs.
+    5. Tạo Auto Scaling Group iot-backend-asg trên hai application subnet với min/desired/max = 2/2/4.
+    6. Chờ hai instance chuyển sang InService, Healthy và vượt qua status checks.
+
+         Launch Template và ASG thay cho việc phụ thuộc vào một EC2 duy nhất. Không ghi lại hoặc đưa địa chỉ
+IP instance vào frontend hay firmware; điểm vào ổn định của backend là DNS của ALB.
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                              Trang 39/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+
+Figure 8a. Launch Template phiên bản 1 dùng AMI riêng của FastAPI backend.
+
+
+
+
+Figure 8b. iot-backend-asg duy trì desired capacity bằng 2, giới hạn 2–4 và có hai instance Healthy/InService.
+
+
+
+
+Figure 8c. Các volume gp3 10 GiB mới của ASG được mã hóa bằng khóa AWS managed aws/ebs.
+Bước 5A - Tạo Target Group và Application Load Balancer
+
+    1. Tạo target group iot-backend-tg, target type Instance, protocol/port HTTP:8000.
+    2. Cấu hình health check tại /api/health.
+    3. Tạo internet-facing Application Load Balancer iot-backend-alb trên hai application subnet.
+    4. Tạo listener HTTP:80 và forward 100% request tới iot-backend-tg.
+    5. Gắn target group với ASG và xác minh cả hai target đều Healthy.
+
+
+
+
+Figure 9a. iot-backend-alb ở trạng thái Active và trải trên hai Availability Zone.
+
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                               Trang 40/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+
+Figure 9b. Listener HTTP:80 forward toàn bộ request tới iot-backend-tg.
+
+
+
+
+Figure 9c. Target group có hai target Healthy, mỗi target ở một Availability Zone.
+Bước 6 - Tạo Amazon RDS for PostgreSQL
+
+    1. Mở RDS → Databases → Create database, chọn PostgreSQL.
+    2. Chọn loại instance db.t4g.micro và cấu hình lưu trữ đã duyệt.
+    3. Đặt tên cơ sở dữ liệu ban đầu là iot_dashboard.
+    4. Chọn VPC của dự án, DB Subnet Group rds-ec2-db-subnet-group-1 và các RDS Security Group đã
+       triển khai.
+    5. Giữ Internet access gateway ở trạng thái Disabled như cấu hình RDS thực tế.
+    6. Lưu mật khẩu quản trị an toàn dưới dạng <DB_PASSWORD>; không đưa mật khẩu thật vào ảnh hoặc Git.
+    7. Bật Multi-AZ, automated backup với thời gian lưu 7 ngày và tạo manual snapshot trước thay đổi lớn.
+    8. Chờ iot-dashboard-db chuyển sang Available; cấu hình đã kiểm chứng có primary tại ap-southeast-
+       1c và standby tại ap-southeast-1b. Lưu <RDS_ENDPOINT> ở nơi riêng tư.
+
+         Standby Multi-AZ phục vụ failover và không phải read replica để ứng dụng đọc dữ liệu. Workshop chưa
+triển khai RDS Proxy, public endpoint hoặc IAM database authentication.
+         Trang Summary và Connectivity & security của RDS xác nhận PostgreSQL engine, DB class, DB Subnet
+Group, Availability Zone và trạng thái tắt Internet access gateway.
+
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                             Trang 41/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+
+Figure 10a. Amazon RDS for PostgreSQL iot-dashboard-db ở trạng thái Available, sử dụng DB Subnet Group
+rds-ec2-db-subnet-group-1 và tắt Internet access gateway.
+
+
+
+
+Figure 10b. AWS CLI xác nhận Multi-AZ được bật, primary ở ap-southeast-1c và standby ở ap-southeast-
+1b.
+
+
+
+
+Figure 10c. Automated backup được bật với retention period 7 ngày.
+
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                        Trang 42/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+
+Figure 10d. Manual snapshot hoàn tất và sẵn sàng phục hồi khi cần.
+Bước 7 - Xác minh truy cập và mạng
+        Nếu cần quản trị một instance cụ thể, kết nối từ Windows PowerShell bằng IP quản trị được cấp tạm thời:
+
+ssh -i "$env:USERPROFILE\.ssh\<KEY_FILE>.pem" <EC2_USER>@<EC2_PUBLIC_IP>
+
+           Từ EC2 Linux Bash, kiểm tra DNS và TCP:
+
+getent hosts <RDS_ENDPOINT>
+nc -vz <RDS_ENDPOINT> 5432
+
+        Nếu chưa có nc, hãy cài gói netcat phù hợp với bản phân phối Linux. Kết nối TCP thành công chỉ xác
+nhận route và Security Group hoạt động; kết quả này chưa chứng minh thông tin đăng nhập cơ sở dữ liệu là chính
+xác.
+        Từ máy khách, kiểm tra health endpoint qua ALB:
+
+curl.exe -sS -i "http://<ALB_DNS_NAME>/api/health"
+
+
+Kết quả mong đợi và bằng chứng
+         Các hình trên cung cấp bằng chứng đã che thông tin nhạy cảm về AMI/Launch Template, ASG hai in-
+stance, EBS mã hóa, ALB và hai target Healthy, IAM Role đã gắn, RDS Multi-AZ, backup/snapshot và chuỗi
+Security Group. Cần lưu riêng kết quả kiểm tra cổng từ backend tới RDS và health check qua ALB.
+
+
+5.5     Triển khai backend và tích hợp cơ sở dữ liệu
+
+Tổng quan và mục tiêu
+         Triển khai FastAPI trong môi trường ảo Python trên Amazon EC2, quản lý backend bằng aws-iot-
+backend.service và kết nối tới database iot_dashboard trên Amazon RDS for PostgreSQL. Quy trình sử
+dụng tài khoản ec2-user, thư mục /home/ec2-user/aws-iot-dashboard/backend, môi trường ảo venv và
+điểm vào Uvicorn main:app. Hoàn tất các bước này trên instance nguồn trước khi tạo AMI backend, hoặc phát
+hành đồng nhất bằng AMI mới và ASG instance refresh.
+Bước 1 - Triển khai FastAPI backend
+        Kết nối từ Windows PowerShell, cài công cụ, sao chép repository và tạo môi trường ảo:
+
+ssh -i "$env:USERPROFILE\.ssh\<KEY_FILE>.pem" ec2-user@<EC2_PUBLIC_IP>
+
+sudo dnf update -y
+sudo dnf install -y git python3 python3-pip postgresql15 curl
+git clone <REPOSITORY_URL> ~/aws-iot-dashboard
+cd ~/aws-iot-dashboard/backend
+python3 -m venv venv
+source venv/bin/activate
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+
+           Tạo file .env đã được loại khỏi Git. Không commit thông tin xác thực:
+
+DATABASE_URL=postgresql://<DB_USER>:<DB_PASSWORD>@<RDS_ENDPOINT>:5432/iot_dashboard?sslmode=req ⌋
+ ,→ uire
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                Trang 43/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+           Có thể chạy thủ công trong lần kiểm tra triển khai đầu tiên:
+
+source venv/bin/activate
+uvicorn main:app --host 0.0.0.0 --port 8000
+
+
+Bước 2 - Cấu hình dịch vụ systemd
+        Tạo /etc/systemd/system/aws-iot-backend.service:
+
+[Unit]
+Description=AWS IoT FastAPI backend
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ec2-user
+WorkingDirectory=/home/ec2-user/aws-iot-dashboard/backend
+EnvironmentFile=/home/ec2-user/aws-iot-dashboard/backend/.env
+ExecStart=/home/ec2-user/aws-iot-dashboard/backend/venv/bin/uvicorn main:app --host 0.0.0.0
+ ,→ --port 8000
+Restart=on-failure
+RestartSec=5
+StandardOutput=append:/var/log/aws-iot-backend/backend.log
+StandardError=append:/var/log/aws-iot-backend/backend-error.log
+
+[Install]
+WantedBy=multi-user.target
+
+           Tạo thư mục log, bật và khởi động dịch vụ:
+
+sudo install -d -o ec2-user -g ec2-user /var/log/aws-iot-backend
+sudo systemctl daemon-reload
+sudo systemctl enable aws-iot-backend
+sudo systemctl restart aws-iot-backend
+
+        Sau khi được enable, systemd sẽ khởi động backend cùng EC2; không cần chạy Uvicorn thủ công sau
+mỗi lần máy khởi động lại.
+Bước 3 - Xác minh dịch vụ backend
+        Chạy:
+
+sudo systemctl status aws-iot-backend --no-pager -l
+curl http://127.0.0.1:8000/api/health
+
+
+
+
+          Figure 11a. Dịch vụ aws-iot-backend.service đang ở trạng thái active (running) và endpoint /
+api/health trả về trạng thái ok.
+          Figure 11a cho thấy unit đã được systemd nạp, dịch vụ ở trạng thái active (running) và Uvicorn là
+tiến trình chính. Endpoint kiểm tra cũng trả về JSON hợp lệ với "status":"ok". Các dữ kiện này chứng minh
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                            Trang 44/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+backend đã được triển khai và có thể nhận HTTP request cục bộ; chúng không chứng minh High Availability hoặc
+hệ thống không thể gặp lỗi.
+        Sau khi các instance của ASG được đăng ký, kiểm tra cùng endpoint qua ALB:
+curl.exe -sS -i "http://<ALB_DNS_NAME>/api/health"
+
+
+
+
+Figure 11b. Endpoint ALB trả HTTP 200 cho /api/health; bằng chứng target group ở mục 5.4 xác nhận cả hai
+backend đã đăng ký đều Healthy.
+Bước 4 - Kết nối EC2 với Amazon RDS
+        Từ EC2, kết nối và yêu cầu SSL/TLS:
+psql "host=<RDS_ENDPOINT> port=5432 dbname=iot_dashboard user=<DB_USER> sslmode=require"
+
+       Dùng endpoint của RDS, không dùng hostname gắn với một Availability Zone. Khi Multi-AZ failover,
+AWS ánh xạ lại endpoint này sang standby; standby không phải read replica cho ứng dụng.
+       Trong psql, kiểm tra database và thông tin kết nối mà không hiển thị mật khẩu:
+SELECT current_database(), current_user;
+\conninfo
+\dt
+
+           Nếu schema chưa được khởi tạo, chạy lệnh do mã nguồn định nghĩa trong môi trường ảo rồi kiểm tra lại:
+cd ~/aws-iot-dashboard/backend
+source venv/bin/activate
+python -m app.database.init_db
+
+Bước 5 - Xác minh các bảng và command trong PostgreSQL
+        Database iot_dashboard trong bằng chứng có bốn bảng commands, devices, sensor_readings và
+telemetry_logs. Truy vấn các command gần nhất:
+SELECT id, device_id, command, state, timestamp
+FROM commands
+ORDER BY id DESC
+LIMIT 6;
+
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                  Trang 45/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+       Figure 12a. Kết nối từ EC2 đến Amazon RDS PostgreSQL, danh sách các bảng của database và các
+command gần nhất ở trạng thái Executed.
+       Ảnh xác nhận một phiên PostgreSQL dùng SSL/TLS từ EC2 tới database iot_dashboard. Bốn bảng
+ứng dụng và các command gần nhất có device_id là room_01 được hiển thị. Các ví dụ gồm CURTAIN_CLOSE,
+CURTAIN_OPEN, MODE_AUTO và LIGHT_OFF, đều ở trạng thái Executed. Ảnh không hiển thị mật khẩu database.
+
+
+
+
+Figure 12b. Telemetry POST và latest API response đối chiếu được với cùng bản ghi telemetry_logs trong
+PostgreSQL.
+
+
+5.6     Tích hợp phần cứng
+
+Tổng quan và mục tiêu
+         YOLO UNO là thiết bị chính của Workshop. Thiết bị đọc nhiệt độ, độ ẩm từ DHT20 và giá trị ánh sáng
+analog thô; điều khiển quạt, đèn/relay và servo rèm; gửi telemetry; định kỳ kiểm tra lệnh đang chờ; thực thi mỗi
+lệnh một lần rồi gửi ACK.
+Bước 1 - Nối phần cứng theo mã nguồn
+          Firmware hiện dùng trong hardware/src/main.cpp định nghĩa sơ đồ chân dưới đây. Khi có khác biệt,
+các giá trị trong file này được ưu tiên hơn những mô tả cũ ở nơi khác trong kho mã nguồn.
+          Ảnh pinout YOLO UNO chưa được cung cấp. Pinout không thay thế sơ đồ đấu dây hoàn chỉnh; hãy đối
+chiếu bảng đã xác minh dưới đây với các định nghĩa trong firmware.
+Ánh xạ cổng phần cứng
+
+Thiết bị                                 Cổng vật lý trên YOLO UNO         Chân trong firmware
+Cảm biến ánh sáng analog                 Grove A1-A0                       A0 / GPIO1
+Quạt hai chân điều khiển                 Grove D8-D7                       D8 / GPIO17, D7 / GPIO10
+Đèn LED hoặc relay                       Grove D4-D3                       D3 / GPIO6
+Servo rèm                                Cổng GVS D11                      D11 / GPIO38
+DHT20                                    Grove I2C1                        SDA / GPIO11, SCL / GPIO12
+LCD 1602 I2C                             Grove I2C2                        SDA / GPIO11, SCL / GPIO12
+
+
+       DHT20 được cắm vào Grove I2C1, còn LCD 1602 dùng Grove I2C2. Hai cổng dùng chung bus I2C với
+SDA/GPIO11 và SCL/GPIO12. DHT20 dùng địa chỉ 0x38; firmware tự dò LCD ở 0x21, 0x27 hoặc 0x3F. Nếu
+LCD cần 5 V, phải dùng bộ chuyển mức logic hai chiều và không nối pull-up 5 V trực tiếp vào GPIO của ESP32-S3.
+Hai module chỉ dùng chung bus, không nối trực tiếp với nhau bằng dây ngoài.
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                 Trang 46/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+         Firmware không sử dụng PIR, cảm biến siêu âm, buzzer hoặc MQTT. Hãy dùng nguồn phù hợp cho thiết
+bị chấp hành, nối chung mass và không cấp dòng trực tiếp từ GPIO cho quạt hoặc servo.
+Bước 2 - Chuẩn bị PlatformIO
+        Mở dự án phần cứng trong VS Code và xác nhận:
+
+     • có file JSON định nghĩa bo mạch YOLO UNO / ESP32-S3 và được tham chiếu đúng;
+     • platformio.ini chọn đúng môi trường và thư viện;
+     • baud Serial Monitor là 115200;
+     • môi trường là yolo_uno trên ESP32-S3;
+     • các thư viện phụ thuộc ArduinoJson, ESP32Servo, DHT20 và LiquidCrystal_I2C được tải thành công;
+     • include/secrets.example.h được commit; và
+     • include/secrets.h chỉ tồn tại cục bộ và đã được loại khỏi Git.
+
+           Dùng cấu trúc file bí mật sau:
+
+#pragma once
+constexpr char WIFI_SSID[] = "<YOUR_WIFI_SSID>";
+constexpr char WIFI_PASSWORD[] = "<YOUR_WIFI_PASSWORD>";
+constexpr char API_BASE_URL[] = "http://<ALB_DNS_NAME>";
+constexpr char DEVICE_ID[] = "room_01";
+
+        Không công khai mật khẩu Wi-Fi thật. Route thiết bị đã kiểm chứng là HTTP trực tiếp tới DNS của ALB;
+không đưa IP của EC2 hoặc domain CloudFront của frontend vào firmware, trừ khi có một route thiết bị khác đã
+được kiểm thử riêng.
+Bước 4 - Gửi telemetry
+        Firmware tạo JSON với đúng các tên trường camelCase mà backend chấp nhận:
+
+{
+    "deviceId": "room_01",
+    "temperature": 25.0,
+    "humidity": 60.0,
+    "lightIntensity": 512,
+    "fan": false,
+    "light": false,
+    "curtain": false
+}
+
+         lightIntensity là giá trị analog thô. Mã nguồn gửi telemetry mỗi 5000 ms, thăm dò lệnh mỗi 2000
+ms, cập nhật LCD mỗi 2000 ms, thử kết nối lại Wi-Fi mỗi 10000 ms với thời gian chờ kết nối 20000 ms và thời
+gian chờ HTTP 7000 ms.
+
+YOLO UNO đọc cảm biến $\rightarrow$ tạo JSON $\rightarrow$ POST /api/telemetry $\rightarrow$
+ ,→ kiểm tra trạng thái HTTP $\rightarrow$ chờ đến chu kỳ tiếp theo
+
+        ALB forward các request từ thiết bị tới một FastAPI target Healthy trên cổng 8000. Thiết bị không chọn
+và không phụ thuộc vào một instance cụ thể trong ASG.
+        Khi HTTP trả về trạng thái không thành công, hãy ghi lại phản hồi và thử lại sau một khoảng trễ có giới
+hạn. Việc gửi dữ liệu qua mạng không được chặn vô thời hạn logic an toàn của thiết bị chấp hành.
+Bước 5 - Thăm dò, thực thi và xác nhận lệnh
+        Thăm dò lệnh:
+
+GET /api/devices/room_01/commands/latest
+
+        Firmware chấp nhận tám lệnh: MODE_AUTO, MODE_MANUAL, FAN_ON, FAN_OFF, LIGHT_ON, LIGHT_OFF,
+CURTAIN_OPEN, CURTAIN_CLOSE. Lệnh điều khiển trực tiếp sẽ chuyển firmware sang chế độ thủ công. Trong chế
+độ tự động, mã nguồn bật quạt khi nhiệt độ ≥30°C, bật đèn khi giá trị analog <350 và mở rèm khi giá trị analog
+<700.
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                Trang 47/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+if (pending && commandId != lastExecutedCommandId) {
+  const bool applied = applySupportedCommand(command);
+  if (applied) {
+    lastExecutedCommandId = commandId;
+    sendAck(commandId);
+  }
+}
+
+           ACK:
+
+POST /api/devices/room_01/commands/{command_id}/ack
+
+          Nếu gửi ACK thất bại sau khi thiết bị chấp hành đã hoạt động, chỉ thử gửi lại ACK, không thực thi lại thao
+tác. Mã nguồn lưu autoMode, lastAck, pendingAck trong ESP32 Preferences để có thể gửi lại ACK và tránh
+chạy lại cùng một lệnh sau khi bo mạch khởi động lại. Firmware từ chối lệnh không được hỗ trợ và không gửi ACK.
+Bước 6 - Biên dịch, nạp firmware và theo dõi
+        Trong PlatformIO terminal:
+
+pio run -e yolo_uno
+
+       Việc build firmware không yêu cầu bo mạch phải kết nối qua USB. Khi build thành công, PlatformIO tạo
+firmware.bin và kết thúc bằng:
+
+SUCCESS
+
+           Ảnh dưới đây cho thấy firmware đã được biên dịch thành công.
+
+
+
+
+Figure 14. Firmware YOLO UNO được biên dịch thành công bằng PlatformIO trong environment yolo_uno, tạo
+file firmware.bin với kết quả SUCCESS.
+         Chỉ có thể nạp firmware và mở Serial Monitor khi YOLO UNO đã kết nối với máy tính:
+
+pio run --target upload
+pio device monitor --baud 115200
+
+           Khi bo mạch đã kết nối và firmware đang chạy, Serial Monitor dự kiến hiển thị chuỗi thông báo sau:
+
+[wifi] connected
+[telemetry] HTTP success for room_01
+[command] pending command received: <COMMAND_ID> <SUPPORTED_COMMAND>
+[actuator] command applied once
+[ack] command acknowledged
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                     Trang 48/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+Kết quả mong đợi
+         PlatformIO biên dịch thành công môi trường yolo_uno và tạo firmware.bin. Sau khi kết nối bo mạch
+và hoàn tất các bước tích hợp còn lại, YOLO UNO đọc DHT20 cùng cảm biến ánh sáng analog, cập nhật LCD1602,
+gửi telemetry đúng lược đồ, thực thi mỗi lệnh được hỗ trợ một lần và dùng ACK để chuyển lệnh tương ứng trên
+backend từ Pending sang Executed. Ảnh Serial Monitor không được để lộ mật khẩu Wi-Fi hoặc endpoint công
+khai.
+
+
+5.7       Tích hợp frontend
+
+Tổng quan và mục tiêu
+          Chạy React + Vite frontend cục bộ khi phát triển, sau đó phân phối bản build production từ Amazon S3
+private qua CloudFront. Trình duyệt dùng request tương đối /api/*, được CloudFront forward tới ALB, đồng thời
+hiển thị telemetry định kỳ, bảng điều khiển, đề xuất dựa trên luật và lịch sử của device_id = room_01.
+Bước 1 - Cấu hình React frontend
+        Dự án sử dụng React, Vite, TypeScript, Tailwind CSS, Axios và Recharts. Từ Windows PowerShell:
+
+git clone <REPOSITORY_URL>
+Set-Location .\aws-iot-dashboard\frontend
+npm install
+npm run dev
+
+        Sử dụng phiên bản Node theo package.json và giữ nguyên lockfile của repository. npm run dev là
+luồng phát triển cục bộ; frontend đã triển khai là bản build Vite trong S3 private, chỉ truy cập qua CloudFront
+OAC.
+Bước 2 - Kết nối frontend với FastAPI backend
+        Dùng đường dẫn tương đối /api với Vite development proxy:
+
+// vite.config.ts
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    proxy: {
+      "/api": {
+         target: "http://<ALB_DNS_NAME>",
+         changeOrigin: true,
+      },
+    },
+  },
+});
+
+          Khởi động lại Vite sau khi đổi cấu hình. Proxy này chỉ dùng khi phát triển cục bộ. Ở production, giữ /api
+là đường dẫn tương đối để trình duyệt dùng cùng domain CloudFront; không hard-code URL EC2 hoặc ALB trong
+React component. Nếu dự án dùng VITE_API_BASE_URL, lưu giá trị development trong .env.local đã được loại
+khỏi Git.
+          Các request chính gồm:
+
+GET /api/health
+GET /api/devices/room_01/latest
+GET /api/devices/room_01/history
+POST /api/devices/room_01/commands
+
+           Badge LIVE AWS phải dựa trên phản hồi backend/API thành công, không chỉ dựa vào việc trang React
+đã tải.
+           Build và tải artifact frontend lên S3 private, sau đó tạo CloudFront invalidation khi cần:
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                    Trang 49/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+npm run build
+aws s3 sync .\dist "s3://<PRIVATE_FRONTEND_BUCKET>" --delete
+aws cloudfront create-invalidation --distribution-id <DISTRIBUTION_ID> --paths "/*"
+
+         Distribution dùng default behavior cho frontend S3 và behavior /api/* có ưu tiên cao hơn cho ALB
+origin, đồng thời tắt cache API.
+
+
+
+
+Figure 15a. Dashboard tải qua CloudFront HTTPS; các request latest, history và commands qua /api/* trả
+HTTP 200.
+
+
+
+
+Figure 15b. Browser DevTools hiển thị bản ghi mới nhất và lịch sử có thứ tự được trả về qua route production /
+api/*.
+Bước 3 - Hiển thị telemetry gần thời gian thực
+         Hiển thị ba card nhiệt độ, độ ẩm và cường độ ánh sáng. Frontend làm mới dữ liệu định kỳ bằng REST
+polling, vì vậy dashboard được mô tả là gần thời gian thực, không phải hệ thống thời gian thực có độ trễ cố định.
+Khi phù hợp, giao diện cần có trạng thái đang tải, lỗi có thể thử lại và thời điểm cập nhật gần nhất.
+Bước 4 - Hiển thị bảng điều khiển từ xa
+        Bảng điều khiển hỗ trợ:
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                  Trang 50/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+     • FAN_ON / FAN_OFF;
+     • LIGHT_ON / LIGHT_OFF;
+     • CURTAIN_OPEN / CURTAIN_CLOSE; và
+     • chuyển giữa MODE_MANUAL và MODE_AUTO.
+
+         Vô hiệu hóa nút đang gửi request, tránh tạo command trùng đang chờ và phân biệt việc backend nhận
+command với việc phần cứng thực thi. ID/trạng thái do backend trả về được dùng để theo dõi thay vì chỉ dựa vào
+trạng thái cục bộ của UI.
+
+
+
+
+         Figure 16. React + Vite dashboard hiển thị telemetry gần thời gian thực và bảng điều khiển quạt, đèn và
+rèm cho phòng mẫu có device_id = room_01.
+         Figure 16 cho thấy giao diện React + Vite, nhãn stack EC2 FastAPI/RDS PostgreSQL/React Vite, ba
+telemetry card có badge LIVE AWS, cùng bảng điều khiển quạt, đèn, rèm và chế độ. UI có thể hiển thị Manual
+Override hoặc Auto tùy trạng thái hiện tại.
+Bước 5 - Hiển thị phân tích dựa trên luật và lịch sử
+Phân tích và đề xuất dựa trên luật
+         Panel đề xuất đánh giá các điều kiện cố định dựa trên nhiệt độ, độ ẩm, ánh sáng và thời gian. Ví dụ trong
+giao diện gồm đề xuất tắt quạt ngoài giờ làm việc, thông báo độ ẩm trong khoảng phù hợp và đề xuất điều chỉnh
+rèm khi ánh sáng cao. Đây là phân tích xác định trước bằng luật/ngưỡng, không phải machine learning, predictive
+analytics hoặc mô hình đã được huấn luyện.
+         Các biểu đồ lịch sử hiển thị nhiệt độ, độ ẩm và ánh sáng được truy xuất từ Amazon RDS qua endpoint:
+
+GET /api/devices/room_01/history
+
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                   Trang 51/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+
+       Figure 17. Panel phân tích theo luật và biểu đồ lịch sử nhiệt độ, độ ẩm và ánh sáng được truy xuất từ
+Amazon RDS.
+Bước 6 - Kết quả mong đợi
+
+      • React + Vite frontend tải thành công trên máy cục bộ.
+      • Bản build production tải qua CloudFront từ S3 private origin.
+      • Request /api/* của trình duyệt tới ALB origin và trả HTTP 200.
+      • Badge LIVE AWS phản ánh một request backend/API thành công.
+      • Telemetry của device_id = room_01 xuất hiện trên ba card.
+      • Các nút quạt, đèn, rèm và chế độ được hiển thị.
+      • Biểu đồ lịch sử nhận bản ghi từ history endpoint.
+      • Nội dung đề xuất được mô tả là dựa trên luật/ngưỡng, không phải machine learning.
+      • Telemetry được mô tả là gần thời gian thực qua REST polling, không kèm tuyên bố độ trễ thiếu bằng chứng.
+
+
+5.8     Kiểm thử và xác minh đầu cuối
+
+Tổng quan và mục tiêu
+         Trước tiên, kiểm tra độc lập từng điểm kết nối, sau đó đối chiếu toàn bộ luồng telemetry và luồng lệnh.
+Trước khi kiểm thử, dùng FastAPI /docs hoặc /openapi.json để xác nhận schema của phiên bản đang được
+triển khai. Phòng mẫu được định danh bằng device_id=room_01.
+         Phần này kết hợp ma trận kiểm thử đầy đủ với bằng chứng từ trình duyệt, API, PostgreSQL và phần cứng
+vật lý. Mỗi bằng chứng đều được mô tả đúng phạm vi để tránh dùng một ảnh đơn lẻ cho những kết luận vượt quá
+nội dung thực sự hiển thị.
+
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                 Trang 52/70
+            Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+            Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+
+Figure 18. Bằng chứng đầu cuối kết hợp dashboard, trạng thái lệnh trong cơ sở dữ liệu và mô hình YOLO UNO
+vật lý; từng lớp vẫn được kiểm tra riêng bên dưới.
+Bước 2 - Thực thi và ghi ma trận kiểm thử
+
+ID                          Mục tiêu                Kết quả mong đợi       Thực tế/bằng chứng       Đạt/Không đạt
+T01                         Kiểm tra backend        HTTP 200 và nội        Figure 11a trong mục         Đạt
+                                                    dung health check      5.5 và phản hồi health
+                                                    đúng định nghĩa        check
+T02                         Gửi telemetry           Phản hồi thành công    Phản hồi telemetry           Đạt
+                                                    và có bản ghi          cùng dữ liệu
+                                                    telemetry được lưu     latest/history
+                                                                           tương ứng
+T03                         Lấy telemetry mới       Trả về bản ghi mới     Figure 19 và các             Đạt
+                            nhất                    nhất của room_01       telemetry card trên
+                                                                           dashboard
+T04                         Lấy lịch sử telemetry   Trả về lịch sử của     Figure 15b và Figure         Đạt
+                                                    room_01 theo đúng      17, gồm các biểu đồ
+                                                    thứ tự                 lịch sử
+T05                         Tạo lệnh                Tạo được lệnh có ID    Request commands             Đạt
+                                                    và trạng thái ban đầu  trong Figure 19 và các
+                                                    Pending                bản ghi ở Figure 12a
+T06                         Thăm dò lệnh            Thiết bị nhận đúng     Video demo phần              Đạt
+                                                    lệnh và ID             cứng
+T07                         Điều khiển quạt         Quạt phản ứng, lệnh    Figure 20 và video           Đạt
+                                                    được ACK và cơ chế     demo phần cứng
+                                                    tự động dựa trên luật
+                                                    tiếp tục hoạt động
+T08                         Điều khiển đèn          Trạng thái vật lý của   Figure 21 và video          Đạt
+                                                    đèn khớp với cả hai     demo phần cứng
+                                                    lệnh
+T09                         Điều khiển rèm          Servo di chuyển đến vị Figure 22 và video           Đạt
+                                                    trí mở và đóng được     demo phần cứng
+                                                    cấu hình trong
+                                                    firmware
+T10                         Xác minh vòng đời       Lệnh chuyển từ          Figure 12a và bản ghi       Đạt
+                            ACK                     Pending sang            lệnh sau ACK
+                                                    Executed
+T11                         Xác minh dữ liệu        Có thể truy vấn lại các Figure 12a và kết quả       Đạt
+                            trong PostgreSQL        bản ghi đã lưu          truy vấn SQL lặp lại
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                        Trang 53/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+ID                          Mục tiêu               Kết quả mong đợi      Thực tế/bằng chứng       Đạt/Không đạt
+T12                         Xác minh log           Sự kiện backend tương Bằng chứng log               Đạt
+                            CloudWatch             ứng xuất hiện trong    backend trong mục 5.9
+                                                   log stream dự kiến
+T13                         Xác minh route         Trang tải từ S3 và     Bằng chứng                  Đạt
+                            production của trình   request /api/* trả     CloudFront/API ở
+                            duyệt                  HTTP 200 qua ALB       mục 5.4 và 5.7
+                                                   origin
+T14                         Xác minh target        Hai target ở hai       Figure 9c và Figure         Đạt
+                            backend                Availability Zone đều 11b
+                                                   Healthy và health call
+                                                   trả HTTP 200
+
+
+
+Bước 3 - Xác minh các request API từ frontend
+
+     1. Khởi động frontend React + Vite và mở trạm điều khiển.
+     2. Mở Chrome DevTools > Network, sau đó chọn Fetch/XHR.
+     3. Quan sát các request latest và history được gửi định kỳ.
+     4. Thực hiện một thao tác điều khiển được hỗ trợ và xác nhận có request commands.
+     5. Kiểm tra các request hiển thị đều nhận phản hồi HTTP 200.
+
+
+
+
+        Figure 19. Chrome DevTools xác nhận các request latest, history và commands từ frontend nhận phản
+hồi HTTP 200 từ FastAPI backend.
+        Ảnh cho thấy telemetry trên dashboard cùng các request XHR lặp lại đến latest, history và commands.
+Ở production, các request dùng domain CloudFront và behavior /api/* trước khi tới ALB. Bằng chứng này xác
+nhận frontend giao tiếp với backend trong quá trình thăm dò REST định kỳ; không dùng ảnh để khẳng định một
+mức độ trễ cố định.
+Bước 4 - Kiểm thử điều khiển quạt
+
+     1. Chuyển thiết bị sang chế độ thủ công nếu hành vi firmware yêu cầu.
+     2. Gửi FAN_ON và FAN_OFF từ dashboard.
+     3. Đối chiếu trạng thái dashboard với phản ứng của quạt vật lý.
+     4. Chuyển lại chế độ tự động và xác nhận cơ chế điều khiển xác định trước dựa trên luật tiếp tục hoạt động.
+     5. Kiểm tra lệnh liên quan đã được ACK.
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                      Trang 54/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+
+        Figure 20. Kiểm thử điều khiển quạt end-to-end: trạng thái trên dashboard được đối chiếu với phản ứng
+của quạt vật lý.
+        Khung hình được dùng để đối chiếu thao tác trên dashboard với phản ứng vật lý quan sát được. Riêng ảnh
+này không chứng minh việc lưu lệnh trong cơ sở dữ liệu hoặc quá trình chuyển trạng thái sau ACK.
+Bước 5 - Kiểm thử điều khiển đèn
+
+    1. Gửi LIGHT_ON từ dashboard và quan sát đèn LED/đèn vật lý.
+    2. Gửi LIGHT_OFF và xác nhận đèn tắt.
+    3. Kiểm tra bản ghi lệnh tương ứng và xác nhận trạng thái cuối là Executed.
+
+
+
+
+           Figure 21. Kiểm thử điều khiển đèn end-to-end: lệnh trên dashboard được xác nhận bằng trạng thái LED
+vật lý.
+Bước 6 - Kiểm thử điều khiển rèm
+
+    1. Gửi CURTAIN_OPEN và quan sát chuyển động của servo.
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                Trang 55/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+    2. Gửi CURTAIN_CLOSE và quan sát chuyển động theo chiều ngược lại.
+    3. Đối chiếu hai chuyển động với vị trí mở và đóng được cấu hình trong firmware.
+    4. Kiểm tra bản ghi lệnh tương ứng và xác nhận trạng thái cuối là Executed.
+
+
+
+
+         Figure 22. Kiểm thử điều khiển rèm end-to-end: lệnh MỞ/ĐÓNG trên dashboard được đối chiếu với
+chuyển động của servo vật lý.
+         Tiêu chí nghiệm thu sử dụng các vị trí được cấu hình trong firmware; báo cáo không giả định một góc
+quay cụ thể.
+Bước 7 - Kiểm tra API, cơ sở dữ liệu và trạng thái lệnh
+        Từ EC2 Linux Bash, kiểm tra health của backend và việc truy xuất telemetry:
+
+curl -i http://127.0.0.1:8000/api/health
+curl -s http://127.0.0.1:8000/api/devices/room_01/latest
+curl -s http://127.0.0.1:8000/api/devices/room_01/history
+
+        Tạo telemetry bằng các trường camelCase được mô tả trong mục 5.6. Tạo lệnh với { "command": "FAN_
+ON" }. Trường Pydantic cũng có alias Command; do populate_by_name=True, tên viết thường command vẫn được
+chấp nhận. Bản ghi thiết bị thường được tạo sau telemetry request hợp lệ đầu tiên.
+        Trong PostgreSQL psql, kiểm tra các lệnh gần nhất:
+
+SELECT
+    id,
+    device_id,
+    command,
+    state,
+    timestamp
+FROM commands
+ORDER BY id DESC
+LIMIT 6;
+
+        Thiết bị có thể thăm dò và ACK nhanh đến mức truy vấn sau đó không còn thấy Pending. Vì vậy, cần lưu
+phản hồi POST tạo lệnh khi còn trạng thái ban đầu, rồi truy vấn cùng ID sau ACK để xác nhận Executed.
+
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                             Trang 56/70
+            Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+            Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+
+Figure 23. Bằng chứng API và PostgreSQL đối chiếu cùng một ID lệnh trước và sau ACK, cho thấy trạng thái
+chuyển từ Pending sang Executed.
+         Dashboard gửi lệnh đến FastAPI và backend lưu lệnh vào PostgreSQL. YOLO UNO thăm dò lệnh đang
+chờ, thực thi thao tác tương ứng trên thiết bị chấp hành rồi gọi endpoint ACK. Sau đó, backend chuyển trạng thái
+lệnh từ Pending sang Executed.
+         Figure 12a trong mục 5.5 là bằng chứng PostgreSQL cho lớp kiểm tra này. Ảnh hiển thị các lệnh gần
+nhất của device_id=room_01, gồm CURTAIN_OPEN, CURTAIN_CLOSE, MODE_AUTO và LIGHT_OFF, ở trạng thái
+Executed sau khi được xác nhận.
+         Có thể xem thêm quá trình dashboard điều khiển phần cứng trong video demo trên Google Drive. Các ảnh
+minh họa được cắt từ video nên có thể hơi mờ; video thể hiện đầy đủ hơn trình tự thao tác điều khiển.
+Kết quả mong đợi
+        Mỗi dòng T01–T14 có nội dung trong cột Thực tế/bằng chứng và trạng thái Đạt, Không đạt hoặc Chưa
+chạy. Một kết quả đầu cuối chỉ được xem là đạt khi đối chiếu được mã định danh thiết bị hoặc ID lệnh phù hợp qua
+CloudFront/ALB, API, PostgreSQL, firmware, dashboard, thiết bị chấp hành vật lý và log liên quan.
+        Kết quả nghiệm thu gồm phản hồi HTTP 200 cho latest, history và commands; telemetry của device_
+id=room_01; phản ứng vật lý của quạt, đèn LED/đèn và servo; ACK sau thực thi; cùng trạng thái lệnh cuối là
+Executed.
+
+
+5.9     Giám sát bằng CloudWatch
+
+Tổng quan và mục tiêu
+         Sử dụng metric mặc định của ALB, ASG, EC2 và RDS, cùng metric hệ điều hành và log backend do
+CloudWatch Agent thu thập. EC2 IAM Role cấp quyền gửi dữ liệu; CloudWatch Agent được cài trong AMI backend
+và chạy trên từng instance của ASG.
+Danh mục giám sát
+
+Nguồn                                    Metric/log                        Cách thu thập
+ALB                                      UnHealthyHostCount, HTTPCode_     Metric mặc định của Application Load
+                                         Target_5XX_Count                  Balancer
+ASG                                      GroupInServiceInstances           Metric của Auto Scaling Group
+EC2                                      CPUUtilization                    Metric mặc định EC2
+Guest OS EC2                             mem_used_percent                  Cấu hình CloudWatch Agent; Figure 25a
+                                                                           không chứng minh có datapoint bộ nhớ
+Guest OS EC2                             disk_used_percent                 CloudWatch Agent
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                 Trang 57/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+Nguồn                                    Metric/log                        Cách thu thập
+Guest OS EC2                             cpu_usage_idle, cpu_usage_user,   CloudWatch Agent
+                                         cpu_usage_system
+FastAPI                                  Log ứng dụng backend              CloudWatch Agent đọc file log
+RDS                                      CPUUtilization                    Metric mặc định RDS
+RDS                                      DatabaseConnections               Metric mặc định RDS
+
+
+
+Bước 1 - Xác minh IAM Role và cài Agent
+        Trong EC2 Console, xác nhận instance đã gắn IAM instance profile có CloudWatchAgentServerPolicy
+được phê duyệt. Trên EC2 Linux Bash, cài gói amazon-cloudwatch-agent theo hướng dẫn chính thức cho bản
+phân phối Linux đã chọn, rồi kiểm tra:
+
+sudo systemctl status amazon-cloudwatch-agent --no-pager
+ls -l /opt/aws/amazon-cloudwatch-agent/bin/
+
+           Không lưu AWS access key trong cấu hình của Agent.
+Bước 4 - Tạo và kiểm tra bằng chứng
+
+    1. Gọi /api/health qua ALB và gửi một yêu cầu telemetry hợp lệ.
+    2. Mở CloudWatch trong cùng khu vực.
+    3. Kiểm tra log group /aws/ec2/aws-iot-dashboard/backend và /aws/ec2/aws-iot-dashboard/
+       backend-error.
+    4. Mở Metrics → IoTDashboard/EC2 để xem bộ nhớ, ổ đĩa và CPU của hệ điều hành khách.
+    5. Mở Metrics → EC2 cho CPUUtilization.
+    6. Mở Metrics → RDS cho CPUUtilization và DatabaseConnections.
+    7. Mở Metrics → ApplicationELB/Auto Scaling để xem target health, 5XX và số instance InService.
+    8. Chọn khoảng thời gian phù hợp và xác nhận có dữ liệu với timestamp mới.
+
+Log backend
+        Log stream /aws/ec2/aws-iot-dashboard/backend trong ảnh chứa các sự kiện truy cập FastAPI gần
+đây. Yêu cầu tới /api/health và / đều trả về HTTP 200 OK, cho thấy backend có thể truy cập được tại các thời
+điểm đã ghi nhận. Tuy nhiên, riêng ảnh này chưa đủ để xác nhận toàn bộ cấu hình của CloudWatch Agent.
+
+
+
+
+        Figure 24. Log truy cập của FastAPI backend trên EC2 được thu thập và hiển thị trong Amazon Cloud-
+Watch Logs, bao gồm timestamp, endpoint và HTTP status.
+Metric vận hành của kiến trúc hiện tại
+        Dashboard vận hành hiện tại có tám widget: CPU, disk và memory của hai backend EC2; số instance
+InService của ASG; CPU và số kết nối RDS; số ALB target unhealthy; và lỗi ALB target 5XX. Bằng chứng này
+khớp với kiến trúc ALB/ASG đang triển khai.
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                     Trang 58/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+
+Figure 25a. Dashboard tám widget hiển thị hai chuỗi EC2, ASG có 2 instance InService, không có ALB target
+unhealthy trong khoảng đã chọn, các metric RDS và widget ALB target 5XX.
+
+
+
+
+Figure 25b. Cấu hình đồ thị CloudWatch cho ALB unhealthy hosts, ALB target 5XX và ASG in-service instances.
+Bước 5 - Tạo và xác minh các alarm
+        Bảng điều khiển CloudWatch xác nhận tám cấu hình alarm sau:
+
+Tên alarm                                Metric                                Điều kiện
+iot-dashboard-rds-high-                  DatabaseConnections                   ≥10 với một datapoint trong 5 phút
+connections
+iot-dashboard-rds-high-cpu               CPUUtilization                        ≥70% với một datapoint trong 5 phút
+iot-dashboard-ec2-high-cpu               CPUUtilization                        ≥70% với một datapoint trong 5 phút
+ASG-GroupInServiceInstances-Low          GroupInServiceInstances               Ít hơn 2 instance InService trong khoảng
+                                                                               đánh giá
+ALB-HTTPCode-ELB-5XX                     Số lỗi 5XX của ALB                    Có ít nhất một datapoint 5XX trong
+                                                                               khoảng đánh giá
+ALB-UnHealthyHostCount                   UnHealthyHostCount                    Lớn hơn 0 trong khoảng đánh giá
+iot-dashboard-ec2-high-disk              disk_used_percent                     ≥80% với một datapoint trong 5 phút
+iot-dashboard-ec2-high-memory            mem_used_percent                      ≥80% với một datapoint trong 5 phút
+
+
+         Hãy kiểm tra ngưỡng, chu kỳ, số lần đánh giá, cách xử lý dữ liệu thiếu và action thực tế của từng alarm, thay
+vì mặc định cấu hình trong tài liệu đã được áp dụng. README gốc cho biết dự án không dùng SNS; README
+của backend chỉ nêu SNS như một hướng mở rộng, vì vậy không được tuyên bố đã triển khai SNS topic hoặc
+subscription.
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                        Trang 59/70
+            Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+            Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+
+        Figure 26. Tám CloudWatch Alarms giám sát ALB, ASG, EC2 và RDS. Trạng thái OK hoặc Insufficient
+data phản ánh dữ liệu metric tại thời điểm chụp.
+Ý nghĩa trạng thái alarm
+
+     • OK: metric hiện chưa vượt ngưỡng cấu hình.
+     • In alarm: metric đã vượt ngưỡng trong khoảng đánh giá.
+     • Insufficient data: CloudWatch chưa nhận đủ datapoint để đánh giá alarm tại thời điểm đó.
+
+          Hai alarm về ổ đĩa và bộ nhớ đang ở trạng thái Insufficient data. Trạng thái này không nhất thiết là
+lỗi cấu hình; CloudWatch chỉ chưa có đủ dữ liệu khớp với metric, dimension và khoảng đánh giá.
+          Cột Actions hiển thị No actions, nghĩa là các alarm chưa được gắn hành động thông báo. Phiên bản
+hiện tại chỉ dùng alarm để theo dõi trạng thái metric. Việc tích hợp Amazon SNS để gửi email hoặc thông báo là
+hướng phát triển trong tương lai.
+Kết quả mong đợi
+        CloudWatch hiển thị các sự kiện truy cập backend gần đây, các widget EC2/RDS và ALB/ASG, cùng tám
+cấu hình alarm với trạng thái có thể giải thích. Phần bằng chứng chỉ mô tả những gì quan sát được; không khẳng
+định SNS đã gửi thông báo hoặc log group thứ hai đã xuất hiện.
+
+
+5.10      Chi phí, bảo mật và dọn dẹp
+
+Tổng quan và mục tiêu
+        Xác định các yếu tố phát sinh chi phí, rà soát ranh giới bảo mật của mô hình thử nghiệm, lưu lại bằng
+chứng cần thiết và xóa tài nguyên theo đúng thứ tự phụ thuộc. Không nêu mức giá cố định vì chi phí phụ thuộc vào
+khu vực, kích thước tài nguyên, thời gian lưu trữ, lưu lượng truyền dữ liệu và bảng giá tại thời điểm sử dụng.
+Bước 1 - Rà soát các yếu tố tạo chi phí
+
+Tài nguyên                               Yếu tố phát sinh chi phí                  Cách kiểm soát trong Workshop
+Amazon S3 và CloudFront                  Object lưu trữ, request, truyền dữ liệu và Chỉ giữ artifact build; invalidation có
+                                         gói distribution                           chủ đích; rà giới hạn gói
+AWS WAF                                  Web ACL/rule và logging                    Ba managed rule group đang ở
+                                                                                    Count/Monitor; rà soát trước khi bật tính
+                                                                                    năng trả phí
+Application Load Balancer                Số giờ hoạt động và capacity unit          Xóa sau Workshop nếu không còn sử
+                                                                                    dụng
+Amazon EC2 / Auto Scaling                Loại instance, desired capacity và số giờ ASG đang duy trì hai t3.micro; chỉ
+                                         chạy                                       scale down/xóa sau phê duyệt
+Amazon EBS                               Loại ổ đĩa, dung lượng cấp phát và         Chọn dung lượng phù hợp; xóa
+                                         snapshot                                   volume/snapshot không còn gắn
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                             Trang 60/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+Tài nguyên                               Yếu tố phát sinh chi phí                   Cách kiểm soát trong Workshop
+Amazon RDS for PostgreSQL                DB Multi-AZ, thời gian chạy, lưu trữ và    Giữ snapshot cần thiết, sau đó xóa khi đã
+                                         sao lưu                                    thu đủ bằng chứng và được duyệt
+Amazon CloudWatch                        Metric tùy chỉnh, lượng log thu nhận/lưu   Chỉ thu metric hệ điều hành mỗi 60 giây
+                                         trữ và alarm                               khi cần; đặt thời gian lưu ngắn
+Truyền dữ liệu                           CloudFront, ALB, telemetry thiết bị và     Chọn chu kỳ telemetry/polling hợp lý và
+                                         lưu lượng liên AZ                          chỉ cache nội dung tĩnh
+
+
+         Dùng AWS Pricing Calculator hoặc hóa đơn thực tế để lập bản ước tính có ghi rõ ngày. Không đưa mức
+giá chưa được kiểm chứng vào báo cáo.
+Bước 2 - Rà soát ranh giới bảo mật
+
+     • Dùng danh tính theo nguyên tắc đặc quyền tối thiểu và bật MFA.
+     • Dùng EC2 IAM Role; không ghi cố định AWS access key trong mã nguồn.
+     • Giới hạn SSH port 22 theo <ADMIN_IP>/32.
+     • Giữ S3 frontend private với Block Public Access và CloudFront OAC.
+     • Dùng HTTPS phía viewer qua CloudFront; giữ ba WAF managed rule group ở Count/Monitor cho đến khi
+       kiểm thử chặn.
+     • Chỉ mở HTTP công khai ở ALB listener; backend port 8000 chỉ nhận từ ALB Security Group.
+     • Chỉ cho RDS 5432 nhận từ EC2 Security Group.
+     • Giữ RDS private.
+     • Loại .env, .pem, .key và hardware/include/secrets.h khỏi Git.
+     • Dùng placeholder trong tài liệu và che thông tin nhạy cảm trên ảnh.
+     • Xem ALB HTTP chưa có origin TLS và API chưa xác thực là các hạn chế hiện tại.
+     • Rà soát quy tắc đi ra, thời gian lưu log, người dùng cơ sở dữ liệu và tag tài nguyên.
+     • Thay mới ngay mọi thông tin bí mật nếu chúng xuất hiện trong Git, lịch sử terminal, ảnh hoặc video demo.
+
+         Các kiểm soát hiện có gồm CloudFront viewer HTTPS, WAF monitoring, S3 private/OAC, chuỗi Security
+Group, EBS mã hóa cho instance ASG, RDS Multi-AZ, backup 7 ngày và manual snapshot. Cải tiến production
+còn gồm ALB HTTPS/origin TLS, xác thực, phân quyền, quản lý bí mật, WAF Block đã kiểm thử, action thông
+báo và thiết kế mạng được rà soát.
+Bước 3 - Lưu bằng chứng trước khi dọn dẹp
+        Trước khi xóa, lưu:
+
+    1. sơ đồ kiến trúc và danh mục tài nguyên;
+    2. trạng thái EC2/dịch vụ và mã commit đã triển khai;
+    3. bằng chứng bảng/câu truy vấn RDS không chứa thông tin xác thực;
+    4. kết quả kiểm thử telemetry, lệnh và ACK;
+    5. ảnh CloudWatch log/metric/alarm; và
+    6. bằng chứng demo phần cứng/frontend.
+
+           Xác nhận người sở hữu snapshot và thời gian phải lưu bằng chứng.
+Bước 4 - Chỉ dọn dẹp tài nguyên thuộc dự án
+
+    1. Lưu ảnh chụp màn hình, log, mã nguồn, kết quả kiểm thử và video minh họa; dừng telemetry/lệnh mới và
+       đưa thiết bị chấp hành về trạng thái an toàn.
+    2. Sao lưu source frontend/backend, service file, environment template, metadata AMI/Launch Template và
+       firmware artifact.
+    3. Quyết định có cần giữ dữ liệu bằng snapshot RDS cuối cùng đã được phê duyệt hay không; tạo snapshot nếu
+       cần.
+    4. Disable rồi xóa CloudFront distribution sau khi trạng thái deploy hoàn tất; disassociate/xóa WAF web ACL
+       của dự án theo cùng quyết định.
+    5. Chỉ làm rỗng và xóa S3 frontend private sau khi CloudFront không còn phụ thuộc.
+    6. Xóa ALB listener/load balancer, detach rồi xóa target group sau khi CloudFront không còn dùng ALB origin.
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                             Trang 61/70
+            Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+            Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+   7. Xóa iot-backend-asg; xác nhận các EC2 instance và root volume mã hóa được terminate đúng.
+   8. Xóa Launch Template, deregister AMI backend và chỉ xóa AMI snapshot thuộc dự án khi không còn cần.
+   9. Xóa iot-dashboard-db khi không còn cần cơ sở dữ liệu và dữ liệu phải lưu; giữ hoặc xóa man-
+      ual/automated snapshot theo quyết định retention.
+  10. Xóa cả tám CloudWatch Alarm, dashboard ec2-rds-metrics, rồi cấu hình retention hoặc xóa backend log
+      group sau khi lưu bằng chứng.
+  11. Tháo và xóa iot-dashboard-cloudwatch-role cùng instance profile chỉ khi không còn workload nào
+      khác sử dụng. Không xóa AWS-managed policy CloudWatchAgentServerPolicy.
+  12. Chỉ xóa ALB/backend/RDS Security Group sau khi không còn ALB, EC2, RDS, ENI hoặc Security Group
+      phụ thuộc.
+  13. Chỉ xóa rds-ec2-db-subnet-group-1 khi RDS không còn sử dụng. Không xóa tài nguyên VPC được
+      chọn sẵn hoặc dùng chung.
+  14. Kiểm tra lại CloudFront, WAF, S3, ALB, target group, ASG, EC2, AMI snapshot, EBS, RDS, CloudWatch,
+      Billing/Cost Explorer và tài nguyên theo tag.
+
+         Repository không chứa stack/state CloudFormation, SAM, CDK hoặc Terraform cho deployment này, vì
+vậy phải kiểm kê và xóa thủ công theo thứ tự phụ thuộc thay vì xóa một stack.
+         Dừng RDS chỉ là biện pháp tạm thời và chịu giới hạn của dịch vụ; RDS có thể tự khởi động lại. Muốn
+tránh chi phí dài hạn, cần xóa cơ sở dữ liệu và các tài nguyên tính phí khác theo quyết định lưu giữ của nhóm.
+Bước 5 - Xác minh kết quả dọn dẹp
+
+     • Kiểm kê lại tài nguyên theo tag trong đúng khu vực.
+     • Kiểm tra CloudFront/WAF còn hoạt động, S3 bucket chưa rỗng, ALB/target group, instance ASG, AMI
+       snapshot, volume EBS không gắn, snapshot RDS, log group và alarm không còn sử dụng.
+     • Nếu không xóa được Security Group, hãy tìm ENI hoặc tài nguyên phụ thuộc thay vì cưỡng chế xóa.
+     • Nếu không xóa được cơ sở dữ liệu, rà soát chế độ bảo vệ xóa và yêu cầu snapshot với người sở hữu.
+     • Ghi ID của từng tài nguyên đã xóa trong bằng chứng dọn dẹp; không để lộ thông tin xác thực.
+
+Kết quả mong đợi
+         Các bằng chứng cần thiết được lưu lại; không còn tài nguyên có tính phí của dự án nằm ngoài phạm vi
+được phê duyệt; tài nguyên dùng chung không bị ảnh hưởng; phần rà soát bảo mật phản ánh đúng các hạn chế hiện
+tại và không tuyên bố hệ thống đã sẵn sàng để vận hành thực tế.
+
+
+5.11      Kết quả, thách thức và hướng cải tiến
+
+Tổng quan
+         Phần này tổng hợp các kết quả đã được xác minh, những điều chỉnh riêng của dự án, đóng góp của từng
+thành viên, bài học rút ra, giới hạn hiện tại và hướng cải tiến tiếp theo. Kết luận được đối chiếu từ mã nguồn, ma
+trận kiểm thử T01–T14, ảnh chụp AWS, bản ghi PostgreSQL, giao diện dashboard và video demo phần cứng.
+Kết quả đạt được
+
+Kết quả                                             Trạng thái                 Bằng chứng
+Backend FastAPI hoạt động và phản                      Đạt                     Phản hồi health check và trạng thái
+hồi health check                                                               systemd trong mục 5.5
+Gửi telemetry và lưu dữ liệu vào                       Đạt                     Phản hồi API và bản ghi tương ứng
+PostgreSQL                                                                     trong RDS tại mục 5.8
+Hiển thị dữ liệu mới nhất và lịch sử                   Đạt                     Các thẻ telemetry, biểu đồ lịch sử và
+trên dashboard                                                                 request HTTP 200 trong mục 5.7 và
+                                                                               5.8
+Tạo lệnh và chuyển trạng thái                          Đạt                     ID lệnh, phản hồi ACK và trạng thái
+Pending → Executed                                                             PostgreSQL trong mục 5.5 và 5.8
+Điều khiển quạt, đèn và rèm vật lý                     Đạt                     Ảnh đối chiếu dashboard–phần cứng
+                                                                               và video demo end-to-end trong mục
+                                                                               5.8
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                     Trang 62/70
+            Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+            Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+Kết quả                                                Trạng thái                    Bằng chứng
+Frontend S3 private qua CloudFront                        Đạt                        S3 OAC, distribution
+và WAF monitoring                                                                    origins/behaviors, WAF rules và
+                                                                                     browser HTTP 200 trong mục 5.4 và
+                                                                                     5.7
+Backend sẵn sàng qua ALB/ASG                              Đạt                        ALB Active, listener, hai target
+                                                                                     Healthy và ASG trên hai Availability
+                                                                                     Zone trong mục 5.4
+RDS PostgreSQL Multi-AZ và                                Đạt                        Primary/standby AZ, retention 7 ngày
+backup                                                                               và manual snapshot trong mục 5.4
+Thu thập log, metric và cấu hình                          Đạt                        Log backend, widget
+alarm trên CloudWatch                                                                ALB/ASG/EC2/RDS và tám cấu hình
+                                                                                     alarm trong mục 5.9
+Kiểm thử toàn bộ luồng end-to-end                         Đạt                        Cả 14 test case T01–T14 trong ma
+                                                                                     trận kiểm thử đều có trạng thái Đạt
+
+
+        Phạm vi kiểm thử là mô hình Smart Room đã triển khai với device_id=room_01. Các kết quả trên chỉ
+áp dụng cho môi trường đã được trình diễn và không được suy rộng ra ngoài phạm vi này.
+Đóng góp cá nhân
+
+Thành viên                               Phạm vi phụ trách và đóng góp cụ thể     Đường dẫn bằng chứng
+Phạm Lê Minh Khôi                        Kiến trúc AWS, ranh giới mạng/bảo mật Kiến trúc, thiết lập AWS, phần cứng,
+                                         và vận hành EC2/RDS/CloudWatch;          CloudWatch
+                                         phát triển firmware PlatformIO cho
+                                         YOLO UNO; tích hợp cảm biến, LCD và
+                                         thiết bị chấp hành; gửi telemetry, thăm
+                                         dò lệnh, thực thi đầy đủ 8 lệnh và xử lý
+                                         ACK
+Ngô Minh Thuận                           Các route FastAPI, alias trong Pydantic, Thiết kế API/dữ liệu, backend/cơ sở dữ
+                                         mô hình SQLAlchemy, lưu trữ bền vững liệu, ma trận kiểm thử
+                                         bằng PostgreSQL, dịch vụ telemetry,
+                                         vòng đời lệnh và xử lý ACK
+Thượng Đình Hưng                         Dashboard React/Vite, trực quan hóa      tích hợp frontend, xác minh đầu cuối,
+                                         telemetry, yêu cầu điều khiển, giao diện bàn giao
+                                         chế độ/đề xuất, gỡ lỗi tích hợp và
+                                         quay/dựng video minh họa
+Lê Bảo Khánh                             Nội dung đề xuất/báo cáo, blog/nhật      tổng quan Workshop, kế hoạch kiểm
+                                         ký/sự kiện, cấu trúc Workshop song ngữ, thử/bằng chứng, kết quả, bàn giao
+                                         đối chiếu mã nguồn với tài liệu, điều
+                                         hướng, kế hoạch ảnh và bảo đảm chất
+                                         lượng
+
+
+          Các mục Workshop được liên kết trong bảng là bằng chứng cho từng phạm vi phụ trách. Bảng này ghi lại
+vai trò và phần việc chính, không thay thế phần nhìn lại riêng của từng thành viên bên dưới.
+Phạm Lê Minh Khôi
+
+Nội dung nhìn lại                                            Trình bày
+Challenge                                                    Tích hợp backend phục vụ demo, PostgreSQL trong mạng
+                                                             riêng, hệ thống giám sát và thiết bị chấp hành vật lý mà vẫn
+                                                             phân biệt rõ thành công trên cloud với thành công của phần
+                                                             cứng
+Root Cause                                                   Luồng xử lý đi qua nhiều lớp: quy tắc VPC, IAM, dịch vụ
+                                                             Linux, cơ chế thăm dò HTTP, đấu nối phần cứng và trạng thái
+                                                             ACK bất đồng bộ
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                          Trang 63/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+Nội dung nhìn lại                                                    Trình bày
+Solution                                                             Dùng tham chiếu Security Group từ EC2 tới RDS, gắn EC2
+                                                                     IAM Role, kiểm tra systemd và CloudWatch, đối chiếu GPIO
+                                                                     với mã nguồn, cấp nguồn an toàn, theo dõi ID lệnh và lưu
+                                                                     trạng thái để gửi lại ACK
+Lesson Learned                                                       Cần xác minh từng ranh giới độc lập và theo dõi cùng một ID
+                                                                     lệnh qua API, cơ sở dữ liệu, cổng nối tiếp, thao tác vật lý và hệ
+                                                                     thống giám sát
+Future Improvement                                                   Bổ sung HTTPS phía ALB và custom domain, định nghĩa hạ
+                                                                     tầng bằng mã, giới hạn quyền IAM chặt hơn, đồng thời cải
+                                                                     thiện hiệu chuẩn cảm biến và bằng chứng kiểm thử phần cứng
+
+
+
+Thách thức chính và bài học rút ra
+
+Vấn đề                               Nguyên nhân gốc                 Cách xử lý                       Bài học
+Kết nối EC2 với RDS mà vẫn           Backend cần truy cập           Cho phép cổng 5432 từ             Nên cấp quyền theo đúng
+giữ RDS trong mạng riêng             PostgreSQL nhưng database      Security Group của EC2 thay       workload và cổng cần thiết
+                                     không nên mở công khai         vì dùng CIDR công khai
+Đồng bộ trạng thái lệnh giữa         Quá trình thăm dò và ACK       Lưu ID cùng trạng thái lệnh,      API trả thành công chưa đủ để
+API, cơ sở dữ liệu và thiết bị       diễn ra bất đồng bộ            sau đó đối chiếu cùng ID từ       chứng minh thiết bị đã thực
+                                                                    lúc tạo đến khi ACK               thi
+Nguy cơ thực thi lệnh lặp khi        Thiết bị có thể nhận hoặc xác Theo dõi lệnh gần nhất và          Cơ chế thử lại phải bảo đảm
+thử lại                              nhận cùng một lệnh nhiều lần tách việc gửi lại ACK khỏi          tính lũy đẳng
+                                                                    thao tác với thiết bị chấp hành
+Route giữa frontend và               Đường dẫn số ít/số nhiều và    Dùng đặc tả OpenAPI đang          Cần duy trì một hợp đồng API
+backend không đồng nhất              địa chỉ API thay đổi trong quá triển khai và kiểm tra request    có phiên bản
+                                     trình tích hợp                 trong DevTools Network
+Giá trị ánh sáng chưa được           Cảm biến trả về giá trị analog Giữ giá trị gốc để truy vết và    Không gán đơn vị vật lý khi
+hiệu chuẩn                           thô                            đưa việc hiệu chuẩn vào kế        chưa có công thức quy đổi
+                                                                    hoạch tiếp theo
+Một số metric CloudWatch             Quyền Agent, dimension,        Kiểm tra log Agent,               Phải đọc trạng thái alarm
+chưa có đủ datapoint                 đường dẫn nguồn hoặc thời      dimension và đường dẫn            cùng với dữ liệu metric bên
+                                     điểm thu thập có thể chưa      nguồn thực tế                     dưới
+                                     khớp
+
+
+
+Giới hạn hiện tại
+
+     • CloudFront cung cấp HTTPS phía viewer, nhưng luồng CloudFront/thiết bị tới ALB hiện dùng HTTP và
+       chưa có custom domain được ghi nhận.
+     • Các route API chưa áp dụng cơ chế xác thực mạnh cho máy khách và thiết bị.
+     • Các WAF managed rule đang ở Count/Monitor; chưa bật và kiểm thử chế độ chặn.
+     • Backend cần kiểm tra chặt hơn danh sách lệnh được hỗ trợ và quan hệ giữa ACK với thiết bị.
+     • Frontend cần xử lý rõ ràng hơn khi chuyển sang dữ liệu mô phỏng hoặc khi request điều khiển thất bại.
+     • Giá trị ánh sáng hiện dựa trên dữ liệu analog chưa được hiệu chuẩn.
+     • Hai alarm CloudWatch ở trạng thái Insufficient data, đồng thời chưa có action thông báo tại thời điểm
+       chụp.
+     • Chưa có bằng chứng diễn tập failover có kiểm soát cho ALB/ASG hoặc RDS Multi-AZ.
+
+Cải tiến tương lai
+
+     • Bổ sung custom domain và chứng chỉ ACM; bật HTTPS tới ALB origin khi phù hợp.
+     • Bổ sung xác thực và phân quyền chặt chẽ cho route trình duyệt và thiết bị.
+     • Chuyển WAF managed rules từ Count sang Block chỉ sau khi kiểm thử theo giai đoạn và rà false positive.
+     • Lưu bí mật ứng dụng trong giải pháp quản lý bí mật phù hợp.
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                                      Trang 64/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+     • Hỗ trợ nhiều thiết bị/phòng với quy tắc sở hữu và phân quyền.
+     • Bổ sung kiểm tra lệnh hợp lệ, ràng buộc ACK với thiết bị và quy tắc lũy đẳng.
+     • Áp dụng migration cơ sở dữ liệu có phiên bản và kiểm thử API tự động.
+     • Tập trung cấu hình môi trường của frontend và loại bỏ cơ chế báo thành công khi request thất bại.
+     • Chuẩn hóa cách định nghĩa hạ tầng, quy trình triển khai và phương án quay lui đã được kiểm thử.
+     • Bổ sung kênh thông báo phù hợp cho các alarm vận hành.
+     • Hiệu chuẩn cảm biến ánh sáng và công bố phương pháp cùng đơn vị quy đổi.
+
+         Mỗi hạng mục cải tiến cần có người phụ trách, kế hoạch triển khai và bằng chứng kiểm thử trước khi được
+mô tả là một phần của hệ thống hiện tại.
+Kết quả
+         Dự án đã hoàn thành phạm vi Smart Room đề ra: CloudFront phân phối frontend S3 private, backend
+ALB/ASG xử lý telemetry và lệnh, RDS Multi-AZ lưu trạng thái, dashboard điều khiển ba thiết bị chấp hành, ACK
+cập nhật trạng thái lệnh và CloudWatch cung cấp bằng chứng vận hành. Cả T01–T14 đều được ghi nhận Đạt; các
+giới hạn nêu trên là cơ sở ưu tiên cải tiến tiếp theo.
+
+
+5.12      Bàn giao dự án
+
+Tổng quan và mục tiêu
+        Bàn giao đầy đủ mã nguồn, cấu hình, tài liệu vận hành và bằng chứng để người tiếp quản có thể khởi động,
+xác minh, cập nhật, xử lý sự cố và dọn dẹp mô hình thử nghiệm một cách an toàn.
+Cấu trúc repository bàn giao
+       Repository chính chứa source code backend, frontend, firmware YOLO UNO, sơ đồ kiến trúc và tài liệu
+README song ngữ. Branch main được sử dụng làm phiên bản bàn giao cuối cùng của project.
+
+
+
+
+         Figure 27. Cấu trúc repository cuối cùng của dự án, bao gồm backend, frontend, firmware YOLO UNO,
+sơ đồ kiến trúc và tài liệu README song ngữ.
+         Ảnh cho thấy repository bàn giao có source code cho các thành phần chính của hệ thống, tài liệu README
+bằng hai ngôn ngữ và thư mục lưu sơ đồ. Những file chứa cấu hình bí mật phải được loại trừ bằng .gitignore và
+kiểm tra riêng trước khi bàn giao.
+Hạn chế đã biết
+        Hệ thống hiện vẫn chỉ phục vụ một phòng, dùng REST polling và báo giá trị ánh sáng analog chưa hiệu
+chuẩn. CloudFront cung cấp HTTPS phía viewer, nhưng ALB origin và route trực tiếp của thiết bị dùng HTTP;
+API chưa có xác thực mạnh hoặc rate limiting, còn WAF managed rules vẫn ở Count/Monitor. ALB/ASG và RDS
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                     Trang 65/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+Multi-AZ đã triển khai nhưng chưa có bằng chứng diễn tập failover có kiểm soát. Frontend vẫn có thể dùng dữ liệu
+mô phỏng hoặc báo thành công sau lỗi, lưu mode cục bộ và gắn nhãn Lux cho giá trị chưa hiệu chuẩn; backend
+chưa kiểm tra chặt enum lệnh và quyền sở hữu ACK. Panel đề xuất là luật xác định trước, không phải mô hình
+AI/ML.
+Trách nhiệm nhóm
+
+Thành viên                               Trách nhiệm                               Bằng chứng đóng góp
+Phạm Lê Minh Khôi                        Kiến trúc AWS; VPC, Security Group,       5.3 kiến trúc, 5.4 AWS, 5.6 phần cứng,
+                                         IAM Role, EC2, RDS và CloudWatch;         5.9 giám sát
+                                         DevOps; phần cứng YOLO UNO; cảm
+                                         biến, thiết bị chấp hành, telemetry, cơ
+                                         chế thăm dò lệnh và ACK
+Ngô Minh Thuận                           Backend FastAPI; endpoint, lược đồ        5.3 API/dữ liệu, 5.5 backend/cơ sở dữ
+                                         Pydantic, mô hình SQLAlchemy, tích        liệu, 5.8 kiểm thử
+                                         hợp PostgreSQL, xử lý telemetry, vòng
+                                         đời lệnh và ACK
+Thượng Đình Hưng                         Frontend React + Vite; giao diện          5.7 frontend, 5.8 bằng chứng tích hợp,
+                                         dashboard, trực quan hóa telemetry, chức video demo
+                                         năng điều khiển, tích hợp tổng thể, xử lý
+                                         lỗi và quay/dựng video minh họa
+Lê Bảo Khánh                             Tài liệu, proposal, blog, nhật ký công    5.1 tiêu chí/kết quả, 5.11 tài liệu/điều
+                                         việc hằng tuần, báo cáo sự kiện,          chỉnh, Workshop song ngữ và các liên
+                                         Workshop, rà soát song ngữ, điều hướng, kết nội bộ
+                                         ảnh chụp màn hình và bảo đảm chất
+                                         lượng
+
+
+         Bảng trên tóm tắt phạm vi đóng góp đang được ghi nhận trong Workshop và dẫn tới các bằng chứng liên
+quan. Bảng này không thay thế phần nhìn lại riêng của từng thành viên ở mục 5.11. Trước khi nộp, mỗi thành viên
+cần rà soát và xác nhận phạm vi phụ trách cũng như phần nhìn lại của mình.
+Checklist bàn giao cuối cùng
+
+Hạng mục                                                      Trạng thái
+Source code FastAPI backend                                   Hoàn thành
+Source code React + Vite frontend                             Hoàn thành
+Firmware PlatformIO cho YOLO UNO                              Hoàn thành
+README tiếng Anh và tiếng Việt                                Hoàn thành
+Sơ đồ kiến trúc và tài liệu đấu nối phần cứng                 Hoàn thành
+Video demo end-to-end                                         Hoàn thành
+Tài liệu Workshop song ngữ                                    Hoàn thành
+Hướng dẫn triển khai backend, frontend và phần cứng           Hoàn thành
+Hướng dẫn kiểm thử và CloudWatch                              Hoàn thành
+Bằng chứng vận hành CloudFront/WAF/S3, ALB/ASG và             Hoàn thành
+RDS Multi-AZ
+Hướng dẫn clean-up tài nguyên AWS                             Hoàn thành
+File secret thật không được Git theo dõi                      Đã kiểm tra
+Giá trị credential và lịch sử Git                             Cần rà soát lần cuối trước khi nộp
+
+
+
+Kiểm tra thông tin bí mật
+         Thông tin bí mật, còn gọi là secrets hoặc credentials, là các dữ liệu dùng để xác thực và kết nối hệ thống.
+Các giá trị này không được commit lên GitHub repository.
+         Các file và thông tin cần được loại trừ gồm:
+
+     • backend/.env
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                             Trang 66/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+     • hardware/include/secrets.h
+     • Wi-Fi SSID nếu không muốn công khai
+     • Mật khẩu Wi-Fi
+     • Amazon RDS username và password
+     • Chuỗi DATABASE_URL có chứa credential
+     • AWS Access Key ID
+     • AWS Secret Access Key
+     • AWS session token
+     • SSH private key dạng .pem
+     • API token
+     • GitHub personal access token
+     • Các credential cá nhân khác
+
+           Các file mẫu được phép commit:
+
+     • .env.example
+     • secrets.example.h
+
+           Tuy nhiên, các file mẫu chỉ được chứa placeholder, ví dụ:
+
+DATABASE_URL=postgresql://USERNAME:PASSWORD@RDS_ENDPOINT:5432/DATABASE_NAME
+
+#define WIFI_SSID "YOUR_WIFI_SSID"
+#define WIFI_PASSWORD "YOUR_WIFI_PASSWORD"
+#define API_BASE_URL "http://YOUR_ALB_DNS_NAME"
+
+           Không được đưa giá trị thật vào các file mẫu.
+
+        Việc xóa secret khỏi phiên bản hiện tại chưa chắc đã xóa secret khỏi lịch sử Git. Nếu secret từng được
+        commit, cần thu hồi hoặc thay đổi credential đó và làm sạch lịch sử repository khi cần thiết.
+
+Kiểm tra trước khi bàn giao
+       Chạy các lệnh sau tại thư mục gốc của repository.
+       Kiểm tra trạng thái working tree:
+
+git status
+
+           Liệt kê toàn bộ file đang được Git theo dõi:
+
+git ls-files
+
+           Tìm các file nhạy cảm trong lịch sử commit:
+
+git log --all --oneline -- .env secrets.h "*.pem"
+
+           Tìm tên biến thường dùng cho credential trong các file đang được theo dõi:
+
+git grep -n -I -E "AWS_ACCESS_KEY_ID|AWS_SECRET_ACCESS_KEY|AWS_SESSION_TOKEN|DATABASE_URL|WIFI_ ⌋
+ ,→ PASSWORD|PRIVATE_KEY|API_TOKEN"
+
+           Kiểm tra riêng các file không nên được Git theo dõi:
+
+git ls-files | grep -E '(^|/)\.env$|secrets\.h$|\.pem$'
+
+        Nếu lệnh không trả về kết quả, các file nhạy cảm nêu trên không được theo dõi trong phiên bản hiện tại.
+Kết quả này không thay thế việc kiểm tra giá trị credential trong các file cấu hình, mã nguồn và lịch sử Git.
+        Lưu ý:
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                     Trang 67/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+     • Không chèn output có chứa password hoặc credential vào Workshop.
+     • git status chỉ kiểm tra trạng thái hiện tại.
+     • git log --all dùng để kiểm tra lịch sử commit.
+     • Nếu phát hiện AWS key, password hoặc token từng bị commit, phải thu hồi hoặc thay đổi credential đó.
+     • Không chỉ xóa file rồi tiếp tục sử dụng lại credential cũ.
+
+Tài nguyên bàn giao
+        Gói bàn giao cuối cùng của dự án gồm:
+
+     • GitHub repository chứa source code.
+     • Video demo end-to-end.
+     • Tài liệu triển khai backend.
+     • Tài liệu build và triển khai frontend.
+     • Hướng dẫn firmware YOLO UNO.
+     • Workshop song ngữ.
+     • Sơ đồ kiến trúc AWS.
+     • Hướng dẫn kiểm thử và giám sát CloudWatch.
+     • Hướng dẫn clean-up tài nguyên AWS.
+
+           Source code, video demo và các tài liệu liên quan được tổng hợp trong mục Tài liệu tham khảo.
+
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                     Trang 68/70
+            Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+            Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+6      Tự đánh giá
+Trong thời gian thực hiện dự án từ 01/06/2026 đến 31/07/2026, em có cơ hội vận dụng kiến thức đã học để xây
+dựng nguyên mẫu AWS IoT Monitoring and Control Dashboard. Em phụ trách chính phần hạ tầng AWS, giám
+sát hệ thống, tích hợp phần cứng YOLO UNO và hoàn thiện tài liệu kỹ thuật.
+Tóm tắt đóng góp
+
+      • Em tham gia nâng cấp hệ thống từ mô hình EC2 và RDS ban đầu lên kiến trúc có CloudFront, S3 private,
+        WAF ở chế độ giám sát, ALB, Auto Scaling Group, RDS PostgreSQL Multi-AZ và CloudWatch.
+      • Em cấu hình và kiểm tra mạng, security group, IAM role, health check, metric, alarm, log và chính sách sao
+        lưu; đồng thời thu thập ảnh chụp để làm minh chứng.
+      • Em tích hợp YOLO UNO/ESP32-S3 với các cảm biến và thiết bị chấp hành để gửi telemetry, lấy lệnh điều
+        khiển và xác nhận lệnh đã thực thi qua HTTP REST.
+      • Em phối hợp với các thành viên phụ trách backend và frontend để kiểm tra toàn bộ luồng dữ liệu và điều
+        khiển.
+      • Em bổ sung kết quả kiểm thử, giới hạn hiện tại và hướng dẫn bàn giao vào workshop.
+
+Bảng tự đánh giá
+
+STT                                  Tiêu chí                  Mức đánh giá            Minh chứng từ dự án
+1                                    Kiến thức và kỹ năng      Tốt                     Em đã áp dụng được kiến thức
+                                     chuyên môn                                        về AWS, mạng, giám sát, cơ
+                                                                                       sở dữ liệu và hệ thống nhúng
+                                                                                       vào nguyên mẫu.
+2                                    Khả năng học hỏi          Tốt                     Em chủ động đọc tài liệu và
+                                                                                       thử nghiệm các dịch vụ AWS
+                                                                                       chưa từng sử dụng trước đó.
+3                                    Tính chủ động             Tốt                     Khi phát hiện hạn chế, em tự
+                                                                                       tìm phương án, kiểm tra lại và
+                                                                                       đề xuất cách cải thiện kiến
+                                                                                       trúc.
+4                                    Tinh thần trách nhiệm     Tốt                     Em theo sát các nhiệm vụ hạ
+                                                                                       tầng và phần cứng từ lúc triển
+                                                                                       khai đến khi kiểm tra và viết
+                                                                                       tài liệu.
+5                                    Kỷ luật và lập kế hoạch   Khá                     Em hoàn thành phạm vi
+                                                                                       chính, nhưng một số thay đổi
+                                                                                       được thực hiện gần hạn nên
+                                                                                       phải chỉnh sửa tài liệu nhiều
+                                                                                       lần.
+6                                    Tiếp nhận góp ý           Tốt                     Em nghiêm túc tiếp thu góp ý
+                                                                                       và điều chỉnh kiến trúc,
+                                                                                       workshop cũng như cách trình
+                                                                                       bày minh chứng.
+7                                    Giao tiếp                 Khá                     Em có trao đổi tiến độ với
+                                                                                       nhóm, nhưng đôi lúc nội dung
+                                                                                       báo cáo còn dài và chưa làm
+                                                                                       rõ thứ tự ưu tiên.
+8                                    Làm việc nhóm             Tốt                     Em phối hợp với các thành
+                                                                                       viên để kiểm tra điểm kết nối
+                                                                                       giữa hạ tầng, backend,
+                                                                                       frontend và phần cứng.
+9                                    Tác phong chuyên nghiệp   Tốt                     Em giữ thái độ hợp tác, tôn
+                                                                                       trọng phần việc của từng
+                                                                                       thành viên và có ý thức ghi lại
+                                                                                       các thay đổi kỹ thuật.
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                       Trang 69/70
+                Trường Đại Học Bách Khoa - ĐHQG TP.HCM
+                Khoa Khoa Học & Kỹ Thuật Máy Tính
+
+
+
+STT                                  Tiêu chí                   Mức đánh giá         Minh chứng từ dự án
+10                                   Tư duy giải quyết vấn đề   Khá                  Em xử lý được các lỗi chính,
+                                                                                     nhưng cách tìm nguyên nhân
+                                                                                     đôi lúc còn thử nhiều hướng
+                                                                                     và chưa ghi chép đầy đủ.
+11                                   Đóng góp cho dự án         Tốt                  Em hoàn thành phần hạ tầng
+                                                                                     AWS, giám sát, tích hợp phần
+                                                                                     cứng và tham gia hoàn thiện
+                                                                                     workshop.
+12                                   Tổng thể                   Tốt                  Em đạt được mục tiêu chính
+                                                                                     của dự án và nhận ra rõ những
+                                                                                     kỹ năng cần tiếp tục cải thiện.
+
+
+
+Bài học chính
+
+      • Qua dự án, em hiểu rằng một kiến trúc cloud không chỉ cần chạy được mà còn phải quan tâm đến bảo mật,
+        tính sẵn sàng, giám sát, sao lưu, chi phí và khả năng phục hồi.
+      • Các kết luận về hệ thống cần đi kèm minh chứng cụ thể như health check, phản hồi API, bản ghi cơ sở dữ
+        liệu, metric, log và ảnh chụp.
+      • Phần cứng, backend, cơ sở dữ liệu và dịch vụ cloud phải thống nhất định dạng dữ liệu cho telemetry, lệnh
+        điều khiển và trạng thái xác nhận.
+      • Việc cấu hình Multi-AZ hoặc Auto Scaling mới chỉ là điều kiện ban đầu; muốn đánh giá khả năng phục hồi
+        còn cần kiểm thử lỗi có kiểm soát.
+
+Điểm cần cải thiện
+
+      • Em cần lập kế hoạch thay đổi hạ tầng sớm hơn, dự đoán ảnh hưởng và chuẩn bị phương án quay lui trước khi
+        thao tác.
+      • Em cần trình bày tiến độ, khó khăn và rủi ro ngắn gọn, rõ ý hơn khi trao đổi với nhóm và mentor.
+      • Khi xử lý lỗi, em nên dùng checklist và ghi lại nguyên nhân gốc thay vì thử nhiều cách rời rạc.
+      • Em muốn học thêm Infrastructure as Code, triển khai tự động và kiểm thử tích hợp để hạn chế sai lệch do
+        cấu hình thủ công.
+      • Em cần tìm hiểu sâu hơn về HTTPS đến origin, xác thực người dùng, IAM tối thiểu quyền, WAF ở chế độ
+        chặn và quản lý secret.
+      • Khi có điều kiện phù hợp, em muốn thực hiện kiểm thử Auto Scaling và RDS failover có kiểm soát để đánh
+        giá hệ thống đầy đủ hơn.
+
+Cảm nhận về chương trình thực tập
+         Chương trình thực tập tạo cho em môi trường thực tế để kết nối kiến thức ở trường với một hệ thống gồm
+hạ tầng AWS, phần mềm và phần cứng vật lý. Quá trình nhận góp ý từ mentor và phối hợp với nhóm giúp em hiểu
+rõ hơn tầm quan trọng của minh chứng, phân công trách nhiệm và giao tiếp kỹ thuật ngắn gọn. Em cũng học được
+cách phân biệt một nguyên mẫu hoạt động với một dịch vụ sẵn sàng cho production và trình bày trung thực các
+giới hạn hiện tại.
+Định hướng tiếp theo
+         Các ưu tiên tiếp theo của em là Infrastructure as Code, CI/CD, kiểm thử tích hợp tự động, HTTPS tới
+origin, xác thực và các bài kiểm thử phục hồi có kiểm soát. Em cũng muốn cải thiện độ tin cậy của firmware thông
+qua cơ chế retry/ACK an toàn hơn, đồng thời tiếp tục rèn luyện kỹ năng viết tài liệu kỹ thuật song ngữ ngắn gọn.
+
+
+
+
+Báo cáo Thực tập Ngoài trường (CO3335)                                                                     Trang 70/70
+

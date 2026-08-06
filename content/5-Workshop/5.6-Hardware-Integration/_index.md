@@ -4,6 +4,17 @@ date: "2026-07-28"
 weight: 6
 chapter: false
 pre: " <b> 5.6. </b> "
+reportHeadings:
+  - "Overview and objectives"
+  - "Step 1 - Wire the source-defined hardware"
+  - "Step 2 - Prepare PlatformIO"
+  - "Step 4 - Send telemetry"
+  - "Step 5 - Poll, execute, and acknowledge commands"
+  - "Step 6 - Build, upload, and monitor"
+  - "Expected Result"
+reportImages:
+  - "5-Workshop/5.6-hardware/yolo-uno-hardware-setup.png"
+  - "5-Workshop/5.6-hardware/platformio-firmware-build.png"
 ---
 
 ## Overview and objectives
@@ -29,16 +40,14 @@ In the **AWS IoT Monitoring and Control Dashboard** project, YOLO UNO:
 
 Most sensors and actuators are connected through the Grove ports in the center of the board. The curtain servo uses the three-pin **D11 GVS port**, which is mapped to **GPIO38** in the firmware.
 
-The physical prototype below shows the YOLO UNO and the connected display, sensors, fan, and curtain-control servo used by the project.
+## Step 1 - Wire the source-defined hardware
+
+The active `hardware/src/main.cpp` defines this map; it takes precedence over stale prose elsewhere in the source repository:
 
 ![YOLO UNO hardware prototype with sensors and actuators](/images/5-Workshop/5.6-hardware/yolo-uno-hardware-setup.png)
 *Figure 13. The physical hardware prototype consisting of YOLO UNO, an LCD display, temperature and humidity sensing, a light sensor, a fan, and a curtain-control servo.*
 
 > **Note:** This image was extracted from a video, so some details may appear slightly blurred. See the [full demonstration video on Google Drive](https://drive.google.com/file/d/1T97dUY58hbT2ppxvg7ESR12Jg9BA828W/view?usp=sharing) for a clearer view.
-
-## Step 1 - Wire the source-defined hardware
-
-The active `hardware/src/main.cpp` defines this map; it takes precedence over stale prose elsewhere in the source repository:
 
 The YOLO UNO pinout image has not yet been provided. Do not treat a pinout as a complete wiring diagram; use the verified table below together with the firmware definitions.
 

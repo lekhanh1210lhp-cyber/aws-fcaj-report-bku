@@ -4,6 +4,14 @@ date: "2026-07-28"
 weight: 10
 chapter: false
 pre: " <b> 5.10. </b> "
+reportHeadings:
+  - "Tổng quan và mục tiêu"
+  - "Bước 1 - Rà soát các yếu tố tạo chi phí"
+  - "Bước 2 - Rà soát ranh giới bảo mật"
+  - "Bước 3 - Lưu bằng chứng trước khi dọn dẹp"
+  - "Bước 4 - Chỉ dọn dẹp tài nguyên thuộc dự án"
+  - "Bước 5 - Xác minh kết quả dọn dẹp"
+  - "Kết quả mong đợi"
 ---
 
 ## Tổng quan và mục tiêu

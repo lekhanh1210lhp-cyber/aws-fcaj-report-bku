@@ -4,6 +4,25 @@ date: "2026-06-15"
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
+reportHeadings:
+  - "1. Tóm tắt dự án"
+  - "2.1 Bài toán"
+  - "3.1 Mục tiêu phần cứng"
+  - "3.2 Mục tiêu backend và cloud"
+  - "3.3 Mục tiêu frontend"
+  - "3.4 Mục tiêu giám sát và tài liệu"
+  - "3.5 Phạm vi hiện tại"
+  - "4.0 Tổng quan kiến trúc"
+  - "4.2 Luồng telemetry"
+  - "4.3 Luồng lệnh và xác nhận"
+  - "5. Kế hoạch triển khai kỹ thuật"
+  - "6. Timeline và các mốc triển khai"
+  - "8. Đánh giá rủi ro"
+  - "9.1 Kết quả kỳ vọng"
+  - "11. Phân công thành viên"
+  - "12. Sản phẩm bàn giao và minh chứng"
+reportImages:
+  - "2-Proposal/IoT_Dashboard_Architecture.png"
 ---
 
 # AWS IoT Monitoring and Control Dashboard
@@ -105,6 +124,8 @@ Phiên bản hiện tại chưa gồm triển khai nhiều phòng production, x�
 ---
 
 ## 4. Kiến trúc giải pháp
+
+### 4.0 Tổng quan kiến trúc
 
 ![Kiến trúc AWS IoT Monitoring and Control Dashboard](/images/2-Proposal/IoT_Dashboard_Architecture.png)
 

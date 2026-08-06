@@ -4,6 +4,13 @@ date: "2026-07-28"
 weight: 1
 chapter: false
 pre: " <b> 5.1. </b> "
+reportHeadings:
+  - "Bối cảnh và vấn đề"
+  - "Mục tiêu kỹ thuật"
+  - "Phạm vi hiện tại"
+  - "Tiêu chí thành công đo được"
+reportImages:
+  - "2-Proposal/IoT_Dashboard_Architecture.png"
 ---
 
 ## Bối cảnh và vấn đề
@@ -11,6 +18,10 @@ pre: " <b> 5.1. </b> "
 Một Smart Room cần lưu dữ liệu môi trường để theo dõi theo thời gian, hỗ trợ điều khiển thiết bị từ xa và xác nhận từng lệnh đã được thực thi. Nếu cảm biến, dashboard và thiết bị chấp hành hoạt động rời rạc, người vận hành sẽ khó truy vết toàn bộ luồng dữ liệu hoặc phân biệt giữa “API đã nhận lệnh” và “thiết bị vật lý đã thực hiện lệnh”.
 
 Workshop này xây dựng một quy trình thống nhất cho Smart Room có `device_id=room_01`. CloudFront và WAF phân phối frontend React từ S3 private và chuyển traffic trình duyệt `/api/*` tới ALB. ALB định tuyến tới hai FastAPI instance do ASG quản lý; RDS PostgreSQL Multi-AZ lưu telemetry và trạng thái lệnh. YOLO UNO gửi telemetry và thăm dò lệnh trực tiếp qua ALB, thực thi rồi gửi ACK.
+
+![Kiến trúc AWS IoT Monitoring and Control Dashboard](/images/2-Proposal/IoT_Dashboard_Architecture.png)
+
+*Figure 1. Kiến trúc hiện tại gồm CloudFront/WAF/S3 private, backend FastAPI qua ALB/ASG, RDS PostgreSQL Multi-AZ, YOLO UNO và CloudWatch.*
 
 ## Đối tượng sử dụng và giải pháp đề xuất
 

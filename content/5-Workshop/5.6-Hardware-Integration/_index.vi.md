@@ -4,6 +4,17 @@ date: "2026-07-28"
 weight: 6
 chapter: false
 pre: " <b> 5.6. </b> "
+reportHeadings:
+  - "Tổng quan và mục tiêu"
+  - "Bước 1 - Nối phần cứng theo mã nguồn"
+  - "Bước 2 - Chuẩn bị PlatformIO"
+  - "Bước 4 - Gửi telemetry"
+  - "Bước 5 - Thăm dò, thực thi và xác nhận lệnh"
+  - "Bước 6 - Biên dịch, nạp firmware và theo dõi"
+  - "Kết quả mong đợi"
+reportImages:
+  - "5-Workshop/5.6-hardware/yolo-uno-hardware-setup.png"
+  - "5-Workshop/5.6-hardware/platformio-firmware-build.png"
 ---
 
 ## Tổng quan và mục tiêu
@@ -29,16 +40,14 @@ Trong dự án **AWS IoT Monitoring and Control Dashboard**, YOLO UNO thực hi�
 
 Phần lớn cảm biến và thiết bị chấp hành kết nối qua các cổng Grove ở giữa bo mạch. Riêng servo rèm dùng cổng ba chân **GVS D11**, tương ứng với **GPIO38** trong firmware.
 
-Mô hình dưới đây cho thấy YOLO UNO cùng màn hình, cảm biến, quạt và servo điều khiển rèm được sử dụng trong dự án.
-
-![Mô hình phần cứng YOLO UNO với cảm biến và actuator](/images/5-Workshop/5.6-hardware/yolo-uno-hardware-setup.png)
-*Hình 10. Mô hình phần cứng thực tế gồm YOLO UNO, màn hình LCD, cảm biến nhiệt độ và độ ẩm, cảm biến ánh sáng, quạt và servo điều khiển rèm.*
-
-> **Ghi chú:** Hình ảnh được trích từ video nên một số chi tiết có thể hơi mờ. Bạn có thể xem [video demo đầy đủ trên Google Drive](https://drive.google.com/file/d/1T97dUY58hbT2ppxvg7ESR12Jg9BA828W/view?usp=sharing) để quan sát rõ hơn.
-
 ## Bước 1 - Nối phần cứng theo mã nguồn
 
 Firmware hiện dùng trong `hardware/src/main.cpp` định nghĩa sơ đồ chân dưới đây. Khi có khác biệt, các giá trị trong file này được ưu tiên hơn những mô tả cũ ở nơi khác trong kho mã nguồn.
+
+![Mô hình phần cứng YOLO UNO với cảm biến và actuator](/images/5-Workshop/5.6-hardware/yolo-uno-hardware-setup.png)
+*Figure 13. Mô hình phần cứng thực tế gồm YOLO UNO, màn hình LCD, cảm biến nhiệt độ và độ ẩm, cảm biến ánh sáng, quạt và servo điều khiển rèm.*
+
+> **Ghi chú:** Hình ảnh được trích từ video nên một số chi tiết có thể hơi mờ. Bạn có thể xem [video demo đầy đủ trên Google Drive](https://drive.google.com/file/d/1T97dUY58hbT2ppxvg7ESR12Jg9BA828W/view?usp=sharing) để quan sát rõ hơn.
 
 Ảnh pinout YOLO UNO chưa được cung cấp. Pinout không thay thế sơ đồ đấu dây hoàn chỉnh; hãy đối chiếu bảng đã xác minh dưới đây với các định nghĩa trong firmware.
 
@@ -164,7 +173,7 @@ SUCCESS
 Ảnh dưới đây cho thấy firmware đã được biên dịch thành công.
 
 ![PlatformIO build firmware YOLO UNO thành công](/images/5-Workshop/5.6-hardware/platformio-firmware-build.png)
-*Hình 12. Firmware YOLO UNO được biên dịch thành công bằng PlatformIO trong environment `yolo_uno`, tạo file `firmware.bin` với kết quả `SUCCESS`.*
+*Figure 14. Firmware YOLO UNO được biên dịch thành công bằng PlatformIO trong environment `yolo_uno`, tạo file `firmware.bin` với kết quả `SUCCESS`.*
 
 Chỉ có thể nạp firmware và mở Serial Monitor khi YOLO UNO đã kết nối với máy tính:
 

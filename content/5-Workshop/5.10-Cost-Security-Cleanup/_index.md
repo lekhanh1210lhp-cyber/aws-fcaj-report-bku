@@ -4,6 +4,14 @@ date: "2026-07-28"
 weight: 10
 chapter: false
 pre: " <b> 5.10. </b> "
+reportHeadings:
+  - "Overview and objectives"
+  - "Step 1 - Review cost drivers"
+  - "Step 2 - Review the security boundary"
+  - "Step 3 - Preserve pre-clean-up evidence"
+  - "Step 4 - Clean up only project-owned resources"
+  - "Step 5 - Verify the clean-up"
+  - "Expected Result"
 ---
 
 ## Overview and objectives

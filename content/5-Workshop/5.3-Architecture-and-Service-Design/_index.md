@@ -4,6 +4,16 @@ date: "2026-07-28"
 weight: 3
 chapter: false
 pre: " <b> 5.3. </b> "
+reportHeadings:
+  - "Architecture"
+  - "Components and AWS service selection"
+  - "Selected AWS Services"
+  - "Why HTTP REST Was Selected Instead of MQTT"
+  - "Data flows"
+  - "Security and IAM"
+  - "Future Scalability Options and Current Limitations"
+reportImages:
+  - "5-Workshop/5.3-architecture/verified-application-flows-v2.png"
 ---
 
 ## Architecture

@@ -634,6 +634,113 @@ def remove_report_navigation(content):
     return content
 
 
+def normalize_image_path(path):
+    """Normalize Hugo image paths for report-image comparisons."""
+    path = str(path).strip().strip('"\'')
+    path = re.sub(r"^/?static/images/", "", path, flags=re.IGNORECASE)
+    path = re.sub(r"^/?images/", "", path, flags=re.IGNORECASE)
+    return path.replace("\\", "/").lstrip("/")
+
+
+def markdown_image_paths(content):
+    paths = [
+        normalize_image_path(match.group(1))
+        for match in re.finditer(
+            r"!\[[^\]]*\]\(([^)\s]+)(?:\s+[^)]*)?\)",
+            content,
+        )
+    ]
+    paths.extend(
+        normalize_image_path(match.group(1))
+        for match in re.finditer(
+            r"<img\b[^>]*\bsrc=[\"']([^\"']+)[\"'][^>]*>",
+            content,
+            flags=re.IGNORECASE,
+        )
+    )
+    return paths
+
+
+def validate_report_metadata(content, meta, source_path):
+    """Fail early when report-only frontmatter references missing content."""
+    keep_headings = get_list_meta(
+        meta,
+        ["reportHeadings", "report_headings", "latexHeadings", "latex_headings"],
+    )
+    available_headings = {
+        re.sub(r"\s+#*$", "", match.group(1)).strip().lower()
+        for match in re.finditer(r"^#{1,6}\s+(.+?)\s*$", content, flags=re.MULTILINE)
+    }
+    missing_headings = [
+        heading for heading in keep_headings
+        if heading.strip().lower() not in available_headings
+    ]
+    if missing_headings:
+        raise ValueError(
+            f"Unknown reportHeadings in {source_path}: {missing_headings}"
+        )
+
+    keep_images = get_list_meta(meta, ["reportImages", "report_images"])
+    available_images = set(markdown_image_paths(content))
+    missing_images = [
+        image for image in keep_images
+        if normalize_image_path(image) not in available_images
+    ]
+    if missing_images:
+        raise ValueError(
+            f"Unknown reportImages in {source_path}: {missing_images}"
+        )
+
+
+def filter_report_images(content, keep_images):
+    """Whitelist images for the PDF while leaving Hugo source intact."""
+    if not keep_images:
+        return content
+
+    keep = {normalize_image_path(path) for path in keep_images}
+
+    removed_labels = set()
+    image_with_caption = re.compile(
+        r"(?m)^!\[[^\]]*\]\((?P<path>[^)\s]+)(?:\s+[^)]*)?\)[ \t]*\r?\n"
+        r"(?:[ \t]*\r?\n)*"
+        r"\*(?:Figure|Hình)\s+(?P<label>[0-9]+[a-z]?)\..*\*[ \t]*$"
+    )
+    for match in image_with_caption.finditer(content):
+        if normalize_image_path(match.group("path")) not in keep:
+            removed_labels.add(match.group("label"))
+
+    markdown_image_line = re.compile(
+        r"(?m)^!\[[^\]]*\]\((?P<path>[^)\s]+)(?:\s+[^)]*)?\)[ \t]*(?:\r?\n|$)"
+    )
+
+    def keep_markdown_image(match):
+        return match.group(0) if normalize_image_path(match.group("path")) in keep else ""
+
+    content = markdown_image_line.sub(keep_markdown_image, content)
+
+    if removed_labels:
+        labels = "|".join(
+            re.escape(label) for label in sorted(removed_labels, key=len, reverse=True)
+        )
+        content = re.sub(
+            rf"(?m)^\*(?:Figure|Hình)\s+(?:{labels})\..*\*[ \t]*(?:\r?\n|$)",
+            "",
+            content,
+        )
+
+    html_block = re.compile(
+        r"(?ms)^<p\b[^>]*>\s*"
+        r"<img\b[^>]*\bsrc=[\"'](?P<path>[^\"']+)[\"'][^>]*>\s*"
+        r"</p>\s*"
+        r"(?:\*(?:Figure|Hình)\s+[^*\n]+\*\s*)?"
+    )
+
+    def keep_html_image(match):
+        return match.group(0) if normalize_image_path(match.group("path")) in keep else ""
+
+    return html_block.sub(keep_html_image, content)
+
+
 def preprocess_markdown(content, meta=None):
     meta = meta or {}
 
@@ -659,6 +766,10 @@ def preprocess_markdown(content, meta=None):
 
         if keep_columns:
             content = filter_markdown_tables(content, keep_columns)
+
+        keep_images = get_list_meta(meta, ["reportImages", "report_images"])
+        if keep_images:
+            content = filter_report_images(content, keep_images)
 
     content = remove_markdown_section(content, LINK_SECTION_HEADINGS)
     content = remove_report_navigation(content)
@@ -778,6 +889,7 @@ def postprocess_latex(latex):
     def add_code_breaks(match):
         body = match.group(1)
         body = re.sub(r"(/|-|\\_)", r"\1\\allowbreak{}", body)
+        body = re.sub(r"(?<=[a-z])(?=[A-Z])", r"\\allowbreak{}", body)
         return r"\texttt{" + body + "}"
 
     latex = re.sub(
@@ -896,13 +1008,67 @@ def process_language(lang):
 
     pages, containers = discover_pages(lang)
 
-    for rel_dir, out_name, _title, meta in pages:
+    prepared_pages = []
+
+    for rel_dir, out_name, title, meta in pages:
         md_path = os.path.join(CONTENT_DIR, rel_dir, f"_index{suffix}.md")
 
         with open(md_path, encoding="utf-8") as f:
             md_content = f.read()
 
+        validate_report_metadata(md_content, meta, md_path)
         processed = preprocess_markdown(md_content, meta=meta)
+        prepared_pages.append((rel_dir, out_name, title, meta, md_path, processed))
+
+    # Manual Workshop captions use stable website labels such as 5a/5b.
+    # After report-only image filtering, renumber the retained figures in
+    # appearance order so the PDF has no gaps while the website stays intact.
+    figure_labels = []
+    for rel_dir, _out_name, _title, _meta, _md_path, processed in prepared_pages:
+        depth = rel_dir.count(os.sep) + 1
+        if rel_dir in containers and depth == 1:
+            continue
+        figure_labels.extend(
+            match.group(1)
+            for match in re.finditer(
+                r"\*(?:Figure|Hình)\s+([0-9]+[a-z]?)\.",
+                processed,
+            )
+        )
+
+    figure_map = {
+        label: str(index)
+        for index, label in enumerate(dict.fromkeys(figure_labels), start=1)
+    }
+
+    if figure_map:
+        label_pattern = "|".join(
+            re.escape(label)
+            for label in sorted(figure_map, key=len, reverse=True)
+        )
+        reference_pattern = re.compile(
+            rf"\b(?P<prefix>Figures?|Hình)\s+(?P<label>{label_pattern})(?![A-Za-z0-9])"
+        )
+
+        def renumber_reference(match):
+            prefix = match.group("prefix")
+            if prefix == "Hình":
+                prefix = "Figure"
+            return f"{prefix} {figure_map[match.group('label')]}"
+
+        prepared_pages = [
+            (
+                rel_dir,
+                out_name,
+                title,
+                meta,
+                md_path,
+                reference_pattern.sub(renumber_reference, processed),
+            )
+            for rel_dir, out_name, title, meta, md_path, processed in prepared_pages
+        ]
+
+    for rel_dir, out_name, _title, _meta, md_path, processed in prepared_pages:
         latex = convert_to_latex(processed, source_path=md_path)
 
         out_path = os.path.join(lang_dir, f"{out_name}.tex")

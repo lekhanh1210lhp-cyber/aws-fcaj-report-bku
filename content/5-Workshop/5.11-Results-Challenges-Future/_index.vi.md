@@ -4,6 +4,11 @@ date: "2026-07-28"
 weight: 11
 chapter: false
 pre: " <b> 5.11. </b> "
+reportHeadings:
+  - "Kết quả đạt được"
+  - "Thách thức chính và bài học rút ra"
+  - "Giới hạn hiện tại"
+  - "Cải tiến tương lai"
 ---
 
 ## Tổng quan

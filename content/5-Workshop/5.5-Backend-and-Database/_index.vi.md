@@ -4,6 +4,16 @@ date: "2026-07-28"
 weight: 5
 chapter: false
 pre: " <b> 5.5. </b> "
+reportHeadings:
+  - "Tổng quan và mục tiêu"
+  - "Bước 1 - Triển khai FastAPI backend"
+  - "Bước 2 - Cấu hình dịch vụ systemd"
+  - "Bước 3 - Xác minh dịch vụ backend"
+  - "Bước 4 - Kết nối EC2 với Amazon RDS"
+  - "Bước 5 - Xác minh các bảng và command trong PostgreSQL"
+reportImages:
+  - "5-Workshop/5.5-backend-database/backend-systemd-health-check.png"
+  - "5-Workshop/5.5-backend-database/telemetry-api-database.png"
 ---
 
 ## Tổng quan và mục tiêu
@@ -87,15 +97,11 @@ sudo systemctl status aws-iot-backend --no-pager -l
 curl http://127.0.0.1:8000/api/health
 ```
 
-<p align="center">
-  <img src="/images/5-Workshop/5.5-backend-database/backend-systemd-health-check.png"
-       alt="Dịch vụ systemd của FastAPI backend và kết quả health check"
-       width="100%" />
-</p>
+![Dịch vụ systemd của FastAPI backend và kết quả health check](/images/5-Workshop/5.5-backend-database/backend-systemd-health-check.png)
 
-*Hình 8. Dịch vụ `aws-iot-backend.service` đang ở trạng thái `active (running)` và endpoint `/api/health` trả về trạng thái `ok`.*
+*Figure 11a. Dịch vụ `aws-iot-backend.service` đang ở trạng thái `active (running)` và endpoint `/api/health` trả về trạng thái `ok`.*
 
-Hình 8 cho thấy unit đã được systemd nạp, dịch vụ ở trạng thái `active (running)` và Uvicorn là tiến trình chính. Endpoint kiểm tra cũng trả về JSON hợp lệ với `"status":"ok"`. Các dữ kiện này chứng minh backend đã được triển khai và có thể nhận HTTP request cục bộ; chúng không chứng minh High Availability hoặc hệ thống không thể gặp lỗi.
+Figure 11a cho thấy unit đã được systemd nạp, dịch vụ ở trạng thái `active (running)` và Uvicorn là tiến trình chính. Endpoint kiểm tra cũng trả về JSON hợp lệ với `"status":"ok"`. Các dữ kiện này chứng minh backend đã được triển khai và có thể nhận HTTP request cục bộ; chúng không chứng minh High Availability hoặc hệ thống không thể gặp lỗi.
 
 Sau khi các instance của ASG được đăng ký, kiểm tra cùng endpoint qua ALB:
 
@@ -104,7 +110,7 @@ curl.exe -sS -i "http://<ALB_DNS_NAME>/api/health"
 ```
 
 ![Kiểm tra health qua Application Load Balancer](/images/5-Workshop/5.5-backend-database/alb-health-check.png)
-*Hình 8a. Endpoint ALB trả HTTP 200 cho `/api/health`; bằng chứng target group ở mục 5.4 xác nhận cả hai backend đã đăng ký đều Healthy.*
+*Figure 11b. Endpoint ALB trả HTTP 200 cho `/api/health`; bằng chứng target group ở mục 5.4 xác nhận cả hai backend đã đăng ký đều Healthy.*
 
 ## Bước 4 - Kết nối EC2 với Amazon RDS
 
@@ -143,18 +149,14 @@ ORDER BY id DESC
 LIMIT 6;
 ```
 
-<p align="center">
-  <img src="/images/5-Workshop/5.5-backend-database/postgresql-tables-and-commands.png"
-       alt="Các bảng PostgreSQL và command IoT ở trạng thái Executed"
-       width="100%" />
-</p>
+![Các bảng PostgreSQL và command IoT ở trạng thái Executed](/images/5-Workshop/5.5-backend-database/postgresql-tables-and-commands.png)
 
-*Hình 9. Kết nối từ EC2 đến Amazon RDS PostgreSQL, danh sách các bảng của database và các command gần nhất ở trạng thái `Executed`.*
+*Figure 12a. Kết nối từ EC2 đến Amazon RDS PostgreSQL, danh sách các bảng của database và các command gần nhất ở trạng thái `Executed`.*
 
 Ảnh xác nhận một phiên PostgreSQL dùng SSL/TLS từ EC2 tới database `iot_dashboard`. Bốn bảng ứng dụng và các command gần nhất có `device_id` là `room_01` được hiển thị. Các ví dụ gồm `CURTAIN_CLOSE`, `CURTAIN_OPEN`, `MODE_AUTO` và `LIGHT_OFF`, đều ở trạng thái `Executed`. Ảnh không hiển thị mật khẩu database.
 
 ![Phản hồi telemetry API và bản ghi PostgreSQL tương ứng](/images/5-Workshop/5.5-backend-database/telemetry-api-database.png)
-*Hình 9a. Telemetry POST và latest API response đối chiếu được với cùng bản ghi `telemetry_logs` trong PostgreSQL.*
+*Figure 12b. Telemetry POST và latest API response đối chiếu được với cùng bản ghi `telemetry_logs` trong PostgreSQL.*
 
 ## Bước 6 - Kết quả mong đợi
 

@@ -4,19 +4,29 @@ date: "2026-07-28"
 weight: 3
 chapter: false
 pre: " <b> 5.3. </b> "
+reportHeadings:
+  - "Kiến trúc"
+  - "Thành phần và lý do chọn dịch vụ AWS"
+  - "Các dịch vụ được lựa chọn"
+  - "Vì sao chọn HTTP REST thay vì MQTT?"
+  - "Luồng dữ liệu"
+  - "Bảo mật và IAM"
+  - "Lựa chọn mở rộng tương lai và hạn chế hiện tại"
+reportImages:
+  - "5-Workshop/5.3-architecture/verified-application-flows-v2.png"
 ---
 
 ## Kiến trúc
 
 ![Kiến trúc AWS IoT Monitoring and Control Dashboard](/images/2-Proposal/IoT_Dashboard_Architecture.png)
 
-*Hình 5-2. Kiến trúc hiện tại gồm CloudFront/WAF với S3 private origin, `/api/*` chuyển đến ALB, hai FastAPI instance trong ASG, RDS PostgreSQL Multi-AZ và tuyến thiết bị đi trực tiếp đến ALB.*
+*Figure 3. Kiến trúc hiện tại gồm CloudFront/WAF với S3 private origin, `/api/*` chuyển đến ALB, hai FastAPI instance trong ASG, RDS PostgreSQL Multi-AZ và tuyến thiết bị đi trực tiếp đến ALB.*
 
 Người dùng dashboard và YOLO UNO nằm ngoài AWS. CloudFront phân phối bản build React + Vite từ S3 private và chuyển request browser `/api/*` đến ALB Internet-facing. YOLO UNO dùng trực tiếp DNS ALB. Trong VPC, ALB định tuyến đến hai FastAPI instance do ASG quản lý tại `ap-southeast-1a` và `ap-southeast-1c`; RDS PostgreSQL Multi-AZ có primary tại `ap-southeast-1c` và standby tại `ap-southeast-1b`. Mỗi backend instance có EBS root volume được mã hóa.
 
 ![Luồng dữ liệu trình duyệt, thiết bị, command, ACK và giám sát](/images/5-Workshop/5.3-architecture/verified-application-flows-v2.png)
 
-*Hình 5-3. Trình duyệt dùng CloudFront, còn YOLO UNO gọi trực tiếp ALB; hai tuyến cùng hội tụ tại mô hình telemetry và command của FastAPI/RDS.*
+*Figure 4. Trình duyệt dùng CloudFront, còn YOLO UNO gọi trực tiếp ALB; hai tuyến cùng hội tụ tại mô hình telemetry và command của FastAPI/RDS.*
 
 ## Thành phần và lý do chọn dịch vụ AWS
 

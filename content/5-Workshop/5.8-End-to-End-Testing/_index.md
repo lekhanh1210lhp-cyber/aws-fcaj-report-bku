@@ -4,6 +4,25 @@ date: "2026-07-28"
 weight: 8
 chapter: false
 pre: " <b> 5.8. </b> "
+reportHeadings:
+  - "Overview and objectives"
+  - "Step 2 - Execute and record the test matrix"
+  - "Step 3 - Validate frontend API requests"
+  - "Step 4 - Test fan control"
+  - "Step 5 - Test light control"
+  - "Step 6 - Test curtain control"
+  - "Step 7 - Run API and database checks and verify command state"
+  - "Expected Result"
+reportTableColumns:
+  - "ID"
+  - "Objective"
+  - "Expected result"
+  - "Actual/evidence"
+  - "Pass/Fail"
+reportImages:
+  - "5-Workshop/5.8-validation/end-to-end-system-overview.png"
+  - "5-Workshop/5.8-validation/control-panel-api-request.png"
+  - "5-Workshop/5.8-validation/command-pending-executed.png"
 ---
 
 ## Overview and objectives
@@ -46,17 +65,17 @@ No single screenshot proves this complete path. Frontend/API evidence confirms b
 | T01 | Backend health | Backend service is active | Send `GET /api/health` | HTTP 200 and the documented health response | Figure 11a in section 5.5 and the health response | **Pass** |
 | T02 | Submit telemetry | OpenAPI schema is known and RDS is reachable | POST one valid payload for `device_id=room_01` | Successful response and a stored telemetry record | Telemetry response and corresponding `latest`/`history` data | **Pass** |
 | T03 | Retrieve latest telemetry | T02 is complete | Send `GET /api/devices/room_01/latest` | The newest record for `room_01` is returned | Figure 19 and the dashboard telemetry cards | **Pass** |
-| T04 | Retrieve telemetry history | Multiple records exist | Send `GET /api/devices/room_01/history` | Ordered history for `room_01` is returned | Figures 14 and 15, including the history charts | **Pass** |
-| T05 | Create a command | Backend and database are available | POST one supported command | A command is created with an ID and initial `Pending` state | Figure 15 `commands` request and Figure 9 command records | **Pass** |
+| T04 | Retrieve telemetry history | Multiple records exist | Send `GET /api/devices/room_01/history` | Ordered history for `room_01` is returned | Figure 15a and the recorded history response | **Pass** |
+| T05 | Create a command | Backend and database are available | POST one supported command | A command is created with an ID and initial `Pending` state | Figure 19 `commands` request and Figure 23 command lifecycle | **Pass** |
 | T06 | Poll for a command | YOLO UNO is online | Observe polling after T05 | The device receives the correct command and ID | Hardware demonstration video | **Pass** |
-| T07 | Control the fan | Fan is wired and powered safely | Send `FAN_ON` and `FAN_OFF`; then return to automatic mode | The fan responds, the command is acknowledged, and automatic rule-based control resumes | Figure 20 and the hardware demonstration video | **Pass** |
-| T08 | Control the light | LED/light is wired and powered safely | Send `LIGHT_ON`, then `LIGHT_OFF` | The physical LED/light matches both commands | Figure 21 and the hardware demonstration video | **Pass** |
-| T09 | Control the curtain | Servo is wired and powered safely | Send `CURTAIN_OPEN`, then `CURTAIN_CLOSE` | The servo moves to the open and closed positions configured in firmware | Figure 22 and the hardware demonstration video | **Pass** |
-| T10 | Verify the ACK lifecycle | A command from T05–T09 exists | Observe the ACK request and query the same command ID | The command changes from `Pending` to `Executed` | Figure 12a and the acknowledged command record | **Pass** |
-| T11 | Verify PostgreSQL persistence | A database session is available | Query telemetry and commands after API refresh | Records remain available and can be queried again | Figure 12a and the repeated SQL query | **Pass** |
+| T07 | Control the fan | Fan is wired and powered safely | Send `FAN_ON` and `FAN_OFF`; then return to automatic mode | The fan responds, the command is acknowledged, and automatic rule-based control resumes | Figure 18 and the hardware demonstration video | **Pass** |
+| T08 | Control the light | LED/light is wired and powered safely | Send `LIGHT_ON`, then `LIGHT_OFF` | The physical LED/light matches both commands | Figure 18 and the hardware demonstration video | **Pass** |
+| T09 | Control the curtain | Servo is wired and powered safely | Send `CURTAIN_OPEN`, then `CURTAIN_CLOSE` | The servo moves to the open and closed positions configured in firmware | Figure 18 and the hardware demonstration video | **Pass** |
+| T10 | Verify the ACK lifecycle | A command from T05–T09 exists | Observe the ACK request and query the same command ID | The command changes from `Pending` to `Executed` | Figure 23 and the acknowledged command record | **Pass** |
+| T11 | Verify PostgreSQL persistence | A database session is available | Query telemetry and commands after API refresh | Records remain available and can be queried again | Figure 12b and the repeated telemetry query | **Pass** |
 | T12 | Verify CloudWatch logs | CloudWatch Agent and log collection are configured | Generate a health or telemetry request | A corresponding backend event appears in the expected log stream | Backend log evidence in section 5.9 | **Pass** |
 | T13 | Verify the production browser route | CloudFront distribution is deployed | Open the CloudFront domain and inspect Fetch/XHR | The page loads from S3 and `/api/*` requests return HTTP 200 through the ALB origin | CloudFront/API evidence in sections 5.4 and 5.7 | **Pass** |
-| T14 | Verify backend target health | ALB and ASG are deployed | Inspect target group and call `/api/health` through ALB | Two targets in separate Availability Zones are Healthy and the health call returns HTTP 200 | Figures 5c and 8a | **Pass** |
+| T14 | Verify backend target health | ALB and ASG are deployed | Inspect target group and call `/api/health` through ALB | Two targets in separate Availability Zones are Healthy and the health call returns HTTP 200 | Figure 9c and the recorded ALB response | **Pass** |
 
 ## Step 3 - Validate frontend API requests
 
@@ -142,7 +161,7 @@ A polling device may acknowledge a command quickly enough that a later query no 
 
 The dashboard sends a command to FastAPI, and the backend stores it in PostgreSQL. YOLO UNO polls for the latest pending command, executes the corresponding actuator action, and calls the ACK endpoint. The backend then changes that command from `Pending` to `Executed`.
 
-[Figure 12a in section 5.5](../5.5-Backend-and-Database/) provides the PostgreSQL evidence for this layer. It shows recent commands for `device_id=room_01`, including `CURTAIN_OPEN`, `CURTAIN_CLOSE`, `MODE_AUTO`, and `LIGHT_OFF`, in the `Executed` state after acknowledgement.
+Figure 23 above provides the command-state evidence for this layer by correlating the same command ID before and after acknowledgement.
 
 The dashboard-to-hardware behavior is also available in the [Google Drive demonstration video](https://drive.google.com/file/d/1T97dUY58hbT2ppxvg7ESR12Jg9BA828W/view?usp=sharing). The screenshots were extracted from the video and may therefore appear slightly blurred; use the video to inspect the complete control sequence.
 

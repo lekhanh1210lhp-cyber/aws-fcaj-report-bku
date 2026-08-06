@@ -4,6 +4,25 @@ date: "2026-06-15"
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
+reportHeadings:
+  - "1. Executive Summary"
+  - "2.1 Problem Statement"
+  - "3.1 Hardware Objectives"
+  - "3.2 Backend and Cloud Objectives"
+  - "3.3 Frontend Objectives"
+  - "3.4 Monitoring and Documentation Objectives"
+  - "3.5 Current Scope"
+  - "4.0 Architecture Overview"
+  - "4.2 Telemetry Flow"
+  - "4.3 Command and Acknowledgement Flow"
+  - "5. Technical Implementation Plan"
+  - "6. Timeline and Milestones"
+  - "8. Risk Assessment"
+  - "9.1 Expected Results"
+  - "11. Team Responsibilities"
+  - "12. Deliverables and Evidence"
+reportImages:
+  - "2-Proposal/IoT_Dashboard_Architecture.png"
 ---
 
 # AWS IoT Monitoring and Control Dashboard
@@ -104,6 +123,8 @@ The current delivery does not include a production multi-room rollout, user/devi
 ---
 
 ## 4. Solution Architecture
+
+### 4.0 Architecture Overview
 
 ![AWS IoT Monitoring and Control Dashboard architecture](/images/2-Proposal/IoT_Dashboard_Architecture.png)
 

@@ -4,6 +4,14 @@ date: "2026-07-28"
 weight: 12
 chapter: false
 pre: " <b> 5.12. </b> "
+reportHeadings:
+  - "Overview and objectives"
+  - "Handover Repository Structure"
+  - "Known limitations"
+  - "Report Handover Checklist"
+  - "Handover Resources"
+reportImages:
+  - "5-Workshop/5.12-handover/repository-handover-checklist.png"
 ---
 
 ## Overview and objectives
@@ -224,6 +232,15 @@ Notes:
 - `git log --all` helps review the complete commit history.
 - If an AWS key, password, or token was committed, revoke or rotate it.
 - Deleting a file without rotating the exposed credential is insufficient.
+
+## Report Handover Checklist
+
+- Repository contains backend, frontend, YOLO UNO firmware, architecture resources, `README.md`, and `README.vi.md`.
+- Configuration files expose placeholders only; credentials, private keys, tokens, administrator IPs, and real database URLs are excluded.
+- Deployment and update runbooks cover backend validation, AMI/Launch Template release, ASG instance refresh, target-health verification, frontend S3 sync, and CloudFront invalidation.
+- Operations checks cover `/api/health`, PostgreSQL tables, recent telemetry/commands, CloudWatch logs, guest metrics, ALB/ASG/RDS widgets, and eight alarms.
+- Recovery notes identify the RDS Multi-AZ endpoint, seven-day automated backups, manual snapshot, AMI/Launch Template rollback, and dependency-aware clean-up order.
+- Handover records preserve team responsibilities, known limitations, demo material, and the rule that future features must not be reported as deployed.
 
 ## Handover Resources
 

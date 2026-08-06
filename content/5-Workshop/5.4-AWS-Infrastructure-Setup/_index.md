@@ -4,6 +4,29 @@ date: "2026-07-28"
 weight: 4
 chapter: false
 pre: " <b> 5.4. </b> "
+reportHeadings:
+  - "Overview and objectives"
+  - "Step 1 - Select the region and address plan"
+  - "Step 2 - Create or select the VPC and subnets"
+  - "Step 2A - Configure private S3, CloudFront, and WAF"
+  - "Step 3 - Create Security Groups"
+  - "Step 4 - Create the EC2 IAM Role"
+  - "Step 5 - Prepare the AMI, launch template, ASG, and EBS"
+  - "Step 5A - Create the target group and Application Load Balancer"
+  - "Step 6 - Create Amazon RDS for PostgreSQL"
+  - "Step 7 - Verify access and network"
+  - "Expected Result and Evidence"
+reportImages:
+  - "5-Workshop/5.4-aws-infrastructure/cloudfront-behaviors.png"
+  - "5-Workshop/5.4-aws-infrastructure/s3-private-oac.png"
+  - "5-Workshop/5.4-aws-infrastructure/waf-web-acl-three-rules.png"
+  - "5-Workshop/5.4-aws-infrastructure/security-group-chain.png"
+  - "5-Workshop/5.4-aws-infrastructure/ec2-iam-role.png"
+  - "5-Workshop/5.4-aws-infrastructure/asg-capacity-instances.png"
+  - "5-Workshop/5.4-aws-infrastructure/ebs-encryption-kms.png"
+  - "5-Workshop/5.4-aws-infrastructure/target-group-healthy.png"
+  - "5-Workshop/5.4-aws-infrastructure/rds-primary-standby-az.png"
+  - "5-Workshop/5.4-aws-infrastructure/rds-backup-retention.png"
 ---
 
 ## Overview and objectives

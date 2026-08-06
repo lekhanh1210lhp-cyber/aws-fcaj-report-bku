@@ -4,6 +4,11 @@ date: "2026-07-28"
 weight: 11
 chapter: false
 pre: " <b> 5.11. </b> "
+reportHeadings:
+  - "Achieved Results"
+  - "Key Challenges and Lessons Learned"
+  - "Current Limitations"
+  - "Future Improvements"
 ---
 
 ## Overview

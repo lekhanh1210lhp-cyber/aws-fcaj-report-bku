@@ -48,3 +48,11 @@ During the project period from **01/06/2026** to **31/07/2026**, I applied knowl
 - Learn Infrastructure as Code, automated deployment, and integration testing to reduce manual configuration drift.
 - Deepen knowledge of HTTPS origin security, authentication, least-privilege IAM, WAF enforcement, and secret management.
 - Run controlled Auto Scaling and RDS failover exercises when the environment and budget allow.
+
+### Internship Program Reflection
+
+The internship program gave me a practical environment for connecting university knowledge with an AWS-based system that included cloud infrastructure, software, and physical hardware. Reviews from mentors and collaboration with teammates helped me understand the importance of evidence, clear ownership, and concise technical communication. I also learned to distinguish a working prototype from a production-ready service and to document limitations honestly.
+
+### Next Development Direction
+
+My next priorities are Infrastructure as Code, CI/CD, automated integration tests, origin HTTPS, authentication, and controlled recovery exercises. I also plan to improve embedded reliability through safer command retry and acknowledgement handling while continuing to develop concise bilingual technical documentation.

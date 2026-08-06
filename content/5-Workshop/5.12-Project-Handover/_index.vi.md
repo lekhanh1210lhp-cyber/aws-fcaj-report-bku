@@ -4,6 +4,14 @@ date: "2026-07-28"
 weight: 12
 chapter: false
 pre: " <b> 5.12. </b> "
+reportHeadings:
+  - "Tổng quan và mục tiêu"
+  - "Cấu trúc repository bàn giao"
+  - "Hạn chế đã biết"
+  - "Checklist bàn giao cho báo cáo"
+  - "Tài nguyên bàn giao"
+reportImages:
+  - "5-Workshop/5.12-handover/repository-handover-checklist.png"
 ---
 
 ## Tổng quan và mục tiêu
@@ -14,13 +22,9 @@ Bàn giao đầy đủ mã nguồn, cấu hình, tài liệu vận hành và b�
 
 Repository chính chứa source code backend, frontend, firmware YOLO UNO, sơ đồ kiến trúc và tài liệu README song ngữ. Branch `main` được sử dụng làm phiên bản bàn giao cuối cùng của project.
 
-<p align="center">
-  <img src="/images/5-Workshop/5.12-handover/repository-handover-checklist.png"
-       alt="Cấu trúc GitHub repository của dự án AWS IoT Monitoring and Control Dashboard"
-       width="100%" />
-</p>
+![Cấu trúc GitHub repository của dự án AWS IoT Monitoring and Control Dashboard](/images/5-Workshop/5.12-handover/repository-handover-checklist.png)
 
-*Hình 22. Cấu trúc repository cuối cùng của dự án, bao gồm backend, frontend, firmware YOLO UNO, sơ đồ kiến trúc và tài liệu README song ngữ.*
+*Figure 27. Cấu trúc repository cuối cùng của dự án, bao gồm backend, frontend, firmware YOLO UNO, sơ đồ kiến trúc và tài liệu README song ngữ.*
 
 Ảnh cho thấy repository bàn giao có source code cho các thành phần chính của hệ thống, tài liệu README bằng hai ngôn ngữ và thư mục lưu sơ đồ. Những file chứa cấu hình bí mật phải được loại trừ bằng `.gitignore` và kiểm tra riêng trước khi bàn giao.
 
@@ -228,6 +232,15 @@ Lưu ý:
 - `git log --all` dùng để kiểm tra lịch sử commit.
 - Nếu phát hiện AWS key, password hoặc token từng bị commit, phải thu hồi hoặc thay đổi credential đó.
 - Không chỉ xóa file rồi tiếp tục sử dụng lại credential cũ.
+
+## Checklist bàn giao cho báo cáo
+
+- Repository có backend, frontend, firmware YOLO UNO, tài nguyên kiến trúc, `README.md` và `README.vi.md`.
+- Các file cấu hình chỉ chứa placeholder; credential, private key, token, IP quản trị và database URL thật được loại khỏi bản bàn giao.
+- Runbook triển khai/cập nhật bao quát kiểm tra backend, phát hành AMI/Launch Template, ASG instance refresh, target health, đồng bộ frontend lên S3 và CloudFront invalidation.
+- Kiểm tra vận hành bao quát `/api/health`, bảng PostgreSQL, telemetry/command gần nhất, CloudWatch Logs, guest metric, widget ALB/ASG/RDS và tám alarm.
+- Thông tin phục hồi ghi rõ RDS Multi-AZ endpoint, automated backup bảy ngày, manual snapshot, rollback AMI/Launch Template và thứ tự dọn dẹp theo dependency.
+- Hồ sơ bàn giao giữ phân công nhóm, giới hạn hiện tại, demo và nguyên tắc không mô tả future work như chức năng đã triển khai.
 
 ## Tài nguyên bàn giao
 

@@ -4,6 +4,16 @@ date: "2026-07-28"
 weight: 5
 chapter: false
 pre: " <b> 5.5. </b> "
+reportHeadings:
+  - "Overview and objectives"
+  - "Step 1 - Deploy the FastAPI Backend"
+  - "Step 2 - Configure the systemd Service"
+  - "Step 3 - Verify the Backend Service"
+  - "Step 4 - Connect EC2 to Amazon RDS"
+  - "Step 5 - Verify PostgreSQL Tables and Commands"
+reportImages:
+  - "5-Workshop/5.5-backend-database/backend-systemd-health-check.png"
+  - "5-Workshop/5.5-backend-database/telemetry-api-database.png"
 ---
 
 ## Overview and objectives

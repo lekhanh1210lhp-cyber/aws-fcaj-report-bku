@@ -4,6 +4,17 @@ date: "2026-07-28"
 weight: 7
 chapter: false
 pre: " <b> 5.7. </b> "
+reportHeadings:
+  - "Overview and objectives"
+  - "Step 1 - Configure the React Frontend"
+  - "Step 2 - Connect the Frontend to the FastAPI Backend"
+  - "Step 3 - Display Live Telemetry"
+  - "Step 4 - Render the Remote Control Panel"
+  - "Step 5 - Display Rule-Based Analysis and History"
+  - "Step 6 - Expected Results"
+reportImages:
+  - "5-Workshop/5.7-frontend/cloudfront-dashboard-api-200.png"
+  - "5-Workshop/5.7-frontend/dashboard-overview-control-panel.png"
 ---
 
 ## Overview and objectives

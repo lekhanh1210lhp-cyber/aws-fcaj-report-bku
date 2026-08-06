@@ -4,6 +4,17 @@ date: "2026-07-28"
 weight: 9
 chapter: false
 pre: " <b> 5.9. </b> "
+reportHeadings:
+  - "Tổng quan và mục tiêu"
+  - "Danh mục giám sát"
+  - "Bước 1 - Xác minh IAM Role và cài Agent"
+  - "Bước 4 - Tạo và kiểm tra bằng chứng"
+  - "Bước 5 - Tạo và xác minh các alarm"
+  - "Kết quả mong đợi"
+reportImages:
+  - "5-Workshop/5.9-cloudwatch/backend-cloudwatch-logs.png"
+  - "5-Workshop/5.9-cloudwatch/operations-dashboard.png"
+  - "5-Workshop/5.9-cloudwatch/cloudwatch-alarms.png"
 ---
 
 ## Tổng quan và mục tiêu
@@ -17,7 +28,7 @@ Sử dụng metric mặc định của ALB, ASG, EC2 và RDS, cùng metric hệ 
 | ALB | `UnHealthyHostCount`, `HTTPCode_Target_5XX_Count` | Metric mặc định của Application Load Balancer |
 | ASG | `GroupInServiceInstances` | Metric của Auto Scaling Group |
 | EC2 | `CPUUtilization` | Metric mặc định EC2 |
-| Guest OS EC2 | `mem_used_percent` | Cấu hình CloudWatch Agent; Hình 19 không chứng minh có datapoint bộ nhớ |
+| Guest OS EC2 | `mem_used_percent` | Cấu hình CloudWatch Agent; Figure 25a không chứng minh có datapoint bộ nhớ |
 | Guest OS EC2 | `disk_used_percent` | CloudWatch Agent |
 | Guest OS EC2 | `cpu_usage_idle`, `cpu_usage_user`, `cpu_usage_system` | CloudWatch Agent |
 | FastAPI | Log ứng dụng backend | CloudWatch Agent đọc file log |
@@ -126,17 +137,17 @@ Log stream `/aws/ec2/aws-iot-dashboard/backend` trong ảnh chứa các sự ki�
 
 ![FastAPI backend access logs trong Amazon CloudWatch Logs](/images/5-Workshop/5.9-cloudwatch/backend-cloudwatch-logs.png)
 
-*Hình 18. Log truy cập của FastAPI backend trên EC2 được thu thập và hiển thị trong Amazon CloudWatch Logs, bao gồm timestamp, endpoint và HTTP status.*
+*Figure 24. Log truy cập của FastAPI backend trên EC2 được thu thập và hiển thị trong Amazon CloudWatch Logs, bao gồm timestamp, endpoint và HTTP status.*
 
 ### Metric vận hành của kiến trúc hiện tại
 
 Dashboard vận hành hiện tại có tám widget: CPU, disk và memory của hai backend EC2; số instance InService của ASG; CPU và số kết nối RDS; số ALB target unhealthy; và lỗi ALB target 5XX. Bằng chứng này khớp với kiến trúc ALB/ASG đang triển khai.
 
 ![CloudWatch operations dashboard cho ALB, ASG, EC2 và RDS](/images/5-Workshop/5.9-cloudwatch/operations-dashboard.png)
-*Hình 19. Dashboard tám widget hiển thị hai chuỗi EC2, ASG có 2 instance InService, không có ALB target unhealthy trong khoảng đã chọn, các metric RDS và widget ALB target 5XX.*
+*Figure 25a. Dashboard tám widget hiển thị hai chuỗi EC2, ASG có 2 instance InService, không có ALB target unhealthy trong khoảng đã chọn, các metric RDS và widget ALB target 5XX.*
 
 ![Metric vận hành ALB và ASG](/images/5-Workshop/5.9-cloudwatch/alb-asg-metrics.png)
-*Hình 19a. Cấu hình đồ thị CloudWatch cho ALB unhealthy hosts, ALB target 5XX và ASG in-service instances.*
+*Figure 25b. Cấu hình đồ thị CloudWatch cho ALB unhealthy hosts, ALB target 5XX và ASG in-service instances.*
 
 ## Bước 5 - Tạo và xác minh các alarm
 
@@ -157,7 +168,7 @@ Hãy kiểm tra ngưỡng, chu kỳ, số lần đánh giá, cách xử lý dữ
 
 ![Tám CloudWatch Alarms giám sát ALB, ASG, EC2 và RDS](/images/5-Workshop/5.9-cloudwatch/cloudwatch-alarms.png)
 
-*Hình 20. Tám CloudWatch Alarms giám sát ALB, ASG, EC2 và RDS. Trạng thái OK hoặc Insufficient data phản ánh dữ liệu metric tại thời điểm chụp.*
+*Figure 26. Tám CloudWatch Alarms giám sát ALB, ASG, EC2 và RDS. Trạng thái OK hoặc Insufficient data phản ánh dữ liệu metric tại thời điểm chụp.*
 
 ### Ý nghĩa trạng thái alarm
 

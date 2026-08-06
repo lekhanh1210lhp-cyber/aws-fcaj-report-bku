@@ -4,6 +4,16 @@ date: "2026-07-28"
 weight: 2
 chapter: false
 pre: " <b> 5.2. </b> "
+reportHeadings:
+  - "Objectives"
+  - "Step 1 - Verify AWS access"
+  - "Step 2 - Verify local tools and versions"
+  - "Step 3 - Prepare hardware and electrical safety"
+  - "Step 4 - Verify source and secrets readiness"
+  - "Step 7 - Complete the readiness gate"
+  - "Expected Result"
+reportImages:
+  - "5-Workshop/5.2-prerequisites/development-tools-versions.png"
 ---
 
 ## Objectives

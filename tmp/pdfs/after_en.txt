@@ -1,0 +1,2909 @@
+  VIETNAM NATIONAL UNIVERSITY HO CHI MINH CITY
+   HO CHI MINH CITY UNIVERSITY OF TECHNOLOGY
+  FACULTY OF COMPUTER SCIENCE AND ENGINEERING
+
+
+
+
+                      REPORT
+                    INTERNSHIP
+       SEMESTER 253 ACADEMIC YEAR 2025-2026
+
+
+– MAJOR: COMPUTER ENGINEERING
+
+– TRAINING PROGRAM: FULL-TIME (ENGLISH PROGRAM)
+
+
+
+– COMPANY / INTERNSHIP UNIT:
+ AMAZON WEB SERVICES VIET NAM COMPANY LIMITED
+– DIRECT SUPERVISOR AT THE COMPANY:
+  Mr. Lữ Hoàn Thiện
+– FACULTY SUPERVISOR / GRADER:
+  Mr. Nguyễn Thành Công
+– STUDENT:
+ FULL NAME: Phạm Lê Minh Khôi       STUDENT ID: 2352622
+
+
+              Ho Chi Minh City, August 2026
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+Mục lục
+1   Internship Program                                                                                                2
+
+2   Admission Results                                                                                               10
+
+3   Worklog                                                                                                         16
+    3.1 Week 1 - Requirements Analysis and Planning . . . . . . . . . . . . . . . . . . . . . . . . . . . .         16
+    3.2 Week 2 - AWS Architecture and Network Foundation . . . . . . . . . . . . . . . . . . . . . . . .            16
+    3.3 Week 3 - Amazon EC2 and Amazon RDS Deployment . . . . . . . . . . . . . . . . . . . . . . .                 17
+    3.4 Week 4 - Backend and Database Foundation . . . . . . . . . . . . . . . . . . . . . . . . . . . . .          18
+    3.5 Week 5 - Telemetry and Command API Development . . . . . . . . . . . . . . . . . . . . . . . .              19
+    3.6 Week 6 - YOLO UNO Hardware Integration . . . . . . . . . . . . . . . . . . . . . . . . . . . . .            19
+    3.7 Week 7 - Frontend Dashboard Development . . . . . . . . . . . . . . . . . . . . . . . . . . . . .           20
+    3.8 Week 8 - Integration, Testing, CloudWatch, and Handover . . . . . . . . . . . . . . . . . . . . . .         21
+
+4   Proposal                                                                                                        23
+
+5   Workshop                                                                                                        28
+    5.1 Workshop Overview . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .         28
+    5.2 Prerequisites . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   29
+    5.3 Architecture and Service Design . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       31
+    5.4 AWS Infrastructure Setup . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      36
+    5.5 Backend Deployment and Database Integration . . . . . . . . . . . . . . . . . . . . . . . . . . .           43
+    5.6 Hardware Integration . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      46
+    5.7 Frontend Integration . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      49
+    5.8 End-to-End Testing and Validation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       53
+    5.9 Monitoring with CloudWatch . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        58
+    5.10 Cost, Security and Clean-up . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      61
+    5.11 Results, Challenges and Future Improvements . . . . . . . . . . . . . . . . . . . . . . . . . . . .        63
+    5.12 Project Handover . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     66
+
+6   Self-Evaluation                                                                                                 70
+
+
+
+
+Internship Report (CO3335)                                                                                     Page 1/72
+            Ho Chi Minh City University of Technology – VNU-HCM
+            Faculty of Computer Science & Engineering
+
+
+3      Worklog
+3.1     Week 1 - Requirements Analysis and Planning
+        Period: 1–7 June 2026 Role: Contributed to requirements analysis and represented the AWS and
+        hardware perspective in the team plan.
+
+Objectives
+
+      • Define the problem, target users, and scope of the prototype.
+      • Agree on deliverables, measurable success criteria, and team responsibilities.
+      • Draft the initial telemetry and command architecture.
+
+Work completed
+
+Workstream                              Work completed                           Result/Evidence
+Requirements analysis                   Worked with the team to define          Functional list covering telemetry,
+                                        temperature, humidity, and light        latest/history, commands, and ACK
+                                        monitoring plus fan, light, and curtain
+                                        control for the Smart Room
+Scope definition                        Used room_01 as the device_id for the Scope and acceptance criteria recorded
+                                        sample room                             in the Proposal
+User analysis                           Analyzed the needs of AWS learners,     Target-user list and expected value for
+                                        room operators, maintainers, and FCAJ each group
+                                        reviewers
+Architecture design                     Drafted YOLO UNO → FastAPI on EC2 Initial architecture and two-way
+                                        → RDS PostgreSQL → React                data-flow diagram
+                                        Dashboard with CloudWatch
+Ownership and planning                  Assigned AWS/Hardware, Backend,         Ownership table, 1 June–31 July
+                                        Frontend/Integration, and               timeline, and initial risk list
+                                        Documentation/QA responsibilities and
+                                        divided delivery into eight weeks
+
+
+
+Weekly outcomes
+
+      • Completed the initial scope, ownership model, and system architecture.
+      • Defined measurable criteria including an HTTP 200 health check, persisted telemetry, Pending →
+        Executed command state, and observable CloudWatch data.
+      • Agreed to claim only components supported by source code or deployment evidence.
+
+Challenges and lessons learned
+         The initial challenge was translating the Smart Room idea into specific requirements and test criteria. The
+main lesson was that each function needs an observable output so the team can validate it and collect evidence.
+
+
+3.2     Week 2 - AWS Architecture and Network Foundation
+        Period: 8–14 June 2026 Role: Led the AWS, networking, and IAM design and coordinated API and
+        data-flow boundaries with the backend team.
+
+Objectives
+
+      • Select AWS services that matched the source code and Workshop scope.
+      • Design the VPC, subnets, Security Groups, and IAM Role according to least privilege.
+      • Define the telemetry, command, ACK, and monitoring flows.
+
+Internship Report (CO3335)                                                                                      Page 16/72
+            Ho Chi Minh City University of Technology – VNU-HCM
+            Faculty of Computer Science & Engineering
+
+
+Work completed
+
+Workstream                             Work completed                           Result/Evidence
+Infrastructure selection               Identified the components required for   Service list with the responsibility of
+                                       the Smart Room and selected EC2, EBS,    each component
+                                       RDS, VPC, IAM Role, and CloudWatch
+Network design                         Designed the VPC, a public subnet for    Network diagram placing EC2 and RDS
+                                       EC2, and a DB Subnet Group from          within the intended connectivity
+                                       database subnets                         boundaries
+Security Groups                        Defined rules for administrative SSH,    Rule table restricting SSH by
+                                       the demo API, and EC2 → RDS traffic      administrator IP and RDS by the EC2
+                                       on PostgreSQL 5432                       Security Group
+IAM and monitoring                     Defined the EC2 IAM Role and             Temporary-role access model without
+                                       permissions required for CloudWatch      hard-coded AWS access keys
+                                       Agent logs and metrics
+System-flow review                     Mapped API, database, network ports,     Checklist of source, destination, port,
+                                       identity, and monitoring paths           and required evidence for each
+                                                                                connection
+
+
+
+Weekly outcomes
+
+      • Completed the AWS architecture and service boundaries.
+      • Produced a network, Security Group, and IAM plan suitable for the prototype.
+      • Clearly separated the current operational model from future options such as Auto Scaling, SQS, and event-
+        driven architecture.
+
+Challenges and lessons learned
+         An architecture diagram is useful only when every arrow maps to an actual connection or permission. A
+smaller service set made the solution easier to deploy, test, and explain.
+
+
+3.3     Week 3 - Amazon EC2 and Amazon RDS Deployment
+        Period: 15–21 June 2026 Role: Provisioned and verified the AWS infrastructure.
+
+Objectives
+
+      • Create the networking and AWS resources required by the backend.
+      • Launch EC2 with EBS storage and the approved IAM Role.
+      • Create a private RDS for PostgreSQL database and verify EC2 connectivity.
+
+Work completed
+
+Workstream                             Work completed                           Result/Evidence
+AWS environment preparation            Selected ap-southeast-1 and            EC2 and RDS placed in the same Region
+                                       reviewed the VPC, routes, subnets, and and intended network design
+                                       DB Subnet Group before provisioning
+EC2 and EBS deployment                 Launched the t3.micro iot-backend- EC2 reached Running, passed status
+                                       server with 10 GiB gp3 EBS and iot- checks, and had the role attached
+                                       dashboard-cloudwatch-role
+RDS deployment                         Created the db.t4g.micro iot-          Database reached Available, used the
+                                       dashboard-db RDS for PostgreSQL        DB Subnet Group, and had no public
+                                       instance                               access
+
+
+
+
+Internship Report (CO3335)                                                                                        Page 17/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+
+Workstream                                Work completed                              Result/Evidence
+Connectivity controls                     Created iot-backend-sg, ec2-rds-1,          EC2 reached RDS without exposing the
+                                          and rds-ec2-1 and scoped PostgreSQL         database directly to the Internet
+                                          5432 by Security Group
+Verification and evidence                 Checked RDS DNS/port 5432 from EC2          EC2 Running, RDS Available, IAM
+                                          and reviewed EC2, EBS, RDS, IAM             Role, and Security Group screenshots for
+                                          Role, and network status                    the Workshop
+
+
+
+Weekly outcomes
+
+      • Prepared EC2, EBS, RDS, IAM, and Security Groups for application deployment.
+      • Kept RDS private and did not expose PostgreSQL to 0.0.0.0/0.
+      • Collected evidence for EC2, RDS, the IAM Role, and Security Group rules. The images contain no passwords
+        or access keys; selected resource identifiers and endpoints still require a final redaction decision before public
+        release.
+
+Challenges and lessons learned
+        Connectivity failures must be separated into network and authentication failures. A successful TCP test
+confirms routing and Security Groups, but not valid PostgreSQL credentials.
+
+
+3.4     Week 4 - Backend and Database Foundation
+        Period: 22–28 June 2026 Role: Managed the EC2 runtime and service operations and supported the
+        backend member with PostgreSQL connectivity.
+
+Objectives
+
+      • Prepare the Python environment and deploy the FastAPI structure on EC2.
+      • Connect the backend to the iot_dashboard database.
+      • Operate Uvicorn reliably through systemd.
+
+Work completed
+
+Workstream                                Work completed                              Result/Evidence
+EC2 preparation                           Installed Git, Python, the PostgreSQL       EC2 had the environment needed to run
+                                          client, and required utilities on Amazon    and diagnose the backend
+                                          Linux
+Application deployment                    Cloned the repository, created venv,        FastAPI ran through Uvicorn on EC2
+                                          installed requirements.txt, and
+                                          confirmed main:app
+Configuration management                  Created a local .env with DATABASE_         Backend connected to RDS without
+                                          URL and excluded secrets from Git           hard-coded credentials
+Database initialization                   Ran app.database.init_db and                Created devices, telemetry_logs,
+                                          inspected the schema with the               and commands through SQLAlchemy
+                                          PostgreSQL client                           create_all
+Backend operation                         Created aws-iot-backend, configured         Service reached active (running)
+                                          logs, restarted the service, and tested /   and health returned HTTP 200
+                                          api/health
+
+
+
+Weekly outcomes
+
+      • Operated FastAPI on EC2 under systemd.
+      • Connected the backend to the private RDS database.
+
+Internship Report (CO3335)                                                                                           Page 18/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+      • Confirmed that the project did not use Alembic migrations and avoided documenting Alembic as imple-
+        mented.
+
+Challenges and lessons learned
+         Linux user names, paths, environment files, and the Uvicorn module must match between the shell and
+service unit. journalctl, application logs, and the health endpoint provide complementary diagnostic evidence.
+
+
+3.5     Week 5 - Telemetry and Command API Development
+        Period: 29 June–5 July 2026 Role: Coordinated the backend API contract with the hardware and
+        infrastructure requirements.
+
+Objectives
+
+      • Complete the telemetry ingestion and retrieval APIs.
+      • Build command creation, polling, and acknowledgement APIs.
+      • Verify persistent data in PostgreSQL.
+
+Work completed
+
+Workstream                            Work completed                           Result/Evidence
+Data contract                         Matched the Pydantic schema to the       Consistent contract across firmware,
+                                      firmware camelCase payload and           FastAPI, and PostgreSQL
+                                      mapped deviceId and
+                                      lightIntensity to the data model
+Telemetry ingestion                   Completed and tested POST /api/          Valid telemetry created a new
+                                      telemetry with room_01 as the            telemetry_logs row
+                                      device_id value
+Latest and history                    Completed latest-data and history APIs   Supplied data for dashboard telemetry
+                                      by device_id                             cards and charts
+Command lifecycle                     Completed command creation,              Stored commands as Pending and
+                                      pending-command polling, and ACK         changed the same ID to Executed after
+                                      APIs                                     ACK
+API/database validation               Reviewed OpenAPI, sent controlled        Routes, JSON responses, and database
+                                      curl requests, and compared SQL          state matched
+                                      records
+
+
+
+Weekly outcomes
+
+      • Completed telemetry, latest, history, command polling, and ACK flows.
+      • Verified the command lifecycle by following one command ID through the API and PostgreSQL.
+      • Documented current limitations: command values were not strictly enum-validated, and ACK ownership was
+        not checked against the route device.
+
+Challenges and lessons learned
+       Pending can be short-lived when the device polls frequently. Reliable evidence must preserve the
+command-creation response and then query the same ID after acknowledgement.
+
+
+3.6     Week 6 - YOLO UNO Hardware Integration
+        Period: 6–12 July 2026 Role: Led YOLO UNO hardware and firmware integration and coordinated
+        telemetry, command, and ACK testing with the backend member.
+
+Objectives
+
+Internship Report (CO3335)                                                                                     Page 19/72
+            Ho Chi Minh City University of Technology – VNU-HCM
+            Faculty of Computer Science & Engineering
+
+
+      • Connect sensors and actuators according to the active firmware.
+      • Build, upload, and run the firmware with PlatformIO.
+      • Validate Wi-Fi, telemetry, command polling, and ACK against the backend.
+
+Work completed
+
+Workstream                            Work completed                               Result/Evidence
+Wiring and power safety               Reviewed GPIO definitions in                 The verified wiring table followed the
+                                      hardware/src/main.cpp, connected             firmware; the fan and servo were not
+                                      the DHT20, light sensor, fan, light/relay,   powered directly from GPIO
+                                      servo, and LCD1602, and checked
+                                      common ground/power
+Firmware environment                  Configured PlatformIO, the ESP32-S3          Kept Wi-Fi credentials and the backend
+                                      board definition, and local secrets.h        URL out of Git
+Sensors and display                   Read DHT20 and raw analog light              Serial Monitor/LCD displayed sensor
+                                      values and updated the LCD1602               data and state
+Actuator control                      Tested the fan, light/relay, and servo at    Actuators responded according to
+                                      0° closed/90° open                           firmware logic
+REST API integration                  Sent periodic telemetry, polled              YOLO UNO communicated
+                                      commands, executed them, and returned        bidirectionally with FastAPI over HTTP
+                                      ACK
+Build and evidence                    Built the firmware, reviewed Serial          PlatformIO generated firmware.bin;
+                                      Monitor, and recorded the demo               video captured physical operation
+
+
+
+Weekly outcomes
+
+      • Sent room_01 telemetry and received backend commands on YOLO UNO.
+      • Controlled the fan, light, and curtain servo through direct commands; Auto mode used firmware-defined
+        thresholds.
+      • Used lastAck and pendingAck state to retry acknowledgement without repeating a physical action.
+
+Challenges and lessons learned
+       Safe actuator power and duplicate-execution protection were as important as network connectivity. After
+an ACK failure, the firmware must retry only the ACK and not operate the actuator again.
+
+
+3.7     Week 7 - Frontend Dashboard Development
+        Period: 13–19 July 2026 Role: Supported frontend-to-EC2 connectivity and collaborated on dash-
+        board and control-flow validation.
+
+Objectives
+
+      • Display latest telemetry, history, and backend status.
+      • Provide controls for the fan, light, and curtain.
+      • Submit commands from the dashboard, inspect backend responses, and identify the missing ACK-tracking
+        behavior.
+
+Work completed
+
+
+
+
+Internship Report (CO3335)                                                                                         Page 20/72
+            Ho Chi Minh City University of Technology – VNU-HCM
+            Faculty of Computer Science & Engineering
+
+
+
+Workstream                             Work completed                              Result/Evidence
+Frontend setup                         Prepared React, Vite, TypeScript,           Dashboard ran reliably in the local
+                                       Tailwind CSS, and required                  environment
+                                       dependencies
+API connectivity                       Used relative /api paths; the Vite proxy    Components did not hard-code the
+                                       targeted the ALB during development,        backend URL, and development and
+                                       while the CloudFront /api/* behavior        production paths were documented
+                                       handled production routing                  separately
+Telemetry display                      Connected health, latest, and history and   Displayed latest data, history, and
+                                       built telemetry cards and charts            connection status
+Device controls                        Built fan, light, curtain, and              UI submitted commands to the backend
+                                       Auto/Manual controls and inspected          but did not retain the command ID or
+                                       command-creation requests                   track Pending/Executed state
+Data and label review                  Reviewed the simulated fallback and the     Identified that fallback data was not
+                                       description of light values                 explicitly labelled and raw light values
+                                                                                   were still presented as Lux; recorded
+                                                                                   both for correction
+Integration and debugging              Used DevTools Network to inspect            Verified the production route and found
+                                       routes, payloads, responses, duplicate      that fallback behavior could report a
+                                       requests, and API-failure behavior          false success when the backend did not
+                                                                                   respond
+
+
+
+Weekly outcomes
+
+      • Displayed latest and historical room_01 data.
+      • Created commands while the API was available; command IDs and ACK state had to be verified through
+        DevTools, the API, or PostgreSQL rather than the UI itself.
+      • Documented remaining limitations: UI mode was local state, fallback data was not labelled, and a failed
+        command request could still appear successful.
+
+Challenges and lessons learned
+        A successful HTTP response proves that the backend accepted a command, not that physical hardware
+executed it. The UI must wait for ACK/Executed or clearly show a pending state.
+
+
+3.8     Week 8 - Integration, Testing, CloudWatch, and Handover
+        Period: 20–31 July 2026
+        Role: Coordinated full-system integration and took responsibility for AWS/hardware troubleshooting,
+        CloudWatch, and technical-evidence review.
+
+Objectives
+
+      • Test the complete telemetry and command flows with physical hardware.
+      • Use the dashboard action as the starting point, then trace the same data or command ID through Dev-
+        Tools/API, RDS, and firmware.
+      • Establish logs, metrics, and alarms for ALB/ASG/EC2/RDS.
+      • Complete the security review, bilingual documentation, demo video, and handover material.
+
+Work completed
+
+
+
+
+Internship Report (CO3335)                                                                                         Page 21/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+
+Workstream                            Work completed                            Result/Evidence
+Test preparation                      Recorded source, firmware, AWS            Reproducible baseline for comparing
+                                      Region, and test conditions and           results
+                                      confirmed health
+Telemetry validation                  Sent YOLO UNO telemetry, checked          Consistent room_01 data; API/database
+                                      latest/history, PostgreSQL, and the       image isolated FastAPI → RDS evidence
+                                      dashboard, and ran one controlled curl
+                                      request
+Command and actuator validation       Created commands from the dashboard,      Command/ACK matrix passed; video
+                                      obtained IDs from API/DevTools            captured physical actuator responses
+                                      responses, followed them from Pending
+                                      to Executed in the backend/RDS, and
+                                      tested fan, light, and curtain controls
+AWS availability and edge             Added CloudFront/WAF/private S3,          Two Healthy backends, stable
+                                      ALB/target group/ASG, encrypted EBS,      browser/device routes, and
+                                      and RDS Multi-AZ backup evidence          primary/standby database evidence
+CloudWatch                            Configured CloudWatch Agent, backend      Centralized logs, operational metrics,
+                                      logs, ec2-rds-metrics, and eight          and evaluated alarm states with
+                                      ALB/ASG/EC2/RDS alarms                    missing-data notes
+Operational review                    Reviewed the IAM Role, Security           Security/cost checklist and items for
+                                      Groups, RDS public access, secrets,       continued improvement
+                                      cost, and current limitations
+Documentation and handover            Reviewed bilingual Workshop pages,        Final package aligned with the deployed
+                                      READMEs, captions, test matrix,           system and collected evidence
+                                      images, video, and checklists
+
+
+
+Weekly outcomes
+
+     • All telemetry, history, command, polling, actuator, and ACK cases in the test matrix passed.
+     • Clearly separated API/database evidence from physical hardware evidence.
+     • CloudWatch received backend logs, displayed ALB/ASG/EC2/RDS metrics, and evaluated eight alarms.
+     • Completed the bilingual report, Workshop, READMEs, operating guidance, and handover material.
+     • The demo video shows dashboard interaction and physical device response: View the demo video.
+
+Challenges, resolution, and lessons learned
+          The Pending state was short-lived when the device polled quickly, so the team followed the same com-
+mand ID before and after ACK. CloudWatch alarms in Insufficient data were recorded as missing metric
+evidence rather than a passing state; the agent, namespace, dimensions, and IAM are the main troubleshooting
+points. I learned that every Pass result needs aligned criteria, actual behavior, and evidence, and that documenta-
+tion must distinguish implemented work from future options.
+Current limitations
+         CloudFront provides viewer HTTPS, but the ALB/device path uses HTTP; API authentication, WAF
+blocking, notification actions, and a controlled failover drill remain incomplete. These limitations were recorded
+for continued improvement.
+
+
+
+
+Internship Report (CO3335)                                                                                      Page 22/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+4      Proposal
+
+1. Executive Summary
+         The AWS IoT Monitoring and Control Dashboard addresses the need to monitor room conditions and
+control physical devices from a centralized interface. It connects YOLO UNO hardware to a backend deployed on
+AWS so that users can view temperature, humidity, and light readings, issue remote commands, and verify physical
+execution through command acknowledgement.
+         In the current Workshop deployment:
+
+     • YOLO UNO collects environmental telemetry and controls the fan, light, and curtain servo;
+     • CloudFront and AWS WAF deliver the React + Vite build from private Amazon S3;
+     • browser /api/* requests go through CloudFront to an Application Load Balancer;
+     • an Auto Scaling Group maintains two FastAPI EC2 instances running aws-iot-backend.service;
+     • Amazon RDS for PostgreSQL Multi-AZ stores telemetry and command states;
+     • YOLO UNO uses the ALB DNS name directly for telemetry, polling, and ACK;
+     • the device polls for commands and sends an ACK after execution; and
+     • Amazon CloudWatch collects backend logs, operational metrics, and alarm states.
+
+         The result is a reproducible Smart Room prototype that demonstrates an end-to-end flow from physical
+sensing to cloud storage, dashboard visualization, remote control, and physical-device acknowledgement.
+
+
+
+
+2.1 Problem Statement
+          Small classrooms, laboratories, and equipment rooms often rely on sensors and actuators that operate
+independently. Values may only be visible at the device, historical records are not stored centrally, and operators
+cannot easily inspect room conditions or control equipment remotely. A dashboard action alone also does not prove
+that a fan, light, or curtain physically completed the requested operation.
+          Troubleshooting is fragmented when application logs, infrastructure metrics, database records, and device
+states are not connected. This project creates one traceable workflow for telemetry, commands, acknowledgement,
+and monitoring.
+3.1 Hardware Objectives
+
+     • Read temperature and humidity from the DHT20 and read the analog light sensor.
+     • Control the fan, light/relay, and curtain servo; display status on LCD1602 I2C.
+     • Connect through Wi-Fi and HTTP REST.
+     • Support eight commands: MODE_AUTO, MODE_MANUAL, FAN_ON, FAN_OFF, LIGHT_ON, LIGHT_OFF,
+       CURTAIN_OPEN, and CURTAIN_CLOSE.
+
+3.2 Backend and Cloud Objectives
+
+     • Deploy FastAPI, Uvicorn, SQLAlchemy, and Pydantic on two ASG-managed Amazon EC2 instances behind
+       an ALB.
+     • Manage the backend through aws-iot-backend.service.
+     • Store telemetry and commands in the iot_dashboard database on RDS PostgreSQL.
+     • Configure VPC networking, routing, and Security Groups for the deployment.
+     • Keep RDS non-public and allow PostgreSQL only from the EC2 Security Group.
+     • Use an EC2 IAM Role/Instance Profile for CloudWatch Agent permissions.
+     • Deliver the frontend from private S3 through CloudFront OAC and monitor it with AWS WAF managed
+       rules.
+     • Use RDS PostgreSQL Multi-AZ with automated backups and a manual snapshot.
+
+3.3 Frontend Objectives
+
+     • Display temperature, humidity, light, and historical charts through REST polling.
+
+Internship Report (CO3335)                                                                                 Page 23/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+
+
+                             Figure 1: AWS IoT Monitoring and Control Dashboard architecture
+     • Create fan, light, curtain, Manual, and Auto commands.
+     • Present threshold-based, rule-based analysis without describing it as machine learning.
+
+3.4 Monitoring and Documentation Objectives
+
+     • Send backend logs to CloudWatch Logs.
+     • Monitor EC2 CPU, memory, disk, RDS CPU, and database connections.
+     • Configure alarms for important operational thresholds.
+     • Deliver bilingual Workshop instructions, source code, architecture, demo, and clean-up guidance.
+
+3.5 Current Scope
+         The prototype uses room_01 as the logical identifier of the model room. It covers three environmen-
+tal measurements, three physical actuators, HTTP REST, command polling, ACK, a CloudFront/WAF/private-S3
+frontend, an ALB with an ASG of two FastAPI instances, RDS PostgreSQL Multi-AZ, and CloudWatch monitor-
+ing.
+4.0 Architecture Overview
+        Current deployment architecture with CloudFront/WAF/private S3, ALB/ASG FastAPI backends, RDS
+PostgreSQL Multi-AZ, YOLO UNO, and CloudWatch.
+4.2 Telemetry Flow
+
+    1. YOLO UNO reads the DHT20 and analog light sensor.
+    2. Firmware sends POST /api/telemetry directly to the ALB DNS name.
+    3. FastAPI validates and stores the record in RDS PostgreSQL.
+    4. The CloudFront-hosted frontend polls relative /api/* latest/history endpoints; CloudFront forwards them
+       to the ALB.
+    5. The dashboard displays current readings and ordered history.
+
+4.3 Command and Acknowledgement Flow
+
+
+Internship Report (CO3335)                                                                                Page 24/72
+            Ho Chi Minh City University of Technology – VNU-HCM
+            Faculty of Computer Science & Engineering
+
+
+    1. The operator creates a command from the CloudFront-hosted frontend through /api/*.
+    2. FastAPI stores it in the Pending state.
+    3. YOLO UNO polls the latest command for room_01.
+    4. Firmware executes the actuator or mode command.
+    5. YOLO UNO sends an ACK with the numeric command ID.
+    6. FastAPI updates the matching record to Executed.
+
+5. Technical Implementation Plan
+Phase 1 — Requirements and AWS Foundation
+        Confirm the Smart Room functional requirements and acceptance criteria, assign team responsibilities,
+and define room_01 as the logical identifier. Then design the VPC/Security Group path, deploy the initial back-
+end/database, and verify private database connectivity.
+Phase 2 — Backend and Database
+        Define the PostgreSQL schema; implement health, telemetry, latest, history, command, polling, and ACK
+endpoints; configure environment values and systemd.
+Phase 3 — Hardware and Firmware
+        Connect DHT20, the light sensor, fan, light/relay, servo, and LCD; develop PlatformIO firmware for sens-
+ing, Wi-Fi, telemetry, polling, actuator control, modes, and ACK; validate all eight commands.
+Phase 4 — Frontend and Integration
+         Build the React + Vite + TypeScript dashboard, history charts, controls, and rule-based recommenda-
+tions; deploy it to private S3 through CloudFront/WAF; add /api/* routing to the ALB; and resolve API, CORS,
+command-state, and hardware issues.
+Phase 5 — Monitoring, Validation, and Handover
+         Create the backend AMI/Launch Template, ALB/target group/ASG, RDS Multi-AZ and backup controls;
+configure CloudWatch Agent, logs, metrics, and eight alarms; then complete end-to-end tests, security review,
+bilingual Workshop, evidence, demo, clean-up guide, and handover.
+
+
+
+
+6. Timeline and Milestones
+        The Proposal follows the eight-week Worklog from 01/06/2026 to 31/07/2026.
+
+Week                         Period                     Main activities                 Milestone
+Week 1                       01/06–07/06                Requirements, scope, initial   Agreed functions, acceptance
+                                                        architecture, roles, and plan  scope, architecture, and
+                                                                                       assignments
+Week 2                       08/06–14/06                AWS architecture, VPC, IAM, Reviewed cloud and security
+                                                        and Security Groups            design
+Week 3                       15/06–21/06                EC2, EBS, RDS, network,        Running EC2 and available
+                                                        and database connectivity      private PostgreSQL
+Week 4                       22/06–28/06                FastAPI, schema,               Backend running and
+                                                        environment, and systemd       connected to RDS
+Week 5                       29/06–05/07                Telemetry, latest, history,    Complete REST flow and
+                                                        command polling, and ACK       persisted command states
+                                                        APIs
+Week 6                       06/07–12/07                YOLO UNO firmware,             Hardware sends telemetry and
+                                                        sensors, actuators, Wi-Fi, and processes eight commands
+                                                        REST
+Week 7                       13/07–19/07                React dashboard, charts,       Frontend reads AWS data and
+                                                        controls, integration, and     creates commands
+                                                        debugging
+
+
+
+Internship Report (CO3335)                                                                                Page 25/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+
+Week                            Period               Main activities                Milestone
+Week 8                          20/07–31/07          CloudFront/WAF/S3,            Verified current architecture
+                                                     ALB/ASG, RDS Multi-AZ,        and submission-ready
+                                                     end-to-end tests, CloudWatch, bilingual documentation
+                                                     security, documentation,
+                                                     demo, and handover
+
+
+
+
+8. Risk Assessment
+
+Risk                            Likelihood           Impact                         Mitigation
+ALB origin/device route uses    High                 High                           Avoid sensitive payloads; add
+HTTP                                                                                ACM/custom domain and
+                                                                                    origin/device TLS before
+                                                                                    broader use
+WAF Count mode does not         Medium               High                           Review sampled requests and
+block                                                                               false positives, then stage
+                                                                                    tested Block mode
+Security Group rules are too    Medium               High                           Restrict SSH; allow backend
+broad                                                                               8000 only from ALB SG and
+                                                                                    RDS 5432 only from backend
+                                                                                    SG
+Credentials are committed       Low                  High                           Use local secret files,
+                                                                                    placeholder examples, and
+                                                                                    review Git status
+EC2 cannot reach RDS            Medium               High                           Verify subnet, DB Subnet
+                                                                                    Group, DNS, SG rules, and
+                                                                                    TLS with psql
+Device loses Wi-Fi/backend      Medium               Medium                         Add retry/reconnect logic and
+connectivity                                                                        show connection state
+Polling creates excess requests Medium               Medium                         Use documented intervals and
+                                                                                    review browser/backend logs
+Command remains Pending         Medium               High                           Check polling, command
+                                                                                    name/ID, actuator result,
+                                                                                    ACK, and DB state
+GPIO/power error causes         Medium               High                           Use verified pin map, shared
+instability                                                                         ground, safe power, and
+                                                                                    incremental tests
+ASG deployment becomes          Medium               High                           Release with a versioned
+inconsistent                                                                        AMI/Launch Template and
+                                                                                    verify instance refresh/target
+                                                                                    health
+Multi-AZ failover is untested   Medium               High                           Schedule a controlled failover
+                                                                                    drill and validate endpoint
+                                                                                    reconnection/data integrity
+Monitoring evidence is          Medium               Medium                         Verify Agent, log streams,
+incomplete                                                                          metric dimensions, retention,
+                                                                                    and eight alarms
+Resources continue              Medium               High                           Assign clean-up responsibility
+generating cost                                                                     and follow dependency order
+
+
+
+
+9.1 Expected Results
+
+
+
+Internship Report (CO3335)                                                                               Page 26/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+         The prototype should provide a traceable path from physical readings to AWS storage and dashboard
+visualization, plus a return path from dashboard commands to actuator execution and ACK. Evidence must allow
+another reviewer to inspect the application, database, hardware, and monitoring layers.
+11. Team Responsibilities
+
+Member                                                   Role and responsibilities
+Phạm Lê Minh Khôi                                        AWS infrastructure, EC2, EBS, RDS, VPC, Security Groups,
+                                                         IAM, CloudWatch, DevOps, PlatformIO firmware
+                                                         development, and YOLO UNO hardware integration
+Thượng Đình Hưng                                         React + Vite frontend, dashboard, overall integration,
+                                                         debugging, and demo recording support
+Ngô Minh Thuận                                           FastAPI backend, REST endpoints, PostgreSQL integration,
+                                                         telemetry, command processing, and ACK handling
+Lê Bảo Khánh                                             Documentation and QA, Proposal, Blogs, Worklog, Event
+                                                         Reports, and bilingual Workshop content
+
+
+
+
+12. Deliverables and Evidence
+
+Deliverable                          Content                                  Evidence
+GitHub repository                    Backend, frontend, hardware, diagrams,   Source Code, public main
+                                     bilingual README
+FastAPI backend                      Health, telemetry, history, command,       Backend Workshop, systemd and health
+                                     polling, ACK                               evidence
+PostgreSQL database                  Tables, telemetry, command states          psql, \dt, telemetry and command
+                                                                                queries
+React + Vite frontend                Telemetry, controls, rules, history charts Frontend Workshop, screenshots
+YOLO UNO firmware                    Sensors, actuators, modes, polling, ACK Hardware Workshop, source, build,
+                                                                                demo
+End-to-end validation                Telemetry persistence, lifecycle, physical Testing Workshop, Demo Video
+                                     execution
+AWS edge and availability            CloudFront/WAF/private S3, ALB/target AWS Workshop, screenshots
+                                     group/ASG, RDS Multi-AZ and backups
+CloudWatch monitoring                Logs, ALB/ASG/EC2/RDS metrics,             CloudWatch Workshop, screenshots
+                                     dashboard, eight alarms
+Bilingual Workshop                   Deployment, integration, testing,          Workshop
+                                     monitoring, handover
+Clean-up guide                       Inventory, cost, security,                 Cost, Security, Clean-up
+                                     dependency-aware removal
+Reference set                        Source, demo, documents, technical         References
+                                     links
+
+
+
+
+Internship Report (CO3335)                                                                                  Page 27/72
+            Ho Chi Minh City University of Technology – VNU-HCM
+            Faculty of Computer Science & Engineering
+
+
+5      Workshop
+5.1     Workshop Overview
+
+Context and Problem
+         A Smart Room needs to retain environmental data for historical review, support remote device control, and
+confirm that each command was actually executed. If the sensors, dashboard, and actuators operate independently,
+operators cannot trace the complete data flow or distinguish between “the API accepted the command” and “the
+physical device completed the command.”
+         This Workshop builds one traceable workflow for a Smart Room identified by device_id=room_01.
+CloudFront and WAF deliver the private-S3 React frontend and forward browser /api/* traffic to an ALB. The
+ALB routes to two ASG-managed FastAPI instances; RDS PostgreSQL Multi-AZ stores telemetry and command
+states. YOLO UNO sends telemetry and polls commands directly through the ALB, executes them, and sends an
+ACK.
+
+
+
+
+       Figure 1. Current architecture with CloudFront/WAF/private S3, ALB/ASG FastAPI backends, RDS Post-
+greSQL Multi-AZ, YOLO UNO, and CloudWatch.
+Technical Objectives
+
+    1. Receive telemetry from YOLO UNO for the Smart Room identified by device_id=room_01.
+    2. Retrieve the latest record and time-ordered telemetry history.
+    3. Support all 8 firmware commands for operating mode, fan, light, and curtain control.
+    4. Make command completion observable through the Pending → Executed transition and ACK.
+    5. Run FastAPI as a systemd service on ASG instances and monitor ALB, ASG, EC2, and RDS with Cloud-
+       Watch.
+    6. Provide a reproducible bilingual Workshop, test evidence, and project handover package.
+
+Current Scope
+
+
+Internship Report (CO3335)                                                                                Page 28/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+
+Component                                                   Implemented scope
+Smart Room identity                                         One room identified by device_id=room_01
+Sensors                                                     DHT20 temperature/humidity readings and raw analog light
+                                                            readings
+Actuators and display                                       Fan, light/relay, curtain servo, and LCD1602 status display
+Device software                                             PlatformIO firmware for YOLO UNO with Auto/Manual
+                                                            modes and 8 supported commands
+Backend and data                                            ALB → ASG with two FastAPI instances; telemetry and
+                                                            commands in RDS PostgreSQL Multi-AZ
+Frontend                                                    React + Vite build in private S3, delivered by CloudFront
+                                                            OAC with WAF monitoring
+Communication                                               Browser HTTPS to CloudFront; /api/* to ALB; device
+                                                            HTTP directly to ALB; polling, execution, and ACK
+Monitoring                                                  Backend logs, ALB/ASG/EC2/RDS dashboard widgets, and
+                                                            eight CloudWatch alarms
+
+
+Measurable Success Criteria
+
+ID                             Criterion                    Measurement                    Status
+S01                            Backend availability         GET /api/health returns        Pass
+                                                            HTTP 200 from the deployed
+                                                            service
+S02                            Telemetry persistence        One valid POST for device_ Pass
+                                                            id=room_01 creates one
+                                                            identifiable row in
+                                                            telemetry_logs
+S03                            Data retrieval               Latest and history requests    Pass
+                                                            return the stored room_01
+                                                            data in the expected order
+S04                            Physical control             All six direct actuator        Pass
+                                                            commands are validated with
+                                                            command and physical
+                                                            evidence
+S05                            Mode control                 MODE_AUTO and MODE_            Pass
+                                                            MANUAL are verified through
+                                                            firmware behavior
+S06                            Command completion           The same command ID is         Pass
+                                                            captured as Pending and later
+                                                            as Executed after ACK
+S07                            Monitoring                   Backend logs,                  Pass
+                                                            ALB/ASG/EC2/RDS widgets,
+                                                            and eight alarm
+                                                            configurations are visible
+S08                            Reproducibility and safety   T01–T14 are recorded as        Pass
+                                                            Pass, handover materials are
+                                                            available, and credentials are
+                                                            excluded from the repository
+
+
+           The evidence supporting these criteria is provided in Sections 5.5–5.9 and 5.12.
+
+
+5.2     Prerequisites
+
+Objectives
+         Prepare the AWS account, local tools, hardware, access material, and baseline knowledge before creat-
+ing billable resources. The examples use Asia Pacific (Singapore), ap-southeast-1, as the workshop baseline;
+
+Internship Report (CO3335)                                                                                      Page 29/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+CloudFront/WAF are global services, while S3, ALB, ASG, EC2, RDS, VPC, and CloudWatch resources must
+match the documented regional design.
+Step 1 - Verify AWS access
+
+       • An AWS account with billing visibility and MFA enabled.
+       • Least-privilege access to S3, CloudFront, WAF, Elastic Load Balancing, Auto Scaling, EC2/EBS, RDS,
+         VPC/Security Groups, IAM Role attachment, CloudWatch, and alarms.
+       • Permission to pass the approved EC2 IAM Role. AdministratorAccess is not a workshop requirement.
+       • An EC2 key pair stored locally; never commit .pem or .key files.
+       • A known administrator public IP for the SSH rule: <ADMIN_IP>/32.
+
+         Before provisioning, record the region, VPC CIDR, two application-subnet CIDRs, DB subnets across the
+required Availability Zones, resource-name prefix, and the person responsible for clean-up.
+Step 2 - Verify local tools and versions
+         Run each command in the named environment. Compatible newer versions are acceptable when the project
+source supports them.
+
+Tool                                    Environment and check                Expected output
+Git                                     PowerShell: git --version            A Git version
+Python                                  PowerShell: python --version         A Python version compatible with
+                                                                             FastAPI 0.128.8 and SQLAlchemy
+                                                                             2.0.46
+Node.js                                 PowerShell: node --version           A version compatible with Vite 8.1.1
+                                                                             and TypeScript 6.0.2
+npm                                     PowerShell: npm --version            A numeric npm version
+PlatformIO                              PlatformIO terminal: pio --version   PlatformIO Core version
+PostgreSQL client                       PowerShell: psql --version           PostgreSQL client version
+Browser                                 Open DevTools → Network              Requests can be inspected
+VS Code                                 Help → About                         Installed version is displayed
+
+
+        If PowerShell cannot find a tool, reopen the terminal after installation and verify Get-Command <tool>.
+Do not mix %USERPROFILE% from Command Prompt with $env:USERPROFILE in PowerShell.
+Step 3 - Prepare hardware and electrical safety
+         Prepare:
+
+       • YOLO UNO / ESP32-S3 and a USB data cable;
+       • DHT20 temperature and humidity sensor;
+       • analog light sensor;
+       • fan module and a suitable driver when required;
+       • light or relay module;
+       • servo motor for the curtain;
+       • LCD1602 I2C display used by the final firmware;
+       • jumper wires, breadboard, and a correctly rated power supply.
+
+          Do not power a motor or relay load directly from a microcontroller GPIO. Verify voltage levels,
+driver/flyback protection, and common ground before connecting actuators.
+Step 4 - Verify source and secrets readiness
+         The application source is the separate aws-iot-dashboard repository. It contains backend requirements.txt,
+frontend package.json, firmware platformio.ini, boards/yolo_uno.json, and include/secrets.example.h.
+Its .gitignore excludes .env, .pem, virtual environments, build output, and node_modules; confirm
+hardware/include/secrets.h remains untracked before sharing.
+         The reviewed source confirms Uvicorn main:app, Amazon Linux user ec2-user, virtual environment
+venv, tables devices, telemetry_logs, and commands, and the numeric GPIO map documented in section 5.6.
+
+Internship Report (CO3335)                                                                                 Page 30/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+Step 7 - Complete the readiness gate
+
+    □ Region and naming are agreed.
+    □ Least-privilege AWS access works.
+    □ <ADMIN_IP> and EC2 key location are known.
+    □ All version checks complete.
+    □ Hardware power requirements are reviewed.
+    □ Source repositories and ignored secret templates are available.
+    □ A clean-up owner and evidence location are assigned.
+
+
+
+
+Figure 2. Terminal evidence for the installed Git, Python, Node.js, npm, and PlatformIO versions used by the
+project.
+Expected Result
+        Proceed only when every blocking item above is satisfied. If a required source repository or the exact
+firmware pin map is missing, record it as a handover blocker; do not invent values or energize the circuit.
+
+
+5.3     Architecture and Service Design
+
+Architecture
+
+
+
+
+Internship Report (CO3335)                                                                            Page 31/72
+            Ho Chi Minh City University of Technology – VNU-HCM
+            Faculty of Computer Science & Engineering
+
+
+
+
+         Figure 3. Current architecture: CloudFront/WAF with a private S3 origin, /api/* forwarding to ALB,
+two FastAPI instances in an ASG, RDS PostgreSQL Multi-AZ, and the direct device-to-ALB path.
+         The dashboard user and YOLO UNO are outside AWS. CloudFront distributes the React + Vite build
+from a private S3 bucket and forwards browser /api/* requests to the internet-facing ALB. YOLO UNO uses the
+ALB DNS name directly. Inside the VPC, the ALB routes to two FastAPI instances managed by an ASG in ap-
+southeast-1a and ap-southeast-1c; RDS PostgreSQL Multi-AZ uses a primary in ap-southeast-1c and
+standby in ap-southeast-1b. Each backend instance has an encrypted EBS root volume.
+
+
+
+
+        Figure 4. The browser uses CloudFront, while YOLO UNO uses the ALB directly; both routes converge on
+the same FastAPI/RDS command and telemetry model.
+Components and AWS service selection
+
+Internship Report (CO3335)                                                                          Page 32/72
+            Ho Chi Minh City University of Technology – VNU-HCM
+            Faculty of Computer Science & Engineering
+
+
+
+Component/service                                           Responsibility and reason
+React + Vite + TypeScript + Tailwind CSS                    Operator UI built to private S3 and distributed through
+                                                            CloudFront
+Amazon S3 + CloudFront + AWS WAF                            Private static origin, HTTPS edge delivery, /api/* routing,
+                                                            and managed-rule monitoring
+Application Load Balancer + Target Group                    Stable API entry point and /api/health checks for backend
+                                                            targets
+EC2 Auto Scaling Group                                      Maintains two FastAPI/Uvicorn instances and can scale from
+                                                            2 to 4
+Amazon EC2                                                  Full control of FastAPI, Python, Uvicorn, and systemd on
+                                                            each backend instance
+Amazon EBS                                                  Encrypted persistent root volume attached to each EC2
+                                                            instance
+Amazon RDS for PostgreSQL Multi-AZ                          Managed relational persistence with primary/standby failover
+Amazon VPC and subnets                                      Network boundaries for ALB, ASG instances, and the DB
+                                                            Subnet Group
+Security Groups                                             Stateful allow rules for ALB-to-backend and backend-to-RDS
+                                                            traffic
+AWS IAM Role                                                Supplies temporary permission for EC2 to publish monitoring
+                                                            data
+CloudWatch Agent                                            Software on EC2 that reads guest metrics/log files
+Amazon CloudWatch/Alarms                                    Stores metrics/logs and evaluates thresholds
+YOLO UNO / ESP32-S3                                         Reads sensors, controls actuators, polls commands, and sends
+                                                            ACK
+
+
+       An IAM Role grants permission; it is not the CloudWatch Agent. The agent is a process installed and
+managed on EC2.
+Selected AWS Services
+
+AWS Service                   Role in the System            Selection Reason                Trade-off
+Amazon EC2                    Hosts the FastAPI backend,   Provides full control over the   The team must manage the
+                              Uvicorn, and CloudWatch      Python environment,              operating system, packages,
+                              Agent                        dependencies, networking,        services, and part of the
+                                                           systemd service, and log files   security configuration
+Amazon EBS                    Provides the EC2 root volume Persists the operating system,   An unattached volume may
+                                                           source code, virtual             continue generating charges if
+                                                           environment, and local logs      it is not deleted
+Amazon RDS for                Stores telemetry and         PostgreSQL is suitable for       A continuously running
+PostgreSQL                    command states               structured telemetry and         database instance may cost
+                                                           command records, while RDS       more than some serverless
+                                                           reduces database                 options at very low usage
+                                                           administration effort
+Amazon VPC                    Provides the network         Enables subnet, routing, and     Requires correct network and
+                              environment for EC2 and      network-access control           Security Group configuration
+                              RDS
+Security Groups               Control inbound traffic to   Restrict SSH to the              Incorrect rules may block the
+                              EC2 and RDS                  administrator IP and             application or expose services
+                                                           PostgreSQL access to the         unnecessarily
+                                                           EC2 Security Group
+AWS IAM Role                  Grants EC2 permission to     Avoids storing AWS access        Policies must follow the
+                              publish monitoring data      keys on the instance or in       principle of least privilege
+                                                           source code
+Amazon CloudWatch             Collects backend logs and    Centralizes operational data     Log ingestion, retention, and
+                              infrastructure metrics       for troubleshooting and          custom metrics may generate
+                                                           validation                       additional costs
+
+
+
+Internship Report (CO3335)                                                                                         Page 33/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+
+AWS Service                  Role in the System            Selection Reason                Trade-off
+CloudWatch Alarms         Evaluates CPU, memory,        Provides visibility when           Alarm usefulness depends on
+                          disk, and database-connection configured operating               appropriate thresholds and
+                          thresholds                    thresholds are exceeded            evaluation periods
+Amazon S3 and CloudFront Hosts and distributes the      Keeps the S3 origin private        Cache/behavior changes
+                          frontend and routes /api/*    through OAC and provides           require controlled deployment
+                          to ALB                        the browser HTTPS endpoint         and invalidation
+AWS WAF                   Applies three managed rule    Provides visibility into           Current rules run in
+                          groups at the CloudFront edge common web threats before          Count/Monitor mode, not
+                                                        enabling enforcement               blocking mode
+Application Load Balancer Distributes API requests to   Removes a single backend           Adds ALB/EC2 running cost
+and Auto Scaling          two healthy FastAPI targets   endpoint and maintains             and launch-template lifecycle
+                                                        desired capacity across two        management
+                                                        AZs
+
+
+
+Why HTTP REST Was Selected Instead of MQTT
+         HTTP REST was selected for the current room_01 prototype because the project already uses FastAPI
+endpoints for telemetry, command polling, and acknowledgement. The same JSON contract can be tested directly
+with curl, PowerShell, browser DevTools, Uvicorn logs, and PostgreSQL queries. This makes each step of the
+end-to-end flow easy to demonstrate and troubleshoot without adding an MQTT broker, topics, subscriptions,
+device certificates, and separate message-processing components.
+         The decision is a scope and simplicity trade-off, not a claim that HTTP is better than MQTT for every IoT
+system:
+
+Criterion                              HTTP REST in the current prototype       MQTT / AWS IoT Core when scaling
+Integration                            Reuses the existing FastAPI              Requires broker topics, policies,
+                                       request/response API                     certificates, and subscribers
+Verification                           HTTP status, JSON body, API log, and     Requires inspecting publish/subscribe
+                                       database row are easy to correlate       delivery and broker-side evidence
+Command delivery                       Device periodically polls                Broker can push commands through
+                                       PostgreSQL-backed Pending                subscribed topics
+                                       commands and sends an ACK
+Connectivity and bandwidth             Repeated polling creates more requests   Persistent lightweight connections are
+                                       and protocol overhead                    usually more efficient for many devices
+Delivery guarantees                    Application implements retry, command    MQTT provides QoS levels and session
+                                       state, and ACK behavior                  features designed for messaging
+Current suitability                    Adequate for one model room and a        Preferable for larger fleets, intermittent
+                                       small command/telemetry workload         links, lower bandwidth, or event-driven
+                                                                                delivery
+
+
+           For a broader deployment, AWS IoT Core with MQTT should be evaluated together with per-device iden-
+tity, certificate rotation, topic authorization, QoS, offline behavior, cost, and migration of the existing REST com-
+mand lifecycle. MQTT remains a future option and is not described as implemented in this Workshop.
+Data flows
+
+    1. Telemetry: YOLO UNO sends camelCase fields to the ALB DNS endpoint → target group selects a healthy
+       FastAPI instance → Pydantic maps fields to snake_case → SQLAlchemy writes telemetry_logs in RDS
+       → CloudFront /api/* latest/history API → dashboard.
+    2. Command: dashboard through CloudFront /api/* → ALB → backend writes commands.state =
+       "Pending" → YOLO UNO polls the ALB route → the route named commands/latest returns the oldest
+       pending command first (FIFO) → hardware executes it.
+    3. ACK: device sends command ID → backend changes that command to Executed → later telemetry reports
+       actuator state. The current ACK service looks up by command ID only; device ownership validation is a
+       known hardening task.
+
+Internship Report (CO3335)                                                                                        Page 34/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+    4. Monitoring: EC2 default metrics and agent data/logs → CloudWatch; RDS publishes service metrics;
+       alarms evaluate configured thresholds.
+
+       Polling can make Pending visible for only a short time. Evidence should therefore include the create-
+command response and the later Executed database/API state.
+       The database models define devices, telemetry_logs, and commands. Telemetry fields are
+temperature, humidity, light_intensity, fan_status, light_status, curtain_status, and timestamp.
+Security and IAM
+Network Security Table
+
+Source                       Destination                                 Port                Rule
+Internet / CloudFront origin ALB Security Group                           80                 Public API entry point in
+traffic                                                                                      the verified deployment
+ALB Security Group           Backend Security Group                     8000                 FastAPI target traffic only
+<ADMIN_IP>/32                Backend Security Group                      22                  Restricted administration
+                                                                                             when SSH is required
+Backend Security Group       RDS Security Group                         5432                 PostgreSQL only
+EC2/RDS                      CloudWatch                                HTTPS                 Outbound monitoring path
+
+
+         RDS is not publicly accessible. Secrets stay in ignored local files; EC2 uses an IAM Role instead of
+hard-coded AWS keys. CloudFront provides viewer HTTPS, ALB/ASG provides backend availability, and RDS
+is Multi-AZ. The current evidence does not prove ALB HTTPS, application authentication, rate limiting, or WAF
+blocking mode.
+Security and IAM Table
+
+                                                                                            Limitation / next hardening
+Control                       Current implementation         Evidence to retain             step
+Administrator access          SSH 22 restricted to          EC2 Security Group rule         Review/rotate key ownership;
+                              <ADMIN_IP>/32                                                 consider managed access
+Database isolation            RDS private; 5432 accepts the RDS setting, subnet group,      Review NACL/routes and
+                              EC2 Security Group only       SG reference                    TLS verification
+AWS credentials               EC2 IAM Role with             Instance profile and attached   Replace broad managed
+                              CloudWatchAgentServerPolicy   policy                          permissions with reviewed
+                              for monitoring                                                resource-scoped policy where
+                                                                                            practical
+Application secrets           .env and hardware/            Redacted file locations and     Move production secrets to an
+                              include/secrets.h remain git status                           approved managed secret
+                              local and ignored                                             service
+Public API                    CloudFront /api/* forwards CloudFront behavior, ALB           Add ALB TLS/custom
+                              to ALB HTTP 80; ALB           listener, target health, and    domain plus authentication,
+                              forwards to backend port 8000 health request                  authorization, and rate
+                                                                                            limiting before production
+Database identity             Dedicated PostgreSQL user in Redacted connection              Restrict grants, rotate
+                              DATABASE_URL                 configuration                    password, audit access
+
+
+
+Principle of Least Privilege
+         Grant only the actions needed by each identity, limit network sources and destinations, and avoid per-
+manent credentials. The workshop does not require AdministratorAccess: the human operator needs only the
+approved provisioning/inspection actions, EC2 needs only monitoring publication permissions, RDS accepts Post-
+greSQL only from the EC2 Security Group, and the database user should receive only application-required privi-
+leges. Any temporary broad permission used during troubleshooting must be documented, time-bounded, reviewed,
+and removed.
+
+
+Internship Report (CO3335)                                                                                       Page 35/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+Future Scalability Options and Current Limitations
+          The device_id route structure and relational schema can support more rooms, but the present acceptance
+scope is room_01. ALB/ASG removes the single compute endpoint, while periodic device polling still introduces
+delay and the direct device route still lacks verified TLS and authentication.
+          Possible future options include ALB HTTPS with a custom domain, authentication and per-device autho-
+rization, managed MQTT through AWS IoT Core, queue-based processing such as SQS, caching, read replicas,
+containers, and Infrastructure as Code. These require architecture, cost/security review, implementation, and tests.
+          Amazon SQS and an event-driven architecture are not deployed in the current project. Auto Scaling
+is already implemented for the backend.
+
+
+5.4     AWS Infrastructure Setup
+
+Overview and objectives
+         Create the network, identity, edge, load-balancing, compute, storage, and database foundation for the de-
+ployed system. Use placeholders in notes and screenshots; never publish an account ID, password, private endpoint,
+or key.
+Step 1 - Select the region and address plan
+         In the AWS Console, select the confirmed project region. This workshop uses Asia Pacific (Singapore),
+ap-southeast-1, as its baseline. Record non-overlapping CIDRs for the VPC, one public subnet, and at least two
+DB subnets in different Availability Zones.
+         Expected result: every resource created below appears in the same region and uses the agreed name
+prefix.
+Step 2 - Create or select the VPC and subnets
+
+    1. Open VPC → Your VPCs and create/select the project VPC.
+    2. Enable DNS resolution and DNS hostnames.
+    3. Create/select public application subnets in at least ap-southeast-1a and ap-southeast-1c for the ALB
+       and backend ASG.
+    4. Attach an Internet Gateway to the VPC.
+    5. Add 0.0.0.0 $\rightarrow$ Internet Gateway to the public application-subnet route table.
+    6. Create/select database subnets in separate Availability Zones, including the verified primary/standby place-
+       ment in ap-southeast-1c and ap-southeast-1b. Do not add an Internet Gateway route for private DB
+       subnets.
+    7. In RDS → Subnet groups, create a DB Subnet Group containing both DB subnets.
+
+        Expected result: the ALB spans the application subnets, the ASG can place two backend instances across
+AZs, and the database subnets remain private.
+Step 2A - Configure private S3, CloudFront, and WAF
+
+    1. Build the React + Vite frontend and upload the dist artifacts to the project S3 bucket.
+    2. Enable Block all public access on the bucket.
+    3. Create a CloudFront Origin Access Control (OAC) and allow the CloudFront distribution to read only the
+       required S3 objects.
+    4. Configure two CloudFront origins: the private S3 bucket for static files and iot-backend-alb for the API.
+    5. Keep the default * behavior on the S3 origin with managed optimized caching.
+    6. Create a higher-priority /api/* behavior for the ALB origin, disable caching, forward the required viewer
+       values except the Host header, and allow the HTTP methods required by the API.
+    7. Associate the CloudFront-created WAF web ACL. The three managed rule groups currently run in
+       Count/Monitor mode, so they observe requests but do not yet block them.
+
+         CloudFront provides HTTPS to browser viewers. In the verified configuration, CloudFront reaches the
+ALB origin over HTTP and YOLO UNO also calls the ALB directly over HTTP; do not describe these two paths
+as end-to-end TLS.
+
+
+Internship Report (CO3335)                                                                                  Page 36/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+
+
+Figure 5a. The distribution has separate private-S3 and ALB origins.
+
+
+
+
+Figure 5b. The default behavior serves S3 content, while /api/* has higher priority and uses the ALB origin.
+
+
+
+
+Figure 5c. The frontend bucket remains private and grants object reads to the CloudFront distribution through
+OAC.
+
+
+
+
+Internship Report (CO3335)                                                                              Page 37/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+
+
+Figure 5d. Three AWS managed rule groups are associated with the distribution in Count mode.
+Step 3 - Create Security Groups
+         Create the ALB, backend, and RDS Security Groups in the same VPC. The deployed environment uses a
+separate ALB Security Group, iot-backend-sg for backend targets, and rds-ec2-1 for the RDS-side rule.
+
+Security Group                           Type                Source                      Purpose
+ALB Security Group                     HTTP 80               0.0.0.0/0                   Public ALB listener and
+                                                                                         CloudFront API origin
+iot-backend-sg                     Custom TCP 8000           ALB Security Group          FastAPI target traffic only
+iot-backend-sg                          SSH 22               <ADMIN_IP>/32               Restricted administration
+                                                                                         when required
+iot-backend-sg → rds-              PostgreSQL 5432           Backend Security Group      Backend-to-RDS only
+ec2-1                                                        reference
+
+
+         In the current environment, port 8000 is not the public application entry point; it accepts target traffic
+from the ALB Security Group. CloudFront forwards browser /api/* requests to the ALB, while YOLO UNO
+calls the ALB DNS endpoint directly. RDS does not expose PostgreSQL port 5432 to 0.0.0.0/0; it accepts
+database connections from the backend Security Group.
+         The following two screenshots separate the EC2-side rules from the RDS-side Security Group relationship
+while redacting the administrator IP and other sensitive identifiers.
+
+
+
+
+Figure 6a. Security Group chain: public HTTP to the ALB, ALB-to-backend traffic on port 8000, and backend-to-
+RDS traffic on port 5432.
+
+
+Internship Report (CO3335)                                                                                   Page 38/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+
+
+Figure 6b. RDS accepts PostgreSQL port 5432 from the backend Security Group rather than a public CIDR.
+Step 4 - Create the EC2 IAM Role
+
+    1. Open IAM → Roles → Create role.
+    2. Select trusted entity AWS service → EC2.
+    3. Attach CloudWatchAgentServerPolicy only if CloudWatch Agent will publish metrics/logs.
+    4. Use the deployed role name iot-dashboard-cloudwatch-role and create an instance profile.
+
+        Do not create long-lived access keys. The deployed role uses the AWS-managed CloudWatchAgentServerPolicy,
+allowing CloudWatch Agent to publish the required logs and metrics without hard-coded AWS access keys. The
+role grants permission; CloudWatch Agent is installed separately in section 5.9. Review and narrow IAM
+permissions for a production deployment instead of assuming the managed policy is perfectly least-privileged.
+        The EC2 Security page and IAM Role details confirm the role attachment and the AWS-managed policy.
+
+
+
+
+Figure 7. The EC2 instance is attached to the iot-dashboard-cloudwatch-role, which uses CloudWatchAgentServerPolic
+to allow CloudWatch Agent to publish logs and metrics without hard-coded AWS access keys.
+Step 5 - Prepare the AMI, launch template, ASG, and EBS
+
+    1. Validate FastAPI, the systemd service, CloudWatch Agent, and the local health check on the source instance.
+    2. Create the private AMI iot-backend-ami-v1 only after validation.
+    3. Create launch template iot-backend-template with the AMI, t3.micro, backend Security Group, key
+       pair if required, and the CloudWatch IAM instance profile.
+    4. Configure a 10 GiB gp3 root EBS volume encrypted with the AWS managed aws/ebs KMS key.
+    5. Create iot-backend-asg across the application subnets with minimum/desired/maximum capacity 2/2/
+       4.
+    6. Wait for both instances to become InService and Healthy.
+
+        The verified ASG instances use 10 GiB gp3 EBS volumes encrypted with the AWS managed aws/ebs
+KMS key. Keep encryption enabled in every launch-template version.
+        Do not use an instance public IP as the application endpoint. Record the ALB DNS name privately for
+firmware/health checks and the CloudFront domain for browser access.
+
+Internship Report (CO3335)                                                                                Page 39/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+           The EC2 Instances page confirms the deployed compute size, Availability Zone, running state, and health
+checks.
+
+
+
+
+Figure 8a. The validated backend AMI is used by the launch template.
+
+
+
+
+Figure 8b. The ASG maintains two healthy in-service instances with scaling limits from 2 to 4.
+
+
+
+
+Figure 8c. Backend gp3 EBS volumes are encrypted with the AWS managed aws/ebs key.
+Step 5A - Create the target group and Application Load Balancer
+
+    1. Create iot-backend-tg as an instance target group on HTTP port 8000 with health path /api/health.
+    2. Create internet-facing iot-backend-alb across the two application subnets.
+    3. Add an HTTP port 80 listener whose default action forwards to iot-backend-tg.
+    4. Attach the ASG to the target group and wait for both registered targets to become Healthy.
+
+
+
+
+Figure 9a. The internet-facing ALB is Active across two Availability Zones.
+
+
+
+
+Internship Report (CO3335)                                                                                Page 40/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+
+
+Figure 9b. The HTTP:80 listener forwards to iot-backend-tg.
+
+
+
+
+Figure 9c. Two backend targets are healthy on port 8000.
+Step 6 - Create Amazon RDS for PostgreSQL
+
+    1. Open RDS → Databases → Create database and select PostgreSQL.
+    2. Choose the deployed db.t4g.micro class and the approved storage configuration.
+    3. Set the initial database name to iot_dashboard.
+    4. Select the project VPC, DB Subnet Group rds-ec2-db-subnet-group-1, and the deployed RDS Security
+       Groups.
+    5. Keep Internet access disabled and enable Multi-AZ.
+    6. Store the master password securely as <DB_PASSWORD>; do not add it to screenshots or Git.
+    7. Set automated backup retention to seven days and keep encryption/monitoring settings approved for the
+       project.
+    8. Wait for iot-dashboard-db to reach Available; verify primary ap-southeast-1c, standby ap-
+       southeast-1b, and record <RDS_ENDPOINT> privately.
+    9. Take a manual snapshot before material HA or application changes.
+
+         Multi-AZ is enabled for managed failover through the same RDS endpoint. Do not describe the standby
+as a read replica or claim RDS Proxy, a public endpoint, or IAM database authentication.
+         The RDS summary and Connectivity & security page confirm the PostgreSQL engine, instance class, DB
+Subnet Group, Availability Zone, and disabled Internet access gateway.
+
+
+
+
+Internship Report (CO3335)                                                                          Page 41/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+
+
+Figure 10a. The iot-dashboard-db Amazon RDS for PostgreSQL instance in the Available state, using the rds-
+ec2-db-subnet-group-1 DB Subnet Group with the Internet access gateway disabled.
+
+
+
+
+Figure 10b. RDS Multi-AZ reports the primary in ap-southeast-1c and standby in ap-southeast-1b.
+
+
+
+
+Figure 10c. Automated backups are retained for seven days.
+
+
+
+
+Internship Report (CO3335)                                                                        Page 42/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+
+
+Figure 10d. A manual snapshot provides a named recovery point.
+Step 7 - Verify access and network
+         For restricted administration, connect from Windows PowerShell only when an instance route and ap-
+proved SSH rule are available:
+
+ssh -i "$env:USERPROFILE\.ssh\<KEY_FILE>.pem" <EC2_USER>@<EC2_PUBLIC_IP>
+
+           From EC2 Linux Bash, verify DNS and TCP reachability:
+
+getent hosts <RDS_ENDPOINT>
+nc -vz <RDS_ENDPOINT> 5432
+
+        If nc is unavailable, install the appropriate netcat package for the selected Linux distribution. A successful
+TCP test proves the route and Security Groups, not database credentials.
+        From an external client, verify the public API through the ALB instead of port 8000 on an instance:
+
+curl.exe -sS -i "http://<ALB_DNS_NAME>/api/health"
+
+
+Expected Result and Evidence
+        The figures above provide redacted evidence of the IAM Role, AMI/launch template, ASG capacity,
+encrypted EBS, active ALB, two healthy targets, RDS Available state, Multi-AZ placement, backups, snapshot,
+and Security Group chain. Preserve separate command output for the successful backend-to-RDS port test.
+
+
+5.5     Backend Deployment and Database Integration
+
+Overview and objectives
+         Deploy the FastAPI backend in a Python virtual environment on Amazon EC2, manage it with aws-iot-
+backend.service, and connect it to the iot_dashboard database on Amazon RDS for PostgreSQL. The run-
+book uses ec2-user, /home/ec2-user/aws-iot-dashboard/backend, virtual environment venv, and Uvi-
+corn entry point main:app. Complete these steps on the source instance before creating the backend AMI, or
+apply the same release consistently through a new AMI and ASG instance refresh.
+Step 1 - Deploy the FastAPI Backend
+         Connect from Windows PowerShell, install the required packages, clone the repository, and create the
+virtual environment:
+
+ssh -i "$env:USERPROFILE\.ssh\<KEY_FILE>.pem" ec2-user@<EC2_PUBLIC_IP>
+
+sudo dnf update -y
+sudo dnf install -y git python3 python3-pip postgresql15 curl
+git clone <REPOSITORY_URL> ~/aws-iot-dashboard
+cd ~/aws-iot-dashboard/backend
+python3 -m venv venv
+source venv/bin/activate
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+
+           Create an ignored .env file. Do not commit credentials:
+
+
+Internship Report (CO3335)                                                                                   Page 43/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+DATABASE_URL=postgresql://<DB_USER>:<DB_PASSWORD>@<RDS_ENDPOINT>:5432/iot_dashboard?sslmode=req ⌋
+ ,→ uire
+
+           A manual start can be used for the first deployment check:
+
+source venv/bin/activate
+uvicorn main:app --host 0.0.0.0 --port 8000
+
+
+Step 2 - Configure the systemd Service
+         Create /etc/systemd/system/aws-iot-backend.service:
+
+[Unit]
+Description=AWS IoT FastAPI backend
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ec2-user
+WorkingDirectory=/home/ec2-user/aws-iot-dashboard/backend
+EnvironmentFile=/home/ec2-user/aws-iot-dashboard/backend/.env
+ExecStart=/home/ec2-user/aws-iot-dashboard/backend/venv/bin/uvicorn main:app --host 0.0.0.0
+ ,→ --port 8000
+Restart=on-failure
+RestartSec=5
+StandardOutput=append:/var/log/aws-iot-backend/backend.log
+StandardError=append:/var/log/aws-iot-backend/backend-error.log
+
+[Install]
+WantedBy=multi-user.target
+
+           Prepare the log directory, enable the service, and start it:
+
+sudo install -d -o ec2-user -g ec2-user /var/log/aws-iot-backend
+sudo systemctl daemon-reload
+sudo systemctl enable aws-iot-backend
+sudo systemctl restart aws-iot-backend
+
+         Once enabled, systemd starts the backend when EC2 boots; Uvicorn does not need to be started manually
+after every restart.
+Step 3 - Verify the Backend Service
+         Run:
+
+sudo systemctl status aws-iot-backend --no-pager -l
+curl http://127.0.0.1:8000/api/health
+
+
+
+
+Internship Report (CO3335)                                                                            Page 44/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+         Figure 11a. The aws-iot-backend.service is active (running), and the /api/health endpoint
+returns an ok status.
+         Figure 11a shows that the unit was loaded by systemd, the service is active (running), and Uvicorn is
+the main process. The health endpoint also returns valid JSON with "status":"ok". Together, these observations
+provide evidence that the backend is deployed and can accept a local HTTP request. They do not establish High
+Availability or guarantee failure-free operation.
+         After the ASG instances are registered, verify the same endpoint through the ALB:
+
+curl.exe -sS -i "http://<ALB_DNS_NAME>/api/health"
+
+
+
+
+Figure 11b. The ALB endpoint returns HTTP 200 for /api/health; target-group evidence in section 5.4 confirms
+both registered backends are Healthy.
+Step 4 - Connect EC2 to Amazon RDS
+         From EC2, connect with SSL/TLS required:
+
+psql "host=<RDS_ENDPOINT> port=5432 dbname=iot_dashboard user=<DB_USER> sslmode=require"
+
+         Use the RDS endpoint, not an Availability-Zone-specific host. During a Multi-AZ failover, AWS remaps
+this endpoint to the standby; the standby is not an application read replica.
+         In psql, confirm the active database and connection information without exposing the password:
+
+SELECT current_database(), current_user;
+\conninfo
+\dt
+
+         If the schema has not been initialized, run the source-defined command from the backend virtual environ-
+ment, then verify it again:
+
+cd ~/aws-iot-dashboard/backend
+source venv/bin/activate
+python -m app.database.init_db
+
+
+Step 5 - Verify PostgreSQL Tables and Commands
+         The deployed iot_dashboard database shown in the evidence contains commands, devices, sensor_
+readings, and telemetry_logs. Query the most recent command records:
+
+SELECT id, device_id, command, state, timestamp
+FROM commands
+ORDER BY id DESC
+LIMIT 6;
+
+
+
+
+Internship Report (CO3335)                                                                               Page 45/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+
+
+           Figure 12a. The EC2-to-Amazon RDS PostgreSQL connection, database tables, and recent commands in
+the Executed state.
+           The screenshot confirms an SSL/TLS PostgreSQL session from EC2 to the iot_dashboard database.
+It lists the four application tables and recent command rows whose device_id is room_01. Examples include
+CURTAIN_CLOSE, CURTAIN_OPEN, MODE_AUTO, and LIGHT_OFF, all displayed in the Executed state. Database
+credentials are not shown.
+
+
+
+
+Figure 12b. A telemetry POST and latest API response correlate with the same telemetry_logs record in
+PostgreSQL.
+
+
+5.6     Hardware Integration
+
+Overview and objectives
+         YOLO UNO is the primary device for this workshop. It reads DHT20 temperature/humidity and a raw
+analog light value, controls fan, light/relay, and curtain servo outputs, sends telemetry, polls a pending command,
+executes it once, and sends ACK.
+Step 1 - Wire the source-defined hardware
+
+
+Internship Report (CO3335)                                                                                 Page 46/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+         The active hardware/src/main.cpp defines this map; it takes precedence over stale prose elsewhere in
+the source repository:
+         The YOLO UNO pinout image has not yet been provided. Do not treat a pinout as a complete wiring
+diagram; use the verified table below together with the firmware definitions.
+Hardware Port Mapping
+
+                         Device             YOLO UNO Physical Port Firmware Pin
+                         Analog light sensor Grove A1-A0           A0 / GPIO1
+                         Two-control-pin fan Grove D8-D7           D8 / GPIO17, D7 / GPIO10
+                         LED or relay light Grove D4-D3            D3 / GPIO6
+                         Curtain servo       D11 GVS port          D11 / GPIO38
+                         DHT20               Grove I2C1            SDA / GPIO11, SCL / GPIO12
+                         LCD 1602 I2C        Grove I2C2            SDA / GPIO11, SCL / GPIO12
+
+
+          DHT20 is connected to Grove I2C1, while LCD 1602 uses Grove I2C2. Both ports share SDA/GPIO11
+and SCL/GPIO12 on the same I2C bus. DHT20 uses address 0x38; the firmware auto-detects the LCD at 0x21,
+0x27, or 0x3F. If the LCD requires 5 V, use a bidirectional logic-level converter and never connect a 5 V pull-up
+directly to an ESP32-S3 GPIO. The modules share the I2C bus; they are not wired directly to each other.
+          The firmware does not include PIR, ultrasonic sensors, buzzers, or MQTT. Use a suitable actuator supply
+and a common ground; never draw fan or servo current directly from a GPIO.
+Step 2 - Prepare PlatformIO
+         Open the hardware project in VS Code. Confirm:
+
+     • the YOLO UNO / ESP32-S3 board JSON exists and is referenced correctly;
+     • platformio.ini selects the intended environment and libraries;
+     • Serial Monitor baud is 115200;
+     • the environment is yolo_uno on ESP32-S3;
+     • ArduinoJson, ESP32Servo, DHT20, and LiquidCrystal_I2C dependencies resolve;
+     • include/secrets.example.h is committed; and
+     • include/secrets.h is local and ignored.
+
+           Use this secret shape:
+
+#pragma once
+constexpr char WIFI_SSID[] = "<YOUR_WIFI_SSID>";
+constexpr char WIFI_PASSWORD[] = "<YOUR_WIFI_PASSWORD>";
+constexpr char API_BASE_URL[] = "http://<ALB_DNS_NAME>";
+constexpr char DEVICE_ID[] = "room_01";
+
+         Never publish the real Wi-Fi password. The verified device route is direct HTTP to the ALB DNS name;
+do not place an EC2 instance IP or the CloudFront frontend domain in the firmware unless a separately tested
+device route is introduced.
+Step 4 - Send telemetry
+         The firmware serializes the exact camelCase aliases accepted by the backend:
+
+{
+    "deviceId": "room_01",
+    "temperature": 25.0,
+    "humidity": 60.0,
+    "lightIntensity": 512,
+    "fan": false,
+    "light": false,
+    "curtain": false
+}
+
+
+Internship Report (CO3335)                                                                               Page 47/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+         lightIntensity is a raw analog value. The source sends telemetry every 5000 ms, polls commands
+every 2000 ms, updates the LCD every 2000 ms, retries Wi-Fi every 10000 ms with a 20000 ms connection
+timeout, and uses a 7000 ms HTTP timeout.
+
+YOLO UNO read $\rightarrow$ JSON serialize $\rightarrow$ POST /api/telemetry $\rightarrow$ check
+ ,→ HTTP status $\rightarrow$ wait configured interval
+
+          The ALB forwards these device requests to a Healthy FastAPI target on port 8000. The device does not
+select or depend on a specific ASG instance.
+          On non-success status, log the response and retry later with bounded delays. Do not block actuator safety
+logic indefinitely.
+Step 5 - Poll, execute, and acknowledge commands
+         Poll:
+
+GET /api/devices/room_01/commands/latest
+
+        Accept the eight firmware commands: MODE_AUTO, MODE_MANUAL, FAN_ON, FAN_OFF, LIGHT_ON,
+LIGHT_OFF, CURTAIN_OPEN, and CURTAIN_CLOSE. A direct actuator command switches the firmware to manual
+mode. In auto mode, the source turns the fan on at temperature ≥30°C, turns the light on when the analog value is
+<350, and opens the curtain when the analog value is <700.
+
+if (pending && commandId != lastExecutedCommandId) {
+  const bool applied = applySupportedCommand(command);
+  if (applied) {
+    lastExecutedCommandId = commandId;
+    sendAck(commandId);
+  }
+}
+
+           ACK:
+
+POST /api/devices/room_01/commands/{command_id}/ack
+
+         If ACK fails after the actuator succeeds, retry the ACK without applying the actuator again. The source
+stores autoMode, lastAck, and pendingAck in ESP32 Preferences so an ACK can be retried and the same com-
+mand is not re-executed after reboot. Unsupported commands are rejected by firmware and are not acknowledged.
+Step 6 - Build, upload, and monitor
+         In a PlatformIO terminal:
+
+pio run -e yolo_uno
+
+        Building the firmware does not require the board to be connected through USB. A successful build pro-
+duces firmware.bin and ends with:
+
+SUCCESS
+
+           The screenshot below shows that the firmware compiled successfully.
+
+
+
+
+Internship Report (CO3335)                                                                                 Page 48/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+
+
+Figure 14. The YOLO UNO firmware was successfully compiled with PlatformIO using the yolo_uno environment,
+producing firmware.bin with a SUCCESS result.
+        Firmware upload and Serial Monitor access require the YOLO UNO board to be connected to the com-
+puter:
+
+pio run --target upload
+pio device monitor --baud 115200
+
+           When the board is connected and running, an expected Serial Monitor sequence is:
+
+[wifi] connected
+[telemetry] HTTP success for room_01
+[command] pending command received: <COMMAND_ID> <SUPPORTED_COMMAND>
+[actuator] command applied once
+[ack] command acknowledged
+
+
+Expected Result
+        PlatformIO compiles the yolo_uno environment successfully and creates firmware.bin. With the board
+connected and the remaining integration checks completed, YOLO UNO reads DHT20 and the analog light sensor,
+updates LCD1602, posts the exact telemetry schema, executes each supported command once, and changes the
+matching backend command from Pending to Executed through ACK. Serial evidence must not contain a Wi-Fi
+password or an unredacted public endpoint.
+
+
+5.7     Frontend Integration
+
+Overview and objectives
+        Run the React + Vite frontend locally for development, then serve the production build from private
+Amazon S3 through CloudFront. The browser uses relative /api/* requests, which CloudFront forwards to the
+ALB, and displays periodically refreshed telemetry, actuator controls, rule-based recommendations, and history
+for device_id = room_01.
+Step 1 - Configure the React Frontend
+         The project uses React, Vite, TypeScript, Tailwind CSS, Axios, and Recharts. From Windows PowerShell:
+
+git clone <REPOSITORY_URL>
+Set-Location .\aws-iot-dashboard\frontend
+npm install
+npm run dev
+
+
+Internship Report (CO3335)                                                                            Page 49/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+         Use the Node version required by package.json and keep the repository lockfile. npm run dev is the
+local development path; the deployed frontend is the Vite production build in private S3, accessible only through
+CloudFront OAC.
+Step 2 - Connect the Frontend to the FastAPI Backend
+         Use relative /api paths with the Vite development proxy:
+
+// vite.config.ts
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    proxy: {
+       "/api": {
+         target: "http://<ALB_DNS_NAME>",
+         changeOrigin: true,
+       },
+    },
+  },
+});
+
+         Restart Vite after changing its configuration. This proxy applies only to local development. In produc-
+tion, keep /api relative so the browser uses the same CloudFront domain; do not hard-code an EC2 or ALB
+URL in React components. If the project uses VITE_API_BASE_URL, store the development value in an ignored
+.env.local.
+         The main requests are:
+
+GET /api/health
+GET /api/devices/room_01/latest
+GET /api/devices/room_01/history
+POST /api/devices/room_01/commands
+
+           The LIVE AWS badge must depend on a successful backend/API response, not only on the React page
+loading.
+           Build and upload the frontend artifacts to the private S3 origin, then invalidate CloudFront when required:
+
+npm run build
+aws s3 sync .\dist "s3://<PRIVATE_FRONTEND_BUCKET>" --delete
+aws cloudfront create-invalidation --distribution-id <DISTRIBUTION_ID> --paths "/*"
+
+       The distribution uses the default behavior for the S3 frontend and a higher-priority /api/* behavior for
+the ALB origin with caching disabled.
+
+
+
+
+Internship Report (CO3335)                                                                                    Page 50/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+
+
+Figure 15a. The dashboard loads over CloudFront HTTPS and browser requests to latest, history, and
+commands return HTTP 200 through /api/*.
+
+
+
+
+Figure 15b. Browser DevTools shows the latest record and ordered history returned by the production /api/*
+route.
+Step 3 - Display Live Telemetry
+         Render three cards for temperature, humidity, and light intensity. The frontend refreshes data periodically
+through REST polling, so the dashboard is described as near-real-time, not as a fixed-latency real-time system.
+Provide loading, retryable error, and last-updated states where appropriate.
+Step 4 - Render the Remote Control Panel
+         The control panel supports:
+     • FAN_ON / FAN_OFF;
+     • LIGHT_ON / LIGHT_OFF;
+     • CURTAIN_OPEN / CURTAIN_CLOSE; and
+     • switching between MODE_MANUAL and MODE_AUTO.
+           Disable a selected control while its request is in flight, prevent duplicate pending commands, and distin-
+
+Internship Report (CO3335)                                                                                   Page 51/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+guish command acceptance from physical execution. The backend-provided command ID/state should be used for
+tracking instead of relying only on local UI state.
+
+
+
+
+        Figure 16. The React + Vite dashboard displaying near-real-time telemetry and controls for the fan, light,
+and curtain for the sample room identified by device_id = room_01.
+        Figure 16 shows the React + Vite interface, the EC2 FastAPI/RDS PostgreSQL/React Vite stack label,
+three LIVE AWS telemetry cards, and controls for the fan, light, curtain, and mode. The UI can display Manual
+Override or Auto according to its current state.
+Step 5 - Display Rule-Based Analysis and History
+Rule-Based Analysis and Recommendations
+        The recommendation panel evaluates fixed conditions based on temperature, humidity, light, and time.
+Examples in the interface include recommending that the fan be turned off outside working hours, reporting an
+acceptable humidity range, and recommending curtain movement when light is high. This is deterministic rule-
+based analysis; it is not machine learning, predictive analytics, or a trained model.
+        The history charts display temperature, humidity, and light data retrieved from Amazon RDS through:
+
+GET /api/devices/room_01/history
+
+
+
+
+Internship Report (CO3335)                                                                                Page 52/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+
+
+       Figure 17. Rule-based recommendations and historical temperature, humidity, and light charts retrieved
+from Amazon RDS.
+Step 6 - Expected Results
+
+      • The local React + Vite frontend loads successfully.
+      • The production build loads through CloudFront from the private S3 origin.
+      • Browser /api/* requests reach the ALB origin and return HTTP 200.
+      • The LIVE AWS badge reflects a successful backend/API request.
+      • Telemetry for device_id = room_01 appears on the three cards.
+      • Fan, light, curtain, and mode controls are rendered.
+      • The history charts receive records from the history endpoint.
+      • Recommendations are described as rule/threshold based, not as machine learning.
+      • Telemetry refresh is described as near-real-time REST polling without an unsupported latency claim.
+
+
+5.8     End-to-End Testing and Validation
+
+Overview and objectives
+         Validate each boundary independently, then correlate the complete telemetry and command paths. Use
+FastAPI /docs or /openapi.json to confirm the schema of the deployed version before testing. The sample
+room is identified by device_id=room_01.
+         This section combines a complete test matrix with browser, API, PostgreSQL, and physical-hardware
+evidence. Each item states what its evidence proves so that a single screenshot is not used to support conclusions
+beyond what is visible.
+
+
+
+
+Internship Report (CO3335)                                                                                Page 53/72
+            Ho Chi Minh City University of Technology – VNU-HCM
+            Faculty of Computer Science & Engineering
+
+
+
+
+Figure 18. End-to-end evidence combines the dashboard, database command state, and the physical YOLO UNO
+prototype; each layer is still validated separately below.
+Step 2 - Execute and record the test matrix
+
+ID                           Objective             Expected result          Actual/evidence        Pass/Fail
+T01                          Backend health        HTTP 200 and the       Figure 11a in section      Pass
+                                                   documented health      5.5 and the health
+                                                   response               response
+T02                          Submit telemetry      Successful response    Telemetry response         Pass
+                                                   and a stored telemetry and corresponding
+                                                   record                 latest/history data
+T03                          Retrieve latest       The newest record for  Figure 19 and the          Pass
+                             telemetry             room_01 is returned    dashboard telemetry
+                                                                          cards
+T04                          Retrieve telemetry    Ordered history for    Figures 15b and 17,        Pass
+                             history               room_01 is returned    including the history
+                                                                          charts
+T05                          Create a command      A command is created Figure 19 commands           Pass
+                                                   with an ID and initial request and Figure 12a
+                                                   Pending state          command records
+T06                          Poll for a command    The device receives    Hardware                   Pass
+                                                   the correct command demonstration video
+                                                   and ID
+T07                          Control the fan       The fan responds, the Figure 20 and the           Pass
+                                                   command is             hardware
+                                                   acknowledged, and      demonstration video
+                                                   automatic rule-based
+                                                   control resumes
+T08                          Control the light     The physical           Figure 21 and the          Pass
+                                                   LED/light matches      hardware
+                                                   both commands          demonstration video
+T09                          Control the curtain   The servo moves to     Figure 22 and the          Pass
+                                                   the open and closed    hardware
+                                                   positions configured   demonstration video
+                                                   in firmware
+T10                          Verify the ACK        The command            Figure 12a and the         Pass
+                             lifecycle             changes from           acknowledged
+                                                   Pending to Executed command record
+
+
+
+Internship Report (CO3335)                                                                                     Page 54/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+
+ID                           Objective               Expected result        Actual/evidence         Pass/Fail
+T11                          Verify PostgreSQL       Records remain          Figure 12a and the       Pass
+                             persistence             available and can be    repeated SQL query
+                                                     queried again
+T12                          Verify CloudWatch       A corresponding         Backend log evidence     Pass
+                             logs                    backend event appears in section 5.9
+                                                     in the expected log
+                                                     stream
+T13                          Verify the production   The page loads from     CloudFront/API           Pass
+                             browser route           S3 and /api/*           evidence in sections
+                                                     requests return HTTP 5.4 and 5.7
+                                                     200 through the ALB
+                                                     origin
+T14                          Verify backend target   Two targets in separate Figures 9c and 11b       Pass
+                             health                  Availability Zones are
+                                                     Healthy and the health
+                                                     call returns HTTP 200
+
+
+
+Step 3 - Validate frontend API requests
+
+     1. Start the React + Vite frontend and open the control panel.
+     2. Open Chrome DevTools > Network and select Fetch/XHR.
+     3. Observe the periodic latest and history requests.
+     4. Operate a supported control and confirm that a commands request is sent.
+     5. Verify that the displayed requests receive HTTP 200 responses.
+
+
+
+
+         Figure 19. Chrome DevTools confirms that the frontend requests to latest, history, and commands
+receive HTTP 200 responses from the FastAPI backend.
+         The screenshot shows telemetry on the dashboard and repeated XHR requests for latest, history, and
+commands. In production these requests use the CloudFront domain and /api/* behavior before reaching the
+ALB. It confirms frontend-to-backend communication during periodic REST polling; it does not establish a fixed
+response-time guarantee.
+Step 4 - Test fan control
+
+     1. Place the device in manual mode when required by the firmware behavior.
+
+Internship Report (CO3335)                                                                                      Page 55/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+    2. Send FAN_ON and FAN_OFF from the dashboard.
+    3. Compare the dashboard state with the physical fan response.
+    4. Return to automatic mode and confirm that deterministic rule-based control resumes.
+    5. Check that the related command is acknowledged.
+
+
+
+
+         Figure 20. End-to-end fan-control validation by comparing the dashboard state with the physical fan
+response.
+         The captured frame correlates the dashboard control with an observable physical response. By itself, it
+does not prove database persistence or the ACK transition.
+Step 5 - Test light control
+
+    1. Send LIGHT_ON from the dashboard and observe the physical LED/light.
+    2. Send LIGHT_OFF and verify that it turns off.
+    3. Inspect the related command record and confirm its final Executed state.
+
+
+
+
+        Figure 21. End-to-end light-control validation, with the dashboard command confirmed by the physical
+LED state.
+
+Internship Report (CO3335)                                                                              Page 56/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+Step 6 - Test curtain control
+
+    1. Send CURTAIN_OPEN and observe the servo movement.
+    2. Send CURTAIN_CLOSE and observe the reverse movement.
+    3. Compare both movements with the open and closed positions configured in the firmware.
+    4. Inspect the related command record and confirm its final Executed state.
+
+
+
+
+         Figure 22. End-to-end curtain-control validation by comparing the OPEN/CLOSE dashboard command
+with the physical servo movement.
+         The acceptance criterion uses the positions configured in the firmware; this report does not assume a
+specific servo angle.
+Step 7 - Run API and database checks and verify command state
+         From EC2 Linux Bash, verify backend health and telemetry retrieval:
+
+curl -i http://127.0.0.1:8000/api/health
+curl -s http://127.0.0.1:8000/api/devices/room_01/latest
+curl -s http://127.0.0.1:8000/api/devices/room_01/history
+
+         Create telemetry using the camelCase fields documented in section 5.6. Create a command with {
+"command": "FAN_ON" }. The Pydantic field also has the alias Command; because populate_by_name=True,
+the lowercase field command is accepted. A device record normally exists after the first valid telemetry request.
+         In PostgreSQL psql, inspect recent commands:
+
+SELECT
+    id,
+    device_id,
+    command,
+    state,
+    timestamp
+FROM commands
+ORDER BY id DESC
+LIMIT 6;
+
+         A polling device may acknowledge a command quickly enough that a later query no longer shows
+Pending. Preserve the command POST response when it contains the initial state, then query the same command
+ID after ACK to confirm Executed.
+
+
+Internship Report (CO3335)                                                                               Page 57/72
+            Ho Chi Minh City University of Technology – VNU-HCM
+            Faculty of Computer Science & Engineering
+
+
+
+
+Figure 23. API and PostgreSQL evidence correlates one command ID before and after ACK, showing the transition
+from Pending to Executed.
+         The dashboard sends a command to FastAPI, and the backend stores it in PostgreSQL. YOLO UNO polls
+for the latest pending command, executes the corresponding actuator action, and calls the ACK endpoint. The
+backend then changes that command from Pending to Executed.
+         Figure 12a in section 5.5 provides the PostgreSQL evidence for this layer. It shows recent commands
+for device_id=room_01, including CURTAIN_OPEN, CURTAIN_CLOSE, MODE_AUTO, and LIGHT_OFF, in the
+Executed state after acknowledgement.
+         The dashboard-to-hardware behavior is also available in the Google Drive demonstration video. The
+screenshots were extracted from the video and may therefore appear slightly blurred; use the video to inspect
+the complete control sequence.
+Expected Result
+        Every T01–T14 row contains an observed Actual/evidence value and a Pass, Fail, or Not Run status.
+A passing end-to-end result correlates the appropriate device or command ID across CloudFront/ALB, the API,
+PostgreSQL, firmware, dashboard, physical actuator, and relevant logs.
+        The accepted results include HTTP 200 responses for latest, history, and commands; telemetry for
+device_id=room_01; physical fan, LED/light, and servo responses; ACK submission; and final command state
+Executed.
+
+
+5.9      Monitoring with CloudWatch
+
+Overview and objectives
+       Use native ALB, ASG, EC2, and RDS metrics plus CloudWatch Agent guest metrics and backend logs.
+The EC2 IAM Role authorizes publishing; the CloudWatch Agent is separate software installed in the backend
+AMI and running on each ASG instance.
+Monitoring inventory
+
+Source                              Metric/log                           Collection path
+ALB                                 UnHealthyHostCount, HTTPCode_        Native Application Load Balancer
+                                    Target_5XX_Count                     metrics
+ASG                                 GroupInServiceInstances              Native Auto Scaling group metric
+EC2                                 CPUUtilization                       Default EC2 metric
+EC2 guest OS                        mem_used_percent                     CloudWatch Agent configuration; Figure
+                                                                         25a does not prove a memory datapoint
+
+
+
+Internship Report (CO3335)                                                                             Page 58/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+
+Source                                 Metric/log                        Collection path
+EC2 guest OS                           disk_used_percent                 CloudWatch Agent
+EC2 guest OS                           cpu_usage_idle, cpu_usage_user,   CloudWatch Agent
+                                       cpu_usage_system
+FastAPI                                Backend application log           CloudWatch Agent log collection
+RDS                                    CPUUtilization                    Default RDS metric
+RDS                                    DatabaseConnections               Default RDS metric
+
+
+
+Step 1 - Verify role and install the agent
+          In the EC2 Console, confirm the instance has the IAM instance profile with the approved CloudWatchAgentServerPoli
+On EC2 Linux Bash, install the amazon-cloudwatch-agent package using the official procedure for the selected
+distribution, then verify:
+
+sudo systemctl status amazon-cloudwatch-agent --no-pager
+ls -l /opt/aws/amazon-cloudwatch-agent/bin/
+
+           Do not store AWS access keys in the agent configuration.
+Step 4 - Generate and inspect evidence
+
+    1. Call /api/health through the ALB and submit one valid telemetry request.
+    2. Open CloudWatch in the same region.
+    3. Check log groups /aws/ec2/aws-iot-dashboard/backend and /aws/ec2/aws-iot-dashboard/
+       backend-error.
+    4. Open Metrics → IoTDashboard/EC2 for guest memory/disk/CPU.
+    5. Open Metrics → EC2 for CPUUtilization.
+    6. Open Metrics → RDS for CPUUtilization and DatabaseConnections.
+    7. Open Metrics → ApplicationELB/Auto Scaling for target health, 5XX, and in-service instance count.
+    8. Set an appropriate time range and confirm recent timestamps.
+
+Backend logs
+         The captured log stream /aws/ec2/aws-iot-dashboard/backend contains recent FastAPI access
+events. Requests to /api/health and / returned HTTP 200 OK, which proves that the backend was reachable at
+the recorded timestamps. This screenshot does not by itself prove every CloudWatch Agent configuration item.
+
+
+
+
+        Figure 24. FastAPI backend access logs from EC2 displayed in Amazon CloudWatch Logs, including
+timestamps, requested endpoints, and HTTP status codes.
+Operations metrics for the current architecture
+         The current operations dashboard contains eight widgets: EC2 CPU, disk, and memory for both backend
+instances; ASG in-service capacity; RDS CPU and database connections; ALB unhealthy hosts; and ALB target
+5XX errors. This evidence matches the deployed ALB/ASG architecture.
+
+
+Internship Report (CO3335)                                                                             Page 59/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+
+
+Figure 25a. The eight-widget operations dashboard shows two EC2 series, ASG in-service capacity of 2, no
+unhealthy ALB targets during the selected range, RDS metrics, and the ALB target 5XX widget.
+
+
+
+
+Figure 25b. CloudWatch graph configuration for ALB unhealthy hosts, ALB target 5XX errors, and ASG in-service
+instances.
+Step 5 - Create and validate alarms
+         The CloudWatch console confirms these eight alarm configurations:
+
+Alarm name                           Metric                              Condition
+iot-dashboard-rds-high-              DatabaseConnections                 ≥10 for one datapoint within 5 minutes
+connections
+iot-dashboard-rds-high-cpu           CPUUtilization                      ≥70% for one datapoint within 5
+                                                                         minutes
+iot-dashboard-ec2-high-cpu           CPUUtilization                      ≥70% for one datapoint within 5
+                                                                         minutes
+ASG-GroupInServiceInstances-Low GroupInServiceInstances                  Fewer than 2 in-service instances during
+                                                                         the evaluation window
+ALB-HTTPCode-ELB-5XX                 ALB 5XX count                       At least one 5XX datapoint during the
+                                                                         evaluation window
+ALB-UnHealthyHostCount               UnHealthyHostCount                  Greater than 0 during the evaluation
+                                                                         window
+iot-dashboard-ec2-high-disk          disk_used_percent                   ≥80% for one datapoint within 5
+                                                                         minutes
+iot-dashboard-ec2-high-memory        mem_used_percent                    ≥80% for one datapoint within 5
+                                                                         minutes
+
+
+
+
+Internship Report (CO3335)                                                                               Page 60/72
+            Ho Chi Minh City University of Technology – VNU-HCM
+            Faculty of Computer Science & Engineering
+
+
+        Verify the deployed threshold, period, evaluation count, missing-data behavior, and actions instead of
+assuming that the runbook was applied. The root source README explicitly says SNS is not used; the backend
+README mentions SNS only as an optional extension, so do not claim an SNS topic/subscription is deployed.
+
+
+
+
+          Figure 26. Eight CloudWatch Alarms monitor ALB, ASG, EC2, and RDS. The OK and Insufficient data
+states reflect the available metric data at the time of capture.
+Alarm state interpretation
+
+     • OK: the metric has not crossed the configured threshold.
+     • In alarm: the metric crossed the threshold during the evaluation period.
+     • Insufficient data: CloudWatch did not receive enough matching datapoints to evaluate the alarm at that
+       time.
+
+         The disk and memory alarms in the screenshot are in the Insufficient data state. This does not
+necessarily indicate a configuration failure; it means that insufficient data was available for the selected metric,
+dimensions, and evaluation period.
+         The Actions column displays No actions, meaning that no notification action is currently attached.
+The current version uses alarms to evaluate metric states only. Amazon SNS email or notification integration is a
+future improvement.
+Expected Result
+        CloudWatch shows recent backend access events, the EC2/RDS and ALB/ASG operational widgets, and
+eight named alarm configurations with explainable states. The evidence proves what is visible without claiming an
+SNS notification or a second log group that is not shown.
+
+
+5.10      Cost, Security and Clean-up
+
+Overview and objectives
+         Understand the cost drivers, review the prototype security boundary, preserve required evidence, and
+remove resources in dependency order. Exact prices are not stated because they depend on region, resource sizes,
+retention, transfer, and current pricing.
+Step 1 - Review cost drivers
+
+Resource                               Cost driver                            Workshop control
+Amazon S3 and CloudFront               Stored objects, requests, transfer,    Keep only build artifacts; invalidate
+                                       distribution plan                      deliberately; review plan limits
+AWS WAF                                Web ACL/rule usage and logging         Three managed rule groups currently in
+                                                                              Count/Monitor mode; review before
+                                                                              enabling paid features
+
+
+
+Internship Report (CO3335)                                                                                   Page 61/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+
+Resource                               Cost driver                              Workshop control
+Application Load Balancer              Load balancer hours and capacity units  Remove after the workshop if no longer
+                                                                               required
+Amazon EC2 / Auto Scaling              Instance type, desired capacity, and    ASG currently maintains two t3.micro
+                                       running hours                           instances; scale down/delete only after
+                                                                               approval
+Amazon EBS                             Provisioned type/capacity and snapshots Right-size and remove unattached
+                                                                               volumes/snapshots
+Amazon RDS for PostgreSQL              Multi-AZ DB class, running time,        Preserve required snapshots, then delete
+                                       storage, backups                        after evidence if approved
+Amazon CloudWatch                      Custom metrics, log ingestion/storage,  60-second guest metrics where needed;
+                                       alarms                                  short retention
+Data transfer                          CloudFront, ALB, device telemetry, and Reasonable telemetry/polling intervals
+                                       inter-AZ traffic                        and cache only static content
+
+
+          Use the AWS Pricing Calculator or the actual bill for a dated estimate. Do not copy an unverified price
+into the report.
+Step 2 - Review the security boundary
+
+     • Use least-privilege identities and MFA.
+     • Use an EC2 IAM Role; do not hard-code AWS access keys.
+     • Restrict SSH port 22 to <ADMIN_IP>/32.
+     • Keep the S3 frontend bucket private with Block Public Access and CloudFront OAC.
+     • Use viewer HTTPS through CloudFront; keep the three WAF managed rule groups in documented
+       Count/Monitor mode until blocking is tested.
+     • Allow public HTTP only to the ALB listener; allow backend port 8000 only from the ALB Security Group.
+     • Allow RDS 5432 only from the EC2 Security Group.
+     • Keep RDS private.
+     • Ignore .env, .pem, .key, and hardware/include/secrets.h.
+     • Use placeholders in documentation and redact screenshots.
+     • Treat ALB HTTP without origin TLS and the unauthenticated API as current limitations.
+     • Review outbound rules, log retention, database users, and resource tags.
+     • Rotate any secret immediately if it appears in Git, terminal history, a screenshot, or a demo video.
+
+         Current controls include CloudFront viewer HTTPS, WAF monitoring, private S3/OAC, Security Group
+chaining, encrypted ASG EBS volumes, RDS Multi-AZ, seven-day backups, and a manual snapshot. Production
+improvements still include ALB HTTPS/origin TLS, authentication, authorization, managed secrets, tested WAF
+blocking, notification actions, and a reviewed network design.
+Step 3 - Preserve pre-clean-up evidence
+         Before deleting anything, preserve:
+
+    1. architecture and resource inventory;
+    2. EC2/service health and deployment commit;
+    3. RDS table/query evidence without credentials;
+    4. telemetry, command, and ACK test records;
+    5. CloudWatch log/metric/alarm screenshots; and
+    6. hardware/frontend demonstration evidence.
+
+           Confirm who owns snapshots and how long evidence must be retained.
+Step 4 - Clean up only project-owned resources
+
+    1. Preserve screenshots, logs, source code, test results, and demonstration videos; stop new telemetry/command
+       traffic and place actuators in a safe state.
+    2. Back up frontend/backend source, service files, environment templates, AMI/Launch Template metadata,
+       and the firmware artifact.
+
+Internship Report (CO3335)                                                                                     Page 62/72
+            Ho Chi Minh City University of Technology – VNU-HCM
+            Faculty of Computer Science & Engineering
+
+
+   3. Decide whether retention requires an approved final RDS snapshot and create it if needed.
+   4. Disable and delete the CloudFront distribution after deployment completes; disassociate/delete the project
+      WAF web ACL with the same decision.
+   5. Empty and delete the private S3 frontend bucket only after CloudFront no longer depends on it.
+   6. Delete the ALB listener/load balancer and detach/delete the target group after CloudFront no longer uses the
+      ALB origin.
+   7. Delete iot-backend-asg; verify its EC2 instances and encrypted root volumes terminate as expected.
+   8. Delete the Launch Template, deregister the backend AMI, and remove only project-owned AMI snapshots
+      that are no longer required.
+   9. Delete iot-dashboard-db when the database and retained data are no longer required; keep or delete
+      manual/automated snapshots according to the retention decision.
+  10. Delete all eight project CloudWatch alarms, the ec2-rds-metrics dashboard, and configure retention for
+      or delete the backend log groups after preserving evidence.
+  11. Detach and delete iot-dashboard-cloudwatch-role and its instance profile only if no other workload
+      uses them. Do not delete the AWS-managed CloudWatchAgentServerPolicy.
+  12. Delete ALB/backend/RDS Security Groups only after their ALB, EC2, RDS, ENI, and Security Group
+      dependencies are gone.
+  13. Delete rds-ec2-db-subnet-group-1 only after RDS no longer uses it. Do not delete selected or shared
+      VPC resources.
+  14. Recheck CloudFront, WAF, S3, ALB, target groups, ASG, EC2, AMI snapshots, EBS, RDS, CloudWatch,
+      Billing/Cost Explorer, and tagged resources.
+
+         The repository does not contain a CloudFormation, SAM, CDK, or Terraform stack/state for this deploy-
+ment, so the resources above must be inventoried and removed in dependency order rather than by deleting a stack.
+         Stopping RDS is temporary and subject to service limits; it may start automatically again. Deleting the
+database and other billable resources is the way to avoid continuing long-term charges, subject to the team’s reten-
+tion decision.
+Step 5 - Verify the clean-up
+
+     • Re-run the tagged-resource inventory in the correct region.
+     • Check for an active CloudFront distribution/WAF, non-empty S3 bucket, ALB/target group, ASG instances,
+       AMI snapshots, unattached EBS volumes, retained RDS snapshots, log groups, and idle alarms.
+     • If a Security Group cannot be deleted, find the dependent ENI/resource rather than forcing deletion.
+     • If a database cannot be deleted, review deletion protection and snapshot requirements with the owner.
+     • Record each deleted resource ID in the clean-up evidence; never expose credentials.
+
+Expected Result
+        Required evidence is retained, no unapproved billable project-owned Workshop resource remains, shared
+resources are untouched, and the security review records current limitations without claiming production readiness.
+
+
+5.11      Results, Challenges and Future Improvements
+
+Overview
+         This section summarizes the verified project outcomes, project-specific customizations, individual con-
+tributions, lessons learned, current limitations, and practical next steps. The conclusions are based on the source
+code, the T01–T14 test matrix, AWS screenshots, PostgreSQL records, dashboard captures, and the hardware
+demonstration.
+Achieved Results
+
+Outcome                                                Status                    Evidence
+FastAPI backend health and service                     Pass                      Health response and systemd
+operation                                                                        evidence in section 5.5
+
+
+
+
+Internship Report (CO3335)                                                                                  Page 63/72
+            Ho Chi Minh City University of Technology – VNU-HCM
+            Faculty of Computer Science & Engineering
+
+
+
+Outcome                                                     Status                       Evidence
+Telemetry submission and                                    Pass                         API response and matching RDS
+PostgreSQL persistence                                                                   record in section 5.8
+Latest telemetry and ordered history                        Pass                         Dashboard cards, history charts, and
+on the dashboard                                                                         HTTP 200 requests in sections 5.7
+                                                                                         and 5.8
+Command creation and Pending →                              Pass                         Command ID, ACK response, and
+Executed lifecycle                                                                       PostgreSQL state in sections 5.5 and
+                                                                                         5.8
+Physical fan, light, and curtain control                    Pass                         Dashboard-to-hardware captures and
+                                                                                         the end-to-end demonstration video
+                                                                                         in section 5.8
+Private S3 frontend through                                 Pass                         S3 OAC, distribution
+CloudFront and WAF monitoring                                                            origins/behaviors, WAF rules, and
+                                                                                         browser HTTP 200 evidence in
+                                                                                         sections 5.4 and 5.7
+ALB/ASG backend availability                                Pass                         Active ALB, listener, two Healthy
+                                                                                         targets, and ASG capacity across two
+                                                                                         Availability Zones in section 5.4
+RDS PostgreSQL Multi-AZ and                                 Pass                         Primary/standby AZ output,
+backup controls                                                                          seven-day retention, and manual
+                                                                                         snapshot in section 5.4
+CloudWatch logs, metrics, and alarms                        Pass                         Backend logs, ALB/ASG/EC2/RDS
+                                                                                         widgets, and eight alarm
+                                                                                         configurations in section 5.9
+Complete end-to-end validation                              Pass                         All fourteen test cases T01–T14 are
+                                                                                         recorded as Pass in the test matrix
+
+
+         The test scope covers the implemented Smart Room model identified by device_id=room_01. Results
+are reported only for the demonstrated environment and are not generalized beyond that scope.
+Individual Contributions
+
+Contributor                                Owned scope and concrete contribution      Evidence path
+Phạm Lê Minh Khôi                          AWS architecture, network/security         Architecture, AWS setup, hardware,
+                                           boundaries, and EC2/RDS/CloudWatch         CloudWatch
+                                           operations; PlatformIO firmware
+                                           development for YOLO UNO; sensor,
+                                           LCD, and actuator integration; telemetry
+                                           transmission, command polling,
+                                           execution of all 8 commands, and ACK
+                                           processing
+Ngô Minh Thuận                             FastAPI routes, Pydantic aliases,          API/data design, backend/database, test
+                                           SQLAlchemy models, PostgreSQL              matrix
+                                           persistence, telemetry service, command
+                                           lifecycle, and ACK processing
+Thượng Đình Hưng                           React/Vite dashboard, telemetry            frontend integration, end-to-end
+                                           visualization, control requests,           validation, handover
+                                           mode/recommendation UI, integration
+                                           debugging, and demo-video production
+Lê Bảo Khánh                               Proposal/report content,                   Workshop overview, test evidence,
+                                           blogs/worklogs/events, bilingual           results, handover
+                                           Workshop structure, source-to-document
+                                           verification, navigation, screenshot
+                                           planning, and QA
+
+
+         The linked Workshop sections provide evidence for each area of responsibility. This table records owner-
+ship and does not replace the individual reflections below.
+
+Internship Report (CO3335)                                                                                               Page 64/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+Phạm Lê Minh Khôi
+
+Reflection field                                              Reflection
+Challenge                                                     Integrate a publicly reachable demo backend, private
+                                                              PostgreSQL, monitoring, and physical actuators without
+                                                              confusing cloud success with hardware success
+Root Cause                                                    The flow crosses VPC rules, IAM, Linux services, HTTP
+                                                              polling, electrical wiring, and asynchronous ACK state
+Solution                                                      Use an EC2-to-RDS Security Group reference, EC2 IAM
+                                                              Role, systemd/CloudWatch checks, source-defined GPIOs,
+                                                              safe power, command IDs, and persistent ACK recovery
+Lesson Learned                                                Validate each boundary independently and correlate one
+                                                              command ID through API, database, serial output, actuator
+                                                              action, and monitoring
+Future Improvement                                            Add ALB origin HTTPS and a custom domain, define
+                                                              infrastructure as code, tighten IAM permissions, and improve
+                                                              sensor calibration and hardware test records
+
+
+
+Key Challenges and Lessons Learned
+
+Problem                       Root cause                      Solution                        Lesson learned
+Secure EC2-to-RDS             RDS must remain private       Allow port 5432 from the          Define access by workload
+connectivity                  while the backend still needs EC2 Security Group instead        identity and required port
+                              PostgreSQL access             of a public CIDR
+Command state across API,     Polling and ACK occur         Persist command IDs and           A successful API response
+database, and device          asynchronously                states, then correlate the same   alone does not prove physical
+                                                            ID from creation through          execution
+                                                            ACK
+Duplicate execution during    A device can receive or       Track the last command and        Retry logic must be designed
+retries                       acknowledge the same          make ACK retries                  for idempotency
+                              command more than once        independent of actuator
+                                                            execution
+Frontend and backend route    Singular/plural paths and API Use the implemented               Maintain one versioned API
+mismatch                      targets changed during        OpenAPI contract and verify       contract
+                              integration                   requests in DevTools Network
+Uncalibrated light readings   The sensor provides a raw     Keep the raw value traceable      Do not assign a physical unit
+                              analog value                  and document calibration as a     without a conversion method
+                                                            follow-up
+Missing CloudWatch            Agent permissions,            Check the Agent log, metric       Alarm state must be
+datapoints                    dimensions, paths, or         dimensions, and actual source     interpreted together with the
+                              collection timing may not     path                              underlying metric data
+                              match
+
+
+
+Current Limitations
+
+     • CloudFront provides viewer HTTPS, but the CloudFront-to-ALB/device-to-ALB path currently uses HTTP
+       and no custom domain is documented.
+     • API routes do not yet enforce strong client or device authentication.
+     • The WAF managed rules are in Count/Monitor mode; blocking behavior has not been enabled and validated.
+     • Command validation and ACK ownership checks should be tightened.
+     • The frontend still needs stricter handling of simulated fallback and failed command requests.
+     • The light value is based on an uncalibrated analog reading.
+     • Two CloudWatch alarms showed Insufficient data, and no notification action was attached at the time
+       of capture.
+     • No controlled ALB/ASG or RDS Multi-AZ failover drill is documented.
+
+Internship Report (CO3335)                                                                                          Page 65/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+Future Improvements
+     • Add a custom domain and ACM certificates; enable HTTPS to the ALB origin where appropriate.
+     • Add authentication and stronger authorization for browser and device routes.
+     • Move WAF managed rules from Count to Block only after staged testing and false-positive review.
+     • Store application secrets in a managed secret solution.
+     • Support more devices and rooms with ownership/authorization rules.
+     • Add supported-command validation, device-bound ACK checks, and idempotency rules.
+     • Introduce versioned database migrations and automated API tests.
+     • Centralize frontend environment configuration and remove false-success fallback behavior.
+     • Define infrastructure and deployment steps consistently and automate tested rollback.
+     • Add a reviewed notification channel for operational alarms.
+     • Calibrate the light sensor and publish the conversion method/unit.
+         Each improvement should have an owner, an implementation plan, and test evidence before it is described
+as part of the current system.
+Result
+        The project achieved its intended Smart Room scope: CloudFront serves the private-S3 frontend, the
+ALB/ASG backend processes telemetry and commands, RDS Multi-AZ stores state, the dashboard controls the
+three demonstrated actuators, ACK updates command state, and CloudWatch provides operational evidence. All
+T01–T14 test cases are recorded as Pass, while the limitations above define the next improvement priorities.
+
+5.12      Project Handover
+
+Overview and objectives
+          Transfer enough source, configuration, operational knowledge, and evidence for a new maintainer to start,
+validate, update, troubleshoot, and safely clean up the prototype.
+Handover Repository Structure
+        The main repository contains the backend and frontend source code, YOLO UNO firmware, architecture
+diagrams, and bilingual README documentation. The main branch is used as the final project handover version.
+
+
+
+
+          Figure 27. Final project repository structure, including the backend, frontend, YOLO UNO firmware,
+architecture diagrams, and bilingual README files.
+          The screenshot shows that the handover repository contains the source code for the main system compo-
+nents, bilingual README files, and architecture resources. Files containing private configuration values must be
+excluded through .gitignore and verified separately before handover.
+
+Internship Report (CO3335)                                                                                 Page 66/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+Known limitations
+         The documented system still serves one room, uses periodic REST polling, and reports an uncalibrated
+analog light value. CloudFront provides viewer HTTPS, but the ALB origin and direct device route use HTTP;
+API routes have no strong client/device authentication or rate limiting, and WAF managed rules remain in
+Count/Monitor mode. ALB/ASG and RDS Multi-AZ are deployed, but no controlled failover drill is documented.
+The frontend can still simulate data or success after failures, stores mode locally, and labels an uncalibrated value as
+Lux; the backend lacks strict command enum and ACK ownership validation. The deterministic recommendation
+panel is not an AI/ML model.
+Team responsibilities
+
+Member                                  Responsibility                            Contribution evidence
+Pham Le Minh Khoi                       AWS architecture, VPC, Security            5.3 architecture, 5.4 AWS, 5.6 hardware,
+                                        Groups, IAM Role, EC2, RDS,                5.9 monitoring
+                                        CloudWatch, DevOps, YOLO UNO
+                                        hardware, sensors, actuators, telemetry,
+                                        command polling, ACK
+Ngo Minh Thuan                          FastAPI backend, endpoints, Pydantic       5.3 API/data, 5.5 backend/database, 5.8
+                                        schemas, SQLAlchemy models,                validation
+                                        PostgreSQL integration, telemetry
+                                        processing, command lifecycle, ACK
+                                        processing
+Thuong Dinh Hung                        React + Vite frontend, dashboard UI,       5.7 frontend, 5.8 integration evidence,
+                                        telemetry visualization, controls, overall demo video
+                                        integration, debugging, demo video
+                                        recording/editing
+Le Bao Khanh                            Documentation, proposal, blogs, weekly 5.1 rubric/output, 5.11
+                                        worklog, event reports, Workshop,          documentation/customization, bilingual
+                                        bilingual review, navigation, screenshots, Workshop and internal links
+                                        quality assurance
+
+
+         The table summarizes the contribution scope currently recorded in the Workshop and points reviewers to
+related evidence. It does not replace the separate individual reflections in section 5.11; each member must review
+and confirm both the recorded responsibilities and reflection before final submission.
+Final Handover Checklist
+
+Item                                                         Status
+FastAPI backend source code                                  Completed
+React + Vite frontend source code                            Completed
+PlatformIO firmware for YOLO UNO                             Completed
+English and Vietnamese README files                          Completed
+Architecture diagram and hardware wiring documentation       Completed
+End-to-end demo video                                        Completed
+Bilingual Workshop documentation                             Completed
+Backend, frontend, and hardware deployment instructions      Completed
+Testing and CloudWatch instructions                          Completed
+CloudFront/WAF/S3, ALB/ASG, and RDS Multi-AZ                 Completed
+operating evidence
+AWS resource clean-up instructions                           Completed
+Real secret files are not tracked by Git                     Verified
+Credential values and Git history                            Final review required before submission
+
+
+Secret Verification
+         Secrets and credentials are private values used to authenticate users, devices, applications, or cloud re-
+sources. These values must not be committed to the GitHub repository.
+
+Internship Report (CO3335)                                                                                        Page 67/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+           Files and values that must be excluded include:
+
+     • backend/.env
+     • hardware/include/secrets.h
+     • Wi-Fi SSIDs when they are not intended to be public
+     • Wi-Fi passwords
+     • Amazon RDS usernames and passwords
+     • DATABASE_URL values containing credentials
+     • AWS Access Key IDs
+     • AWS Secret Access Keys
+     • AWS session tokens
+     • SSH private keys such as .pem files
+     • API tokens
+     • GitHub personal access tokens
+     • Other private credentials
+
+           Template files may be committed:
+
+     • .env.example
+     • secrets.example.h
+
+           However, templates must contain placeholders instead of real credentials.
+           Examples:
+
+DATABASE_URL=postgresql://USERNAME:PASSWORD@RDS_ENDPOINT:5432/DATABASE_NAME
+
+#define WIFI_SSID "YOUR_WIFI_SSID"
+#define WIFI_PASSWORD "YOUR_WIFI_PASSWORD"
+#define API_BASE_URL "http://YOUR_ALB_DNS_NAME"
+
+        Removing a secret from the latest version does not necessarily remove it from the Git history. If a
+        secret was previously committed, revoke or rotate the credential and clean the repository history when
+        required.
+
+Pre-Handover Verification
+       Run the following commands from the repository root.
+       Check the current working tree:
+
+git status
+
+           List all tracked files:
+
+git ls-files
+
+           Search the commit history for sensitive files:
+
+git log --all --oneline -- .env secrets.h "*.pem"
+
+           Search tracked files for common credential variable names:
+
+git grep -n -I -E "AWS_ACCESS_KEY_ID|AWS_SECRET_ACCESS_KEY|AWS_SESSION_TOKEN|DATABASE_URL|WIFI_ ⌋
+ ,→ PASSWORD|PRIVATE_KEY|API_TOKEN"
+
+           Check whether sensitive files are currently tracked:
+
+git ls-files | grep -E '(^|/)\.env$|secrets\.h$|\.pem$'
+
+
+
+Internship Report (CO3335)                                                                                  Page 68/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+         If the command returns no output, the listed sensitive files are not tracked in the current version. This
+result does not replace reviewing credential values in configuration files, source code, and Git history.
+         Notes:
+
+     • Do not publish command output containing real credentials.
+     • git status only checks the current working tree.
+     • git log --all helps review the complete commit history.
+     • If an AWS key, password, or token was committed, revoke or rotate it.
+     • Deleting a file without rotating the exposed credential is insufficient.
+
+Handover Resources
+       The final project handover package includes:
+
+     • GitHub source code repository.
+     • End-to-end demo video.
+     • Backend deployment documentation.
+     • Frontend build and deployment documentation.
+     • YOLO UNO firmware instructions.
+     • Bilingual Workshop documentation.
+     • AWS architecture diagram.
+     • Testing and CloudWatch monitoring instructions.
+     • AWS resource clean-up instructions.
+
+           The source code, demo video, and related documents are collected in the References section.
+
+
+
+
+Internship Report (CO3335)                                                                                Page 69/72
+            Ho Chi Minh City University of Technology – VNU-HCM
+            Faculty of Computer Science & Engineering
+
+
+6      Self-Evaluation
+During the project period from 01/06/2026 to 31/07/2026, I applied knowledge from school to build and operate
+the AWS IoT Monitoring and Control Dashboard prototype. My main responsibilities focused on AWS infras-
+tructure, system monitoring, YOLO UNO hardware integration, and technical documentation.
+Contribution Summary
+
+      • Helped evolve the system from a basic EC2 and RDS deployment into an architecture using CloudFront,
+        private S3, WAF monitoring, ALB, Auto Scaling Group, RDS PostgreSQL Multi-AZ, and CloudWatch.
+      • Configured and validated networking, security groups, IAM roles, health checks, operational metrics,
+        alarms, logs, backup settings, and deployment evidence.
+      • Integrated the YOLO UNO/ESP32-S3 device with sensors and actuators for telemetry submission, command
+        polling, and command acknowledgement over HTTP REST.
+      • Coordinated with backend, frontend, and documentation members to verify the end-to-end data and control
+        flow.
+      • Updated the workshop with screenshots, validation results, known limitations, and handover notes.
+
+Self-Assessment
+
+No.                          Criteria                     Level                     Evidence from the project
+1                            Professional knowledge and   Good                      Applied core AWS,
+                             skills                                                 networking, monitoring,
+                                                                                    database, and
+                                                                                    embedded-system knowledge
+                                                                                    to a working prototype.
+2                            Learning ability             Good                      Learned unfamiliar AWS
+                                                                                    services and validated
+                                                                                    configurations through
+                                                                                    documentation and practical
+                                                                                    testing.
+3                            Proactivity                  Good                      Researched deployment
+                                                                                    options, collected evidence,
+                                                                                    and proposed architecture
+                                                                                    improvements when
+                                                                                    limitations were found.
+4                            Sense of responsibility      Good                      Followed assigned
+                                                                                    infrastructure and hardware
+                                                                                    tasks through implementation,
+                                                                                    validation, and
+                                                                                    documentation.
+5                            Discipline and planning      Fair                      Completed the main scope,
+                                                                                    but some changes were made
+                                                                                    close to the documentation
+                                                                                    deadline and required rework.
+6                            Receptiveness to feedback    Good                      Revised the architecture,
+                                                                                    workshop content, and
+                                                                                    validation steps after reviews.
+7                            Communication                Fair                      Shared technical progress
+                                                                                    with the team, but status
+                                                                                    updates and explanations
+                                                                                    were sometimes longer or less
+                                                                                    structured than necessary.
+8                            Teamwork                     Good                      Coordinated integration
+                                                                                    points and supported
+                                                                                    verification across
+                                                                                    infrastructure, backend,
+                                                                                    frontend, and hardware.
+
+
+
+Internship Report (CO3335)                                                                                Page 70/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+
+No.                           Criteria                      Level                        Evidence from the project
+9                             Professional conduct          Good                         Maintained a cooperative
+                                                                                         attitude, respected team
+                                                                                         responsibilities, and
+                                                                                         documented technical
+                                                                                         decisions.
+10                            Problem-solving               Fair                         Resolved several deployment
+                                                                                         and integration issues, but
+                                                                                         troubleshooting could be
+                                                                                         more systematic and better
+                                                                                         recorded.
+11                            Contribution to the project   Good                         Delivered the AWS
+                                                                                         deployment, monitoring
+                                                                                         evidence, hardware
+                                                                                         integration, and a substantial
+                                                                                         part of the workshop
+                                                                                         documentation.
+12                            Overall                       Good                         Achieved the prototype
+                                                                                         objectives while identifying
+                                                                                         clear technical and
+                                                                                         working-process
+                                                                                         improvements.
+
+
+Key Lessons Learned
+
+      • A cloud architecture should be evaluated not only by whether it runs, but also by security boundaries, avail-
+        ability, observability, backup, cost, and recovery capability.
+      • Operational claims should be supported by reproducible evidence such as health checks, API responses,
+        database records, metrics, logs, and screenshots.
+      • Hardware, backend, database, and cloud services must use a consistent data contract for telemetry, com-
+        mands, and acknowledgement states.
+      • High availability requires both suitable AWS configuration and controlled failure testing; configuration
+        screenshots alone are not sufficient proof of recovery behavior.
+
+Areas for Improvement
+
+      • Plan infrastructure changes earlier, document the expected impact, and prepare a rollback path before apply-
+        ing them.
+      • Report progress, blockers, risks, and decisions in a shorter and more structured format.
+      • Use a repeatable troubleshooting checklist and record the root cause instead of relying on trial and error.
+      • Learn Infrastructure as Code, automated deployment, and integration testing to reduce manual configuration
+        drift.
+      • Deepen knowledge of HTTPS origin security, authentication, least-privilege IAM, WAF enforcement, and
+        secret management.
+      • Run controlled Auto Scaling and RDS failover exercises when the environment and budget allow.
+
+Internship Program Reflection
+         The internship program gave me a practical environment for connecting university knowledge with an
+AWS-based system that included cloud infrastructure, software, and physical hardware. Reviews from mentors and
+collaboration with teammates helped me understand the importance of evidence, clear ownership, and concise
+technical communication. I also learned to distinguish a working prototype from a production-ready service and to
+document limitations honestly.
+Next Development Direction
+          My next priorities are Infrastructure as Code, CI/CD, automated integration tests, origin HTTPS, authen-
+tication, and controlled recovery exercises. I also plan to improve embedded reliability through safer command
+retry and acknowledgement handling while continuing to develop concise bilingual technical documentation.
+
+Internship Report (CO3335)                                                                                     Page 71/72
+                Ho Chi Minh City University of Technology – VNU-HCM
+                Faculty of Computer Science & Engineering
+
+
+
+
+Student’s signature and full name (live signature / direct signature in blue ink).
+
+
+
+
+                             Student                                    Company Representative
+
+
+
+
+                  Signature and full name                                Signature and full name
+
+
+
+
+Internship Report (CO3335)                                                                         Page 72/72
+

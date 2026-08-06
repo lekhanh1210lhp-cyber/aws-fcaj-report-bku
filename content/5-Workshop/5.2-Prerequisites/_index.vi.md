@@ -4,6 +4,16 @@ date: "2026-07-28"
 weight: 2
 chapter: false
 pre: " <b> 5.2. </b> "
+reportHeadings:
+  - "Mục tiêu"
+  - "Bước 1 - Xác minh quyền truy cập AWS"
+  - "Bước 2 - Xác minh công cụ cục bộ và phiên bản"
+  - "Bước 3 - Chuẩn bị phần cứng và an toàn điện"
+  - "Bước 4 - Xác minh mã nguồn và thông tin bí mật"
+  - "Bước 7 - Kiểm tra mức độ sẵn sàng"
+  - "Kết quả mong đợi"
+reportImages:
+  - "5-Workshop/5.2-prerequisites/development-tools-versions.png"
 ---
 
 ## Mục tiêu
@@ -86,7 +96,7 @@ Sau này, người học có thể bổ sung Infrastructure as Code khi được
 - [ ] Đã phân công người dọn dẹp và nơi lưu bằng chứng.
 
 ![Phiên bản công cụ phát triển cục bộ đã xác minh](/images/5-Workshop/5.2-prerequisites/development-tools-versions.png)
-*Hình 2. Bằng chứng terminal cho phiên bản Git, Python, Node.js, npm và PlatformIO được dùng trong dự án.*
+*Figure 2. Bằng chứng terminal cho phiên bản Git, Python, Node.js, npm và PlatformIO được dùng trong dự án.*
 
 ## Kết quả mong đợi
 
