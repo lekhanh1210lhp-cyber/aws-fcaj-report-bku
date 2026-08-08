@@ -9,11 +9,11 @@ chapter: false
 
 ### Student Information:
 
-&emsp; **Full Name:** Phạm Lê Minh Khôi
+&emsp; **Full Name:** Lê Bảo Khánh
 
-&emsp; **Phone Number:** 0938322647
+&emsp; **Phone Number:** 0908380983
 
-&emsp; **Email:** toniminhkhoi@gmail.com
+&emsp; **Email:** lekhanh1210lhp@gmail.com
 
 &emsp; **University:** Ho Chi Minh City University of Technology (HCMUT)
 
@@ -26,7 +26,7 @@ chapter: false
 &emsp; **Internship Position:** Workforce Bootcamp - First Cloud AI Journey
 
 &emsp; **Internship Duration:** 2 months (from 01/06/2026 to 15/08/2026)
-<img src="/images/profile-pham-le-minh-khoi.png" alt="Profile photo of Pham Le Minh Khoi" width="280"/>
+<img src="/images/Ảnh CV_2.jpg" alt="Profile photo of Le Bao Khanh" width="280"/>
 ### Report Content
 
 1.  [Worklog](1-Worklog/)

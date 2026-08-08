@@ -9,11 +9,11 @@ chapter: false
 
 ### Thông tin sinh viên:
 
-&emsp; **Họ và tên:** Phạm Lê Minh Khôi
+&emsp; **Họ và tên:** Lê Bảo Khánh
 
-&emsp; **Số điện thoại:** 0938322647
+&emsp; **Số điện thoại:** 0908380983
 
-&emsp; **Email:** toniminhkhoi@gmail.com
+&emsp; **Email:** lekhanh1210lhp@gmail.com
 
 &emsp; **Trường:** Trường Đại học Bách Khoa (HCMUT)
 
@@ -26,7 +26,7 @@ chapter: false
 &emsp; **Vị trí thực tập:** Workforce Bootcamp - First Cloud AI Journey
 
 &emsp; **Thời gian thực tập:** 2 tháng (từ ngày 01/06/2026 đến ngày 15/08/2026)
-<img src="/images/profile-pham-le-minh-khoi.png" alt="Ảnh đại diện của Phạm Lê Minh Khôi" width="280"/>
+<img src="/images/Ảnh CV_2.jpg" alt="Profile photo of Le Bao Khanh" width="280"/>
 ### Nội dung báo cáo
 
 1.  [Worklog](1-Worklog/)
